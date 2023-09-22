@@ -15,7 +15,6 @@ class TableElement with EquatableMixin {
   String? description;
   String? usage;
   String? source;
-  int? colors;
 
   TableElement({
     this.number,
@@ -29,7 +28,6 @@ class TableElement with EquatableMixin {
     this.description,
     this.usage,
     this.source,
-    this.colors,
   });
 
   factory TableElement.fromJson(Map<String, dynamic> json) =>
@@ -50,7 +48,6 @@ class TableElement with EquatableMixin {
         description,
         usage,
         source,
-        colors
       ];
 
   TableElement copyWith({
@@ -65,7 +62,6 @@ class TableElement with EquatableMixin {
     String? description,
     String? usage,
     String? source,
-    int? colors,
   }) {
     return TableElement(
       number: number ?? this.number,
@@ -79,7 +75,6 @@ class TableElement with EquatableMixin {
       description: description ?? this.description,
       usage: usage ?? this.usage,
       source: source ?? this.source,
-      colors: colors ?? this.colors,
     );
   }
 }
