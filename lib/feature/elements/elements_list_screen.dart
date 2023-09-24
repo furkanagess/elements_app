@@ -1,18 +1,18 @@
-import 'package:elements_app/product/model/table_element.dart';
+import 'package:elements_app/product/model/periodic_element.dart';
 import 'package:elements_app/product/service/api_service.dart';
 import 'package:elements_app/product/widget/element_card.dart';
 import 'package:flutter/material.dart';
 
-class ElementsListScreen extends StatefulWidget {
-  const ElementsListScreen({super.key});
+class ElementListScreen extends StatefulWidget {
+  const ElementListScreen({super.key});
 
   @override
-  State<ElementsListScreen> createState() => _ElementsListScreenState();
+  _ElementListScreenState createState() => _ElementListScreenState();
 }
 
-class _ElementsListScreenState extends State<ElementsListScreen> {
+class _ElementListScreenState extends State<ElementListScreen> {
   final ApiService _apiService = ApiService();
-  late Future<List<TableElement>> _elementList;
+  late Future<List<PeriodicElement>> _elementList;
 
   @override
   void initState() {
@@ -26,15 +26,13 @@ class _ElementsListScreenState extends State<ElementsListScreen> {
       appBar: AppBar(
         title: const Text('Periyodik Tablo Elementleri'),
       ),
-      body: FutureBuilder<List<TableElement>>(
+      body: FutureBuilder<List<PeriodicElement>>(
         future: _elementList,
         builder: (context, snapshot) {
-          if (snapshot.connectionState == ConnectionState.waiting) {
-            return const Center(child: CircularProgressIndicator());
-          } else if (snapshot.hasError) {
+          if (snapshot.hasError) {
             return Center(child: Text('Bir hata oluştu: ${snapshot.error}'));
           } else {
-            final elements = snapshot.data;
+            final List<PeriodicElement>? elements = snapshot.data;
             return ListView.builder(
               itemCount: elements!.length,
               itemBuilder: (context, index) {
