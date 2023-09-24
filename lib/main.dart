@@ -10,7 +10,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return const MaterialApp(
       title: 'Elements App',
-      home: ElementsListScreen(),
+      home: ElementListScreen(),
     );
   }
 }

@@ -1,22 +1,25 @@
+import 'package:flutter/material.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:equatable/equatable.dart';
-part 'table_element.g.dart';
+part 'periodic_element.g.dart';
 
+@immutable
 @JsonSerializable()
-class TableElement with EquatableMixin {
-  int? number;
-  String? name;
-  String? symbol;
-  String? weight;
-  String? category;
-  String? block;
-  String? period;
-  String? group;
-  String? description;
-  String? usage;
-  String? source;
+final class PeriodicElement with EquatableMixin {
+  final int? number;
+  final String? name;
+  final String? symbol;
+  final String? weight;
+  final String? category;
+  final String? block;
+  final String? period;
+  final String? group;
+  final String? description;
+  final String? usage;
+  final String? source;
+  final int? colors;
 
-  TableElement({
+  PeriodicElement({
     this.number,
     this.name,
     this.symbol,
@@ -28,12 +31,13 @@ class TableElement with EquatableMixin {
     this.description,
     this.usage,
     this.source,
+    this.colors,
   });
 
-  factory TableElement.fromJson(Map<String, dynamic> json) =>
-      _$TableElementFromJson(json);
+  factory PeriodicElement.fromJson(Map<String, dynamic> json) =>
+      _$PeriodicElementFromJson(json);
 
-  Map<String, dynamic> toJson() => _$TableElementToJson(this);
+  Map<String, dynamic> toJson() => _$PeriodicElementToJson(this);
 
   @override
   List<Object?> get props => [
@@ -48,9 +52,10 @@ class TableElement with EquatableMixin {
         description,
         usage,
         source,
+        colors,
       ];
 
-  TableElement copyWith({
+  PeriodicElement copyWith({
     int? number,
     String? name,
     String? symbol,
@@ -62,8 +67,9 @@ class TableElement with EquatableMixin {
     String? description,
     String? usage,
     String? source,
+    int? colors,
   }) {
-    return TableElement(
+    return PeriodicElement(
       number: number ?? this.number,
       name: name ?? this.name,
       symbol: symbol ?? this.symbol,
@@ -75,6 +81,7 @@ class TableElement with EquatableMixin {
       description: description ?? this.description,
       usage: usage ?? this.usage,
       source: source ?? this.source,
+      colors: colors ?? this.colors,
     );
   }
 }
