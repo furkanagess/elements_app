@@ -9,17 +9,19 @@ class AppColors {
   static const Color darkBlue = Color(0xff13132c);
   static const Color transparentWhite = Color(0xff353535);
   static const Color lightWhite = Color(0xffadadad);
-  // Element Colors
-  static const Color lightPurple = Color(0xFFB8B8FF);
-  static const Color pistachioGreen = Color(0xFFD7FFCE);
-  static const Color turqiouse = Color(0xFFBEF1F6);
-  static const Color snuff = Color(0xFFDECCE5);
-  static const Color lightPink = Color(0xFFFFDBDB);
-  static const Color lightYellow = Color(0xFFFCF6BD);
-  static const Color banana = Color(0xFFFCEAA8);
 
-  // new colors
-  static const Color skinColor = Color(0xFFEF9595);
-  static const Color purple = Color(0xffBEADFA);
-  static const Color lightTurq = Color(0xff96B6C5);
+  // Element Base Colors
+  static const Color yellow = Color(0xffFBF0B2); // Earth Alkaline
+  static const Color pink = Color(0xffFFC7EA); // Actinides
+  static const Color purple = Color(0xffD8B4F8); // Transition
+  static const Color turquoise = Color(0xffCAEDFF); // Alkaline
+  static const Color lightGreen = Color(0xffC8E4B2); // Halogen
+  static const Color darkTurquoise = Color(0xff9ED2BE); // Lanthanides
+  static const Color darkWhite = Color(0xffF1F0E8); // Unknown
+  static const Color skinColor = Color(0xffFFD9B7); // Metalloid
+  static const Color glowGreen = Color(0xffCBFFA9); // Noble
+  static const Color powderRed = Color(0xffFD8A8A); // Reactive Nonmetal
+  static const Color steelBlue = Color(0xff82A0D8); // Post Transition
+
+  // Element Shadow Colors
 }
