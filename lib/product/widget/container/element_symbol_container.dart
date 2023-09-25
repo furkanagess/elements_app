@@ -17,7 +17,7 @@ class ElementSymbolContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: context.dynamicHeight(0.20),
+      height: context.dynamicHeight(0.15),
       width: context.dynamicWidth(0.30),
       decoration: BoxDecoration(
         border: Border.all(width: 0.5),
@@ -31,13 +31,20 @@ class ElementSymbolContainer extends StatelessWidget {
         borderRadius: BorderRadius.circular(10),
         color: color,
       ),
-      child: Center(
-        child: Text(
-          title!,
-          style: context.textTheme.displayMedium?.copyWith(
-            color: AppColors.background,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Expanded(
+            child: Center(
+              child: Text(
+                title!,
+                style: context.textTheme.displayMedium?.copyWith(
+                  color: AppColors.background,
+                ),
+              ),
+            ),
           ),
-        ),
+        ],
       ),
     );
   }

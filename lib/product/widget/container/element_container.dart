@@ -1,6 +1,7 @@
 import 'package:elements_app/feature/model/periodic_element.dart';
 import 'package:elements_app/feature/view/detail/element_detail_page.dart';
 import 'package:elements_app/product/constants/app_colors.dart';
+import 'package:elements_app/product/extensions/color_extension.dart';
 import 'package:elements_app/product/extensions/context_extensions.dart';
 import 'package:flutter/material.dart';
 
@@ -31,12 +32,12 @@ final class ElementContainer extends StatelessWidget {
           decoration: BoxDecoration(
             boxShadow: const [
               BoxShadow(
-                color: Colors.pink,
-                offset: Offset(5, 5),
+                color: AppColors.background,
+                offset: Offset(4, 4),
                 spreadRadius: 1,
               ),
             ],
-            color: AppColors.lightPink,
+            color: element.colors?.toColor(),
             borderRadius: BorderRadius.circular(10),
           ),
           child: Row(

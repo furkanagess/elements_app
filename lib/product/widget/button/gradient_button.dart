@@ -3,7 +3,7 @@ import 'package:elements_app/product/extensions/context_extensions.dart';
 import 'package:flutter/material.dart';
 
 @immutable
-class GradientButton extends StatelessWidget {
+final class GradientButton extends StatelessWidget {
   const GradientButton({
     super.key,
     this.title,

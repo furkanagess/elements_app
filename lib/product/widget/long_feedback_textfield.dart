@@ -3,7 +3,7 @@ import 'package:elements_app/product/extensions/context_extensions.dart';
 import 'package:flutter/material.dart';
 
 @immutable
-class FeedbackLongTextField extends StatelessWidget {
+final class FeedbackLongTextField extends StatelessWidget {
   const FeedbackLongTextField({
     super.key,
     this.controller,

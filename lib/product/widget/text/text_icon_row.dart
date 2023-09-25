@@ -3,7 +3,7 @@ import 'package:elements_app/product/extensions/context_extensions.dart';
 import 'package:flutter/material.dart';
 
 @immutable
-class TextIconRow extends StatelessWidget {
+final class TextIconRow extends StatelessWidget {
   const TextIconRow({
     super.key,
     this.title,
