@@ -24,4 +24,15 @@ class AppColors {
   static const Color steelBlue = Color(0xff82A0D8); // Post Transition
 
   // Element Shadow Colors
+  static const Color shYellow = Color(0xFFBDB485); // Earth Alkaline
+  static const Color shPink = Color(0xFFB68DA6); // Actinides
+  static const Color shPurple = Color(0xFF927AA8); // Transition
+  static const Color shTurquoise = Color(0xFF4A8EAF); // Alkaline
+  static const Color shLightGreen = Color(0xFF608842); // Halogen
+  static const Color shDarkTurquoise = Color(0xFF3C8065); // Lanthanides
+  static const Color shDarkWhite = Color(0xFFA1A19B); // Unknown
+  static const Color shSkinColor = Color(0xFFB89C84); // Metalloid
+  static const Color shGlowGreen = Color(0xFF91B679); // Noble
+  static const Color shPowderRed = Color(0xFFB16161); // Reactive Nonmetal
+  static const Color shSteelBlue = Color(0xFF506386); // Post Transition
 }
