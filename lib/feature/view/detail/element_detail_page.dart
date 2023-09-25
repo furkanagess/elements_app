@@ -1,5 +1,6 @@
 import 'package:elements_app/feature/model/periodic_element.dart';
 import 'package:elements_app/product/constants/app_colors.dart';
+import 'package:elements_app/product/constants/app_strings.dart';
 import 'package:elements_app/product/extensions/color_extension.dart';
 import 'package:elements_app/product/extensions/context_extensions.dart';
 import 'package:elements_app/product/widget/container/element_symbol_container.dart';
@@ -57,23 +58,23 @@ class ElementDetailPage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Expanded(
-                child:
-                    ElementDetailRowText(title: 'Blok', value: element.block)),
+                child: ElementDetailRowText(
+                    title: AppStrings.block, value: element.block)),
             const VerticalDivider(
               color: Colors.white,
               thickness: 2,
             ),
             Expanded(
-              child:
-                  ElementDetailRowText(title: 'Periyot', value: element.period),
+              child: ElementDetailRowText(
+                  title: AppStrings.period, value: element.period),
             ),
             const VerticalDivider(
               color: Colors.white,
               thickness: 2,
             ),
             Expanded(
-                child:
-                    ElementDetailRowText(title: 'Grup', value: element.group)),
+                child: ElementDetailRowText(
+                    title: AppStrings.group, value: element.group)),
           ],
         ),
       ),
@@ -117,17 +118,17 @@ class ElementDetailPage extends StatelessWidget {
             Column(
               children: [
                 ElementInfoParagraph(
-                  title: 'Tanım',
+                  title: AppStrings.description,
                   paragraph: element.description,
                 ),
                 SizedBox(height: context.dynamicHeight(0.05)),
                 ElementInfoParagraph(
-                  title: 'Kullanım Alanları',
+                  title: AppStrings.usage,
                   paragraph: element.usage,
                 ),
                 SizedBox(height: context.dynamicHeight(0.05)),
                 ElementInfoParagraph(
-                  title: 'Kaynak',
+                  title: AppStrings.source,
                   paragraph: element.source,
                 ),
               ],
@@ -150,44 +151,13 @@ class ElementDetailPage extends StatelessWidget {
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            ElementInfoRow(title: 'İsim:  ', value: element.name),
+            ElementInfoRow(title: AppStrings.name, value: element.name),
             ElementInfoRow(
-                title: 'Numara:  ', value: element.number.toString()),
-            ElementInfoRow(title: 'Ağırlık:  ', value: element.weight),
+                title: AppStrings.number, value: element.number.toString()),
+            ElementInfoRow(title: AppStrings.weight, value: element.weight),
           ],
         ),
       ],
-    );
-  }
-
-  SliverAppBar buildSliverAppbar(BuildContext context) {
-    return SliverAppBar(
-      centerTitle: true,
-      elevation: 0,
-      backgroundColor: AppColors.background,
-      title: Flexible(
-        child: Padding(
-          padding: context.paddingLow,
-          child: TextField(
-            decoration: InputDecoration(
-              hintText: "search",
-              hintStyle: context.textTheme.titleMedium?.copyWith(
-                color: AppColors.lightWhite,
-              ),
-              prefixIcon: const Icon(
-                Icons.search,
-                color: AppColors.lightWhite,
-              ),
-              filled: true,
-              fillColor: AppColors.transparentWhite,
-              border: OutlineInputBorder(
-                borderSide: BorderSide.none,
-                borderRadius: BorderRadius.circular(10),
-              ),
-            ),
-          ),
-        ),
-      ),
     );
   }
 }
