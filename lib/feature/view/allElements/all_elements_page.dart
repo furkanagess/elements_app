@@ -1,7 +1,7 @@
 import 'package:elements_app/feature/model/periodic_element.dart';
 import 'package:elements_app/product/constants/api_types.dart';
 import 'package:elements_app/product/constants/app_colors.dart';
-import 'package:elements_app/product/service/api_service.dart';
+import 'package:elements_app/feature/service/api_service.dart';
 import 'package:elements_app/product/widget/container/element_container.dart';
 import 'package:flutter/material.dart';
 
@@ -35,7 +35,10 @@ class _AllElementsPageState extends State<AllElementsPage> {
         future: _elementList,
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return const Center(child: CircularProgressIndicator());
+            return const Center(
+                child: CircularProgressIndicator(
+              color: AppColors.purple,
+            ));
           } else if (snapshot.hasError) {
             return Center(child: Text('Bir hata oluştu: ${snapshot.error}'));
           } else {

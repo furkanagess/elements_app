@@ -1,5 +1,6 @@
 import 'package:elements_app/feature/model/periodic_element.dart';
 import 'package:elements_app/product/constants/app_colors.dart';
+import 'package:elements_app/product/extensions/color_extension.dart';
 import 'package:elements_app/product/extensions/context_extensions.dart';
 import 'package:elements_app/product/widget/container/element_symbol_container.dart';
 import 'package:elements_app/product/widget/text/element_detail_row.dart';
@@ -26,9 +27,12 @@ class ElementDetailPage extends StatelessWidget {
           padding: context.paddingNormal,
           child: Column(
             children: [
-              SizedBox(height: context.dynamicHeight(0.03)),
               symbolAndInfoRow(context),
-              SizedBox(height: context.dynamicHeight(0.07)),
+              spacer(context, 0.05),
+              categoryContainer(context),
+              spacer(context, 0.03),
+              blockPeriodGroupContainer(context),
+              spacer(context, 0.03),
               elementInfoContainer(context),
             ],
           ),
@@ -37,9 +41,69 @@ class ElementDetailPage extends StatelessWidget {
     );
   }
 
+  SizedBox spacer(BuildContext context, double value) =>
+      SizedBox(height: context.dynamicHeight(value));
+
+  Container blockPeriodGroupContainer(BuildContext context) {
+    return Container(
+      height: context.dynamicHeight(0.1),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(10),
+        color: AppColors.darkBlue,
+      ),
+      child: Padding(
+        padding: context.paddingNormal,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Expanded(
+                child:
+                    ElementDetailRowText(title: 'Blok', value: element.block)),
+            const VerticalDivider(
+              color: Colors.white,
+              thickness: 2,
+            ),
+            Expanded(
+              child:
+                  ElementDetailRowText(title: 'Periyot', value: element.period),
+            ),
+            const VerticalDivider(
+              color: Colors.white,
+              thickness: 2,
+            ),
+            Expanded(
+                child:
+                    ElementDetailRowText(title: 'Grup', value: element.group)),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Container categoryContainer(BuildContext context) {
+    return Container(
+      height: context.dynamicHeight(0.08),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(10),
+        color: element.colors?.toColor(),
+      ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Text(
+            element.category.toString().toUpperCase(),
+            style: context.textTheme.titleLarge?.copyWith(
+              color: AppColors.background,
+            ),
+          )
+        ],
+      ),
+    );
+  }
+
   Container elementInfoContainer(BuildContext context) {
     return Container(
-      height: context.dynamicHeight(0.7),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10),
         color: AppColors.darkBlue,
@@ -47,34 +111,26 @@ class ElementDetailPage extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.all(16),
         child: Column(
+          mainAxisSize: MainAxisSize.min, // Column'un boyutunu minimize et
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            Column(
               children: [
-                ElementDetailRowText(title: 'Blok', value: element.block),
-                ElementDetailRowText(title: 'Periyot', value: element.period),
-                ElementDetailRowText(title: 'Grup', value: element.group),
+                ElementInfoParagraph(
+                  title: 'Tanım',
+                  paragraph: element.description,
+                ),
+                SizedBox(height: context.dynamicHeight(0.05)),
+                ElementInfoParagraph(
+                  title: 'Kullanım Alanları',
+                  paragraph: element.usage,
+                ),
+                SizedBox(height: context.dynamicHeight(0.05)),
+                ElementInfoParagraph(
+                  title: 'Kaynak',
+                  paragraph: element.source,
+                ),
               ],
-            ),
-            SizedBox(height: context.dynamicHeight(0.03)),
-            const Divider(
-              color: AppColors.white,
-              thickness: 2,
-            ),
-            SizedBox(height: context.dynamicHeight(0.05)),
-            ElementInfoParagraph(
-              title: 'Tanım',
-              paragraph: element.description,
-            ),
-            SizedBox(height: context.dynamicHeight(0.05)),
-            ElementInfoParagraph(
-              title: 'Kullanım Alanları',
-              paragraph: element.usage,
-            ),
-            SizedBox(height: context.dynamicHeight(0.05)),
-            ElementInfoParagraph(
-              title: 'Kaynak',
-              paragraph: element.source,
             ),
           ],
         ),
@@ -87,18 +143,17 @@ class ElementDetailPage extends StatelessWidget {
       children: [
         ElementSymbolContainer(
           title: element.symbol,
-          color: AppColors.banana,
-          shadowColor: AppColors.lightYellow,
+          color: element.colors?.toColor(),
+          shadowColor: AppColors.background,
         ),
         SizedBox(width: context.dynamicWidth(0.05)),
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            ElementInfoRow(title: 'İsim:  ', value: element.name),
             ElementInfoRow(
-                title: 'Number:  ', value: element.number.toString()),
-            ElementInfoRow(title: 'Name:  ', value: element.name),
-            ElementInfoRow(title: 'Weight:  ', value: element.weight),
-            ElementInfoRow(title: 'Category:  ', value: element.category),
+                title: 'Numara:  ', value: element.number.toString()),
+            ElementInfoRow(title: 'Ağırlık:  ', value: element.weight),
           ],
         ),
       ],
