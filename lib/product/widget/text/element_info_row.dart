@@ -25,11 +25,14 @@ final class ElementInfoRow extends StatelessWidget {
               fontWeight: FontWeight.bold,
             ),
           ),
-          Text(
-            value!,
-            style: context.textTheme.titleLarge?.copyWith(
-              color: AppColors.white,
-              fontWeight: FontWeight.bold,
+          Padding(
+            padding: context.paddingLowHorizontal,
+            child: Text(
+              value!,
+              style: context.textTheme.titleLarge?.copyWith(
+                color: AppColors.white,
+                fontWeight: FontWeight.bold,
+              ),
             ),
           ),
         ],
