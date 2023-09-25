@@ -17,7 +17,7 @@ final class PeriodicElement with EquatableMixin {
   final String? description;
   final String? usage;
   final String? source;
-  final int? colors;
+  final String? colors;
 
   PeriodicElement({
     this.number,
@@ -67,7 +67,7 @@ final class PeriodicElement with EquatableMixin {
     String? description,
     String? usage,
     String? source,
-    int? colors,
+    String? colors,
   }) {
     return PeriodicElement(
       number: number ?? this.number,

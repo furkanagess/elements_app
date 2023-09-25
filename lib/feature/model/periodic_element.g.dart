@@ -19,7 +19,7 @@ PeriodicElement _$PeriodicElementFromJson(Map<String, dynamic> json) =>
       description: json['description'] as String?,
       usage: json['usage'] as String?,
       source: json['source'] as String?,
-      colors: json['colors'] as int?,
+      colors: json['colors'] as String?,
     );
 
 Map<String, dynamic> _$PeriodicElementToJson(PeriodicElement instance) =>
