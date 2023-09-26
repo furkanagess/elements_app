@@ -28,7 +28,7 @@ class AppColors {
   static const Color shPink = Color(0xFFB68DA6); // Actinides
   static const Color shPurple = Color(0xFF927AA8); // Transition
   static const Color shTurquoise = Color(0xFFBFD0D7); // Alkaline
-  static const Color shLightGreen = Color(0xFF8CC760); // Halogen
+  static const Color shLightGreen = Color(0xFF55783A); // Halogen
   static const Color shDarkTurquoise = Color(0xFF3C8065); // Lanthanides
   static const Color shDarkWhite = Color(0xFFA1A19B); // Unknown
   static const Color shSkinColor = Color(0xFFB89C84); // Metalloid
