@@ -27,8 +27,7 @@ class AppColors {
   static const Color shYellow = Color(0xFFBDB485); // Earth Alkaline
   static const Color shPink = Color(0xFFB68DA6); // Actinides
   static const Color shPurple = Color(0xFF927AA8); // Transition
-  static const Color shTurquoise =
-      Color.fromARGB(255, 94, 180, 223); // Alkaline
+  static const Color shTurquoise = Color(0xFF5EB4DF); // Alkaline
   static const Color shLightGreen = Color(0xFF8CC760); // Halogen
   static const Color shDarkTurquoise = Color(0xFF3C8065); // Lanthanides
   static const Color shDarkWhite = Color(0xFFA1A19B); // Unknown
