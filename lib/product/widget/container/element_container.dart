@@ -15,25 +15,25 @@ final class ElementContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      onTap: () {
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) => ElementDetailPage(element: element),
-          ),
-        );
-      },
-      child: Padding(
-        padding: context.paddingNormal,
+    return Padding(
+      padding: context.paddingNormal,
+      child: InkWell(
+        onTap: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => ElementDetailPage(element: element),
+            ),
+          );
+        },
         child: Container(
           width: context.dynamicWidth(0.7),
           height: context.dynamicHeight(0.075),
           decoration: BoxDecoration(
-            boxShadow: const [
+            boxShadow: [
               BoxShadow(
-                color: AppColors.background,
-                offset: Offset(4, 4),
+                color: element.shColor?.toColor(),
+                offset: const Offset(4, 4),
                 spreadRadius: 1,
               ),
             ],

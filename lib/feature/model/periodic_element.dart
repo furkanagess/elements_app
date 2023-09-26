@@ -18,6 +18,7 @@ final class PeriodicElement with EquatableMixin {
   final String? usage;
   final String? source;
   final String? colors;
+  final String? shColor;
 
   PeriodicElement({
     this.number,
@@ -32,6 +33,7 @@ final class PeriodicElement with EquatableMixin {
     this.usage,
     this.source,
     this.colors,
+    this.shColor,
   });
 
   factory PeriodicElement.fromJson(Map<String, dynamic> json) =>
@@ -53,6 +55,7 @@ final class PeriodicElement with EquatableMixin {
         usage,
         source,
         colors,
+        shColor,
       ];
 
   PeriodicElement copyWith({
@@ -68,6 +71,7 @@ final class PeriodicElement with EquatableMixin {
     String? usage,
     String? source,
     String? colors,
+    String? shColor,
   }) {
     return PeriodicElement(
       number: number ?? this.number,
@@ -82,6 +86,7 @@ final class PeriodicElement with EquatableMixin {
       usage: usage ?? this.usage,
       source: source ?? this.source,
       colors: colors ?? this.colors,
+      shColor: shColor ?? this.shColor,
     );
   }
 }
