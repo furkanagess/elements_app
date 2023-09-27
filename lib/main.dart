@@ -1,4 +1,5 @@
-import 'package:elements_app/feature/view/allElements/all_elements_page.dart';
+import 'package:elements_app/feature/view/elements/all_elements_page.dart';
+import 'package:elements_app/feature/view/home/home_view.dart';
 import 'package:elements_app/product/constants/app_strings.dart';
 import 'package:flutter/material.dart';
 
@@ -12,7 +13,7 @@ class MyApp extends StatelessWidget {
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
       title: AppStrings.appName,
-      home: AllElementsPage(),
+      home: HomeView(),
     );
   }
 }

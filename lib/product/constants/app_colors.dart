@@ -15,7 +15,7 @@ class AppColors {
   static const Color pink = Color(0xffFFC7EA); // Actinides
   static const Color purple = Color(0xffD8B4F8); // Transition
   static const Color turquoise = Color(0xffCAEDFF); // Alkaline
-  static const Color lightGreen = Color(0xFF749E54); // Halogen
+  static const Color lightGreen = Color(0xFF94A684); // Halogen
   static const Color darkTurquoise = Color(0xff9ED2BE); // Lanthanides
   static const Color darkWhite = Color(0xffF1F0E8); // Unknown
   static const Color skinColor = Color(0xffFFD9B7); // Metalloid
@@ -28,7 +28,7 @@ class AppColors {
   static const Color shPink = Color(0xFFB68DA6); // Actinides
   static const Color shPurple = Color(0xFF927AA8); // Transition
   static const Color shTurquoise = Color(0xFFBFD0D7); // Alkaline
-  static const Color shLightGreen = Color(0xFF55783A); // Halogen
+  static const Color shLightGreen = Color(0xFF395027); // Halogen
   static const Color shDarkTurquoise = Color(0xFF3C8065); // Lanthanides
   static const Color shDarkWhite = Color(0xFFA1A19B); // Unknown
   static const Color shSkinColor = Color(0xFFB89C84); // Metalloid
