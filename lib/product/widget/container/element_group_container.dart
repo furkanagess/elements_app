@@ -21,8 +21,8 @@ class ElementGroupContainer extends StatelessWidget {
     return InkWell(
       onTap: onTap,
       child: Container(
-        height: context.dynamicHeight(0.22),
-        width: context.dynamicWidth(0.38),
+        height: context.dynamicHeight(0.2),
+        width: context.dynamicWidth(0.4),
         decoration: BoxDecoration(
           border: Border.all(width: 0.5),
           boxShadow: [
@@ -38,8 +38,8 @@ class ElementGroupContainer extends StatelessWidget {
         child: Center(
           child: Text(
             title!,
-            style: context.textTheme.bodyMedium?.copyWith(
-              color: AppColors.white,
+            style: context.textTheme.titleLarge?.copyWith(
+              color: AppColors.background,
             ),
           ),
         ),
