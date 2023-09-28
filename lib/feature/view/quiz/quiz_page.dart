@@ -1,17 +1,23 @@
+// ignore_for_file: library_private_types_in_public_api
+
 import 'dart:convert';
 import 'package:elements_app/feature/model/periodic_element.dart';
-import 'package:elements_app/feature/view/home/home_view.dart';
 import 'package:elements_app/product/constants/api_types.dart';
+import 'package:elements_app/product/constants/app_colors.dart';
+import 'package:elements_app/product/extensions/context_extensions.dart';
+import 'package:elements_app/product/widget/container/element_symbol_container.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:math';
 
-class PeriodicTableQuizApp extends StatefulWidget {
+class QuizPage extends StatefulWidget {
+  const QuizPage({super.key});
+
   @override
-  _PeriodicTableQuizAppState createState() => _PeriodicTableQuizAppState();
+  _QuizPageState createState() => _QuizPageState();
 }
 
-class _PeriodicTableQuizAppState extends State<PeriodicTableQuizApp> {
+class _QuizPageState extends State<QuizPage> {
   List<PeriodicElement> elements = []; // Element listesi
   String correctAnswer = ''; // Doğru cevap
   List<String> options = []; // Şık seçenekleri
@@ -19,10 +25,16 @@ class _PeriodicTableQuizAppState extends State<PeriodicTableQuizApp> {
   bool isCorrectAnswerSelected = false;
   int correctCount = 0; // Doğru cevap sayısı
   int wrongCount = 0; // Yanlış cevap sayısı
+  bool isLoading = true;
   @override
   void initState() {
     super.initState();
+    fetchAndAsk();
+  }
+
+  Future<void> fetchAndAsk() async {
     fetchElements();
+    askQuestion();
   }
 
   Future<void> fetchElements() async {
@@ -59,31 +71,56 @@ class _PeriodicTableQuizAppState extends State<PeriodicTableQuizApp> {
     } else {
       throw Exception('Failed to load data');
     }
+    isLoading = false;
+    askQuestion();
+  }
+
+  void askQuestion() {
+    setState(() {
+      elements.shuffle();
+      PeriodicElement newElement = elements.first;
+      questionSymbol = newElement.symbol.toString();
+      correctAnswer = newElement.name.toString();
+
+      options.clear();
+      options.add(correctAnswer);
+
+      while (options.length < 4) {
+        PeriodicElement randomOption =
+            elements[Random().nextInt(elements.length)];
+        if (!options.contains(randomOption.name)) {
+          options.add(randomOption.name.toString());
+        }
+      }
+
+      options.shuffle();
+      isCorrectAnswerSelected = false;
+    });
   }
 
   void checkAnswer(String selectedOption) {
     if (isCorrectAnswerSelected) return;
 
     showDialog(
+      barrierDismissible: false,
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          backgroundColor:
-              selectedOption == correctAnswer ? Colors.green : Colors.red,
           title: Text(selectedOption == correctAnswer ? 'Doğru' : 'Yanlış'),
           content: Text(selectedOption == correctAnswer
               ? 'Cevap doğru!'
               : 'Cevap yanlış.'),
           actions: <Widget>[
             TextButton(
-              child: Text(
-                  selectedOption == correctAnswer ? "Sıradaki" : "Soruya Dön"),
+              child: Text(selectedOption == correctAnswer
+                  ? "Sıradaki Soru"
+                  : "Soruya Dön"),
               onPressed: () {
                 Navigator.of(context).pop(); // Popup'ı kapat
                 setState(() {
                   if (selectedOption == correctAnswer) {
                     correctCount++;
-                    moveToNextExample();
+                    askQuestion(); // Yeni soru sor
                   } else {
                     wrongCount++;
                   }
@@ -123,44 +160,164 @@ class _PeriodicTableQuizAppState extends State<PeriodicTableQuizApp> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Periodik Tablo Quiz Uygulaması'),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+      backgroundColor: AppColors.background,
+      appBar: appBar(),
+      body: isLoading
+          ? const Center(
+              child: CircularProgressIndicator(),
+            )
+          : Padding(
+              padding: context.paddingNormal,
+              child: Column(
+                children: [
+                  Expanded(
+                    child: wrongAndCorrectCounter(context),
+                  ),
+                  spacer(context, 0.05),
+                  Expanded(
+                    flex: 2,
+                    child: symbolContainer(),
+                  ),
+                  spacer(context, 0.05),
+                  Expanded(
+                    flex: 8,
+                    child: optionAnswerGrid(context),
+                  ),
+                ],
+              ),
+            ),
+      floatingActionButton: fabButton(),
+    );
+  }
+
+  FloatingActionButton fabButton() {
+    return FloatingActionButton(
+      backgroundColor: AppColors.pink,
+      onPressed: askQuestion,
+      child: const Icon(
+        Icons.refresh,
+        color: AppColors.background,
       ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text('Doğru: $correctCount  Yanlış: $wrongCount'),
-            ],
-          ),
-          Text(
-            'Element Sembolü: $correctAnswer',
-            style: TextStyle(fontSize: 24.0),
-          ),
-          SizedBox(height: 20.0),
-          Column(
-            children: options.map((option) {
-              return Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: ElevatedButton(
-                  onPressed: () {
-                    checkAnswer(option);
-                  },
-                  child: Text(option),
+    );
+  }
+
+  SizedBox spacer(BuildContext context, double value) =>
+      SizedBox(height: context.dynamicHeight(value));
+
+  AppBar appBar() {
+    return AppBar(
+      backgroundColor: AppColors.background,
+      elevation: 0,
+    );
+  }
+
+  GridView optionAnswerGrid(BuildContext context) {
+    return GridView.count(
+      crossAxisCount: 2,
+      children: options.map((option) {
+        return Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: InkWell(
+            onTap: () {
+              checkAnswer(option);
+            },
+            child: Container(
+              decoration: BoxDecoration(
+                border: Border.all(width: 0.5),
+                boxShadow: const [
+                  BoxShadow(
+                    color: AppColors.shTurquoise,
+                    offset: Offset(4, 4),
+                    spreadRadius: 1,
+                  ),
+                ],
+                borderRadius: BorderRadius.circular(10),
+                color: AppColors.turquoise,
+              ),
+              height: context.dynamicHeight(0.15),
+              width: context.dynamicWidth(0.30),
+              child: Center(
+                child: Text(
+                  option,
+                  style: context.textTheme.headlineSmall?.copyWith(
+                      color: AppColors.background, fontWeight: FontWeight.bold),
                 ),
-              );
-            }).toList(),
+              ),
+            ),
           ),
-          isCorrectAnswerSelected
-              ? ElevatedButton(
-                  onPressed: moveToNextExample,
-                  child: Text('Sonraki Sayfaya Geç'),
-                )
-              : Container(), // Butonu sadece doğru cevap işaretlendiğinde göster
-        ],
-      ),
+        );
+      }).toList(),
+    );
+  }
+
+  ElementSymbolContainer symbolContainer() {
+    return ElementSymbolContainer(
+      title: questionSymbol,
+      color: AppColors.purple,
+      shadowColor: AppColors.shPurple,
+    );
+  }
+
+  Row wrongAndCorrectCounter(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      children: [
+        Row(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Container(
+              height: context.dynamicHeight(0.05),
+              width: context.dynamicWidth(0.1),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10),
+                color: AppColors.glowGreen,
+              ),
+              child: const Icon(
+                Icons.check,
+                color: AppColors.background,
+              ),
+            ),
+            SizedBox(
+              width: context.dynamicWidth(0.03),
+            ),
+            Text(
+              "$correctCount",
+              style: context.textTheme.headlineSmall?.copyWith(
+                color: AppColors.white,
+              ),
+            ),
+          ],
+        ),
+        Row(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Container(
+              height: context.dynamicHeight(0.05),
+              width: context.dynamicWidth(0.1),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10),
+                color: AppColors.powderRed,
+              ),
+              child: const Icon(
+                Icons.close,
+                color: AppColors.background,
+              ),
+            ),
+            SizedBox(
+              width: context.dynamicWidth(0.03),
+            ),
+            Text(
+              "$wrongCount",
+              style: context.textTheme.headlineSmall?.copyWith(
+                color: AppColors.white,
+              ),
+            ),
+          ],
+        ),
+      ],
     );
   }
 }
