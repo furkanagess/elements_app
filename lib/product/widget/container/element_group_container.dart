@@ -38,7 +38,8 @@ class ElementGroupContainer extends StatelessWidget {
         child: Center(
           child: Text(
             title!,
-            style: context.textTheme.titleLarge?.copyWith(
+            style: context.textTheme.headlineSmall?.copyWith(
+              fontWeight: FontWeight.bold,
               color: AppColors.background,
             ),
           ),
