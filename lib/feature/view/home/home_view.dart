@@ -1,4 +1,5 @@
 import 'package:elements_app/feature/view/elements/all_elements_page.dart';
+import 'package:elements_app/feature/view/quiz/quiz_page.dart';
 import 'package:elements_app/product/constants/app_colors.dart';
 import 'package:elements_app/product/constants/app_strings.dart';
 import 'package:elements_app/product/extensions/context_extensions.dart';
@@ -54,16 +55,16 @@ class HomeView extends StatelessWidget {
         ),
         ElementGroupContainer(
           onTap: () {
-            // Navigator.push(
-            //   context,
-            //   MaterialPageRoute(
-            //     builder: (context) => const OtherElementsPageView(),
-            //   ),
-            // );
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const QuizPage(),
+              ),
+            );
           },
           shadowColor: AppColors.shPink,
           color: AppColors.pink,
-          title: "Nedir ?",
+          title: "Quiz",
         ),
       ],
     );
@@ -84,7 +85,7 @@ class HomeView extends StatelessWidget {
           },
           shadowColor: AppColors.shTurquoise,
           color: AppColors.turquoise,
-          title: AppStrings.allElements,
+          title: "Elementler",
         ),
         ElementGroupContainer(
           onTap: () {
