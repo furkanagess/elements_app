@@ -24,7 +24,6 @@ class ElementGroupContainer extends StatelessWidget {
         height: context.dynamicHeight(0.2),
         width: context.dynamicWidth(0.4),
         decoration: BoxDecoration(
-          border: Border.all(width: 0.5),
           boxShadow: [
             BoxShadow(
               color: shadowColor!,
@@ -36,11 +35,15 @@ class ElementGroupContainer extends StatelessWidget {
           color: color,
         ),
         child: Center(
-          child: Text(
-            title!,
-            style: context.textTheme.headlineSmall?.copyWith(
-              fontWeight: FontWeight.bold,
-              color: AppColors.background,
+          child: Padding(
+            padding: context.paddingLowHorizontal,
+            child: Text(
+              textAlign: TextAlign.center,
+              title!,
+              style: context.textTheme.headlineSmall?.copyWith(
+                fontWeight: FontWeight.bold,
+                color: AppColors.background,
+              ),
             ),
           ),
         ),
