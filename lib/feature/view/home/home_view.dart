@@ -1,4 +1,5 @@
 import 'package:elements_app/feature/view/elements/all_elements_page.dart';
+import 'package:elements_app/feature/view/groups/element_groups_view.dart';
 import 'package:elements_app/feature/view/quiz/quiz_page.dart';
 import 'package:elements_app/product/constants/app_colors.dart';
 import 'package:elements_app/product/constants/app_strings.dart';
@@ -17,21 +18,16 @@ class HomeView extends StatelessWidget {
     return Scaffold(
       backgroundColor: AppColors.background,
       appBar: buildAppbar(context),
-      body: Padding(
-        padding: context.paddingNormal,
-        child: Column(
-          children: [
-            headerElementText(context),
-            SizedBox(height: context.dynamicHeight(0.02)),
-            headerGroupText(context),
-            SizedBox(height: context.dynamicHeight(0.02)),
-            elementGroupRowOne(context),
-            SizedBox(height: context.dynamicHeight(0.04)),
-            elementGroupRowTwo(context),
-            divider(context),
-            langAndHelpRow(context),
-          ],
-        ),
+      body: Column(
+        children: [
+          SizedBox(height: context.dynamicHeight(0.02)),
+          elementGroupRowOne(context),
+          SizedBox(height: context.dynamicHeight(0.04)),
+          elementGroupRowTwo(context),
+          const Spacer(),
+          divider(context),
+          langAndHelpRow(context),
+        ],
       ),
     );
   }
@@ -89,12 +85,12 @@ class HomeView extends StatelessWidget {
         ),
         ElementGroupContainer(
           onTap: () {
-            // Navigator.push(
-            //   context,
-            //   MaterialPageRoute(
-            //     builder: (context) => const MetalPageView(),
-            //   ),
-            // );
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const ElementGroupsView(),
+              ),
+            );
           },
           shadowColor: AppColors.shGlowGreen,
           color: AppColors.glowGreen,
@@ -116,7 +112,7 @@ class HomeView extends StatelessWidget {
 
   Row langAndHelpRow(BuildContext context) {
     return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
         IconButton(
           onPressed: () {
@@ -138,18 +134,14 @@ class HomeView extends StatelessWidget {
             size: 30,
           ),
         ),
-        // IconButton(
-        //   onPressed: () =>
-        //       NotificationApi.showNotification(
-        //title: "saddas",
-        //body: "ewef ",
-        //),
-        //   icon: Icon(
-        //     Icons.star_border,
-        //     color: AppColors.white,
-        //     size: 30,
-        //   ),
-        // ),
+        IconButton(
+          onPressed: () {},
+          icon: const Icon(
+            Icons.star_border,
+            color: AppColors.white,
+            size: 30,
+          ),
+        ),
       ],
     );
   }
