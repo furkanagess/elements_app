@@ -5,27 +5,30 @@ import 'package:elements_app/feature/model/periodic_element.dart';
 import 'package:elements_app/product/constants/api_types.dart';
 import 'package:elements_app/product/constants/app_colors.dart';
 import 'package:elements_app/product/extensions/context_extensions.dart';
+import 'package:elements_app/product/widget/container/element_group_container.dart';
 import 'package:elements_app/product/widget/container/element_symbol_container.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:math';
 
 class QuizPage extends StatefulWidget {
-  const QuizPage({super.key});
+  const QuizPage({
+    super.key,
+  });
 
   @override
   _QuizPageState createState() => _QuizPageState();
 }
 
 class _QuizPageState extends State<QuizPage> {
-  List<PeriodicElement> elements = []; // Element listesi
-  String correctAnswer = ''; // Doğru cevap
-  List<String> options = []; // Şık seçenekleri
-  String questionSymbol = '';
-  bool isCorrectAnswerSelected = false;
-  int correctCount = 0; // Doğru cevap sayısı
-  int wrongCount = 0; // Yanlış cevap sayısı
-  bool isLoading = true;
+  List<PeriodicElement> elements = []; // Element list
+  String correctAnswer = ''; // correct answer
+  List<String> options = []; // options
+  String questionSymbol = ''; // question element symbol
+  bool isCorrectAnswerSelected = false; // handle with correct answer
+  int correctCount = 0; // correct answer count
+  int wrongCount = 0; // wrong answer count
+  bool isLoading = true; // check circuless progress bar
   @override
   void initState() {
     super.initState();
@@ -48,13 +51,13 @@ class _QuizPageState extends State<QuizPage> {
         );
         elements.add(element);
       }
-      // Rastgele bir element seç
+      // get random element
       Random random = Random();
       PeriodicElement randomElement = elements[random.nextInt(elements.length)];
       correctAnswer = randomElement.name.toString();
 
-      // Şık seçenekleri oluştur
-      options = [correctAnswer]; // Doğru cevabı ilk olarak ekleyin
+      // build options
+      options = [correctAnswer]; // add correct answer to options
 
       while (options.length < 4) {
         PeriodicElement randomOption =
@@ -64,7 +67,7 @@ class _QuizPageState extends State<QuizPage> {
         }
       }
 
-      // Şık seçeneklerini karıştırın
+      // shuffle options
       options.shuffle();
 
       setState(() {}); // Widget'ı güncelleyin
@@ -116,11 +119,11 @@ class _QuizPageState extends State<QuizPage> {
                   ? "Sıradaki Soru"
                   : "Soruya Dön"),
               onPressed: () {
-                Navigator.of(context).pop(); // Popup'ı kapat
+                Navigator.of(context).pop(); // close popup
                 setState(() {
                   if (selectedOption == correctAnswer) {
                     correctCount++;
-                    askQuestion(); // Yeni soru sor
+                    askQuestion(); // ask new question
                   } else {
                     wrongCount++;
                   }
@@ -135,12 +138,12 @@ class _QuizPageState extends State<QuizPage> {
 
   void moveToNextExample() {
     setState(() {
-      // Yeni örneğe geçiş: Örneğin, bir sonraki elementi seçerek devam edebilirsiniz.
-      elements.shuffle(); // Elementleri karıştır
-      PeriodicElement newElement = elements.first; // Yeni elementi seç
+      // Move into new example =>
+      elements.shuffle(); // Shuffle elements
+      PeriodicElement newElement = elements.first; // pick a new element
       correctAnswer = newElement.name.toString();
 
-      // Şık seçeneklerini güncelle
+      // update şık options
       options.clear();
       options.add(correctAnswer);
 
@@ -153,7 +156,7 @@ class _QuizPageState extends State<QuizPage> {
       }
 
       options.shuffle();
-      isCorrectAnswerSelected = false; // Doğru cevap sıfırla
+      isCorrectAnswerSelected = false; // reset correct answer
     });
   }
 
@@ -217,34 +220,14 @@ class _QuizPageState extends State<QuizPage> {
       crossAxisCount: 2,
       children: options.map((option) {
         return Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: InkWell(
+          padding: context.paddingLow,
+          child: ElementGroupContainer(
+            color: AppColors.turquoise,
+            shadowColor: AppColors.shTurquoise,
             onTap: () {
               checkAnswer(option);
             },
-            child: Container(
-              decoration: BoxDecoration(
-                border: Border.all(width: 0.5),
-                boxShadow: const [
-                  BoxShadow(
-                    color: AppColors.shTurquoise,
-                    offset: Offset(4, 4),
-                    spreadRadius: 1,
-                  ),
-                ],
-                borderRadius: BorderRadius.circular(10),
-                color: AppColors.turquoise,
-              ),
-              height: context.dynamicHeight(0.15),
-              width: context.dynamicWidth(0.30),
-              child: Center(
-                child: Text(
-                  option,
-                  style: context.textTheme.headlineSmall?.copyWith(
-                      color: AppColors.background, fontWeight: FontWeight.bold),
-                ),
-              ),
-            ),
+            title: option,
           ),
         );
       }).toList(),
@@ -263,59 +246,39 @@ class _QuizPageState extends State<QuizPage> {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
-        Row(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Container(
-              height: context.dynamicHeight(0.05),
-              width: context.dynamicWidth(0.1),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10),
-                color: AppColors.glowGreen,
-              ),
-              child: const Icon(
-                Icons.check,
-                color: AppColors.background,
-              ),
-            ),
-            SizedBox(
-              width: context.dynamicWidth(0.03),
-            ),
-            Text(
-              "$correctCount",
-              style: context.textTheme.headlineSmall?.copyWith(
-                color: AppColors.white,
-              ),
-            ),
-          ],
+        answerCounter(
+            context, "$correctCount", AppColors.glowGreen, Icons.check),
+        answerCounter(context, "$wrongCount", AppColors.powderRed, Icons.close),
+      ],
+    );
+  }
+
+  Row answerCounter(
+      BuildContext context, String text, Color color, IconData icon) {
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.center,
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Container(
+          height: context.dynamicHeight(0.05),
+          width: context.dynamicWidth(0.1),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(10),
+            color: color,
+          ),
+          child: Icon(
+            icon,
+            color: AppColors.background,
+          ),
         ),
-        Row(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Container(
-              height: context.dynamicHeight(0.05),
-              width: context.dynamicWidth(0.1),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10),
-                color: AppColors.powderRed,
-              ),
-              child: const Icon(
-                Icons.close,
-                color: AppColors.background,
-              ),
-            ),
-            SizedBox(
-              width: context.dynamicWidth(0.03),
-            ),
-            Text(
-              "$wrongCount",
-              style: context.textTheme.headlineSmall?.copyWith(
-                color: AppColors.white,
-              ),
-            ),
-          ],
+        SizedBox(
+          width: context.dynamicWidth(0.03),
+        ),
+        Text(
+          text,
+          style: context.textTheme.headlineSmall?.copyWith(
+            color: AppColors.white,
+          ),
         ),
       ],
     );
