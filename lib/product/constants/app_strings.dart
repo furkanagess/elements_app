@@ -18,4 +18,16 @@ class AppStrings {
   static const String description = 'Tanım';
   static const String usage = 'Kullanım Alanı';
   static const String source = 'Kaynak';
+  // Element Groups
+  static const String actinides = 'Aktinitler';
+  static const String alkaline = 'Alkali Metaller';
+  static const String earthAlkaline = 'Toprak Alkali Metaller';
+  static const String halogens = 'Halojenler';
+  static const String lanthanides = 'Lantanitler';
+  static const String metalloids = 'Metalimsiler';
+  static const String nobleGases = 'Soygazlar';
+  static const String postTransition = 'Geçiş Sonrası Metaller';
+  static const String reactiveNonmetal = 'Reaktif Ametaller';
+  static const String transitionMetal = 'Geçiş Metaller';
+  static const String unknown = 'Bilinmeyenler';
 }
