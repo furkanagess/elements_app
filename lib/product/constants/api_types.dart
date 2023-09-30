@@ -16,6 +16,7 @@ final class ApiTypes {
   static const String alkaliMetal = '${baseUrl}alkali_metal.json';
   static const String alkalineEarthMetal =
       '${baseUrl}alkaline_earth_metal.json';
+  static const String halogen = '${baseUrl}halogens.json';
   static const String lanthanides = '${baseUrl}lanthanides.json';
   static const String metalloid = '${baseUrl}metalloid.json';
   static const String nobleGases = '${baseUrl}noble_gases.json';
