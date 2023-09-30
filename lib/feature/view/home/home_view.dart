@@ -1,6 +1,7 @@
-import 'package:elements_app/feature/view/elements/all_elements_page.dart';
+import 'package:elements_app/feature/view/elements/view/elements_list_view.dart';
 import 'package:elements_app/feature/view/groups/element_groups_view.dart';
-import 'package:elements_app/feature/view/quiz/quiz_page.dart';
+import 'package:elements_app/feature/view/quiz/view/quiz_view.dart';
+import 'package:elements_app/product/constants/api_types.dart';
 import 'package:elements_app/product/constants/app_colors.dart';
 import 'package:elements_app/product/constants/app_strings.dart';
 import 'package:elements_app/product/extensions/context_extensions.dart';
@@ -16,8 +17,7 @@ class HomeView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.background,
-      appBar: buildAppbar(context),
+      appBar: AppBar(),
       body: Column(
         children: [
           SizedBox(height: context.dynamicHeight(0.02)),
@@ -38,12 +38,15 @@ class HomeView extends StatelessWidget {
       children: [
         ElementGroupContainer(
           onTap: () {
-            // Navigator.push(
-            //   context,
-            //   MaterialPageRoute(
-            //     builder: (context) => const NonMetalPageView(),
-            //   ),
-            // );
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const ElementsListView(
+                  apiType: ApiTypes.actinides,
+                  title: AppStrings.actinides,
+                ),
+              ),
+            );
           },
           shadowColor: AppColors.shYellow,
           color: AppColors.yellow,
@@ -54,7 +57,10 @@ class HomeView extends StatelessWidget {
             Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => const QuizPage(),
+                builder: (context) => const QuizView(
+                  apiType: ApiTypes.allElements,
+                  title: AppStrings.allElements,
+                ),
               ),
             );
           },
@@ -75,7 +81,10 @@ class HomeView extends StatelessWidget {
             Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => const AllElementsPage(),
+                builder: (context) => const ElementsListView(
+                  apiType: ApiTypes.allElements,
+                  title: AppStrings.allElements,
+                ),
               ),
             );
           },
@@ -121,7 +130,6 @@ class HomeView extends StatelessWidget {
           icon: const Icon(
             Icons.help,
             color: AppColors.white,
-            size: 30,
           ),
         ),
         IconButton(
@@ -131,7 +139,6 @@ class HomeView extends StatelessWidget {
           icon: const Icon(
             Icons.report,
             color: AppColors.white,
-            size: 30,
           ),
         ),
         IconButton(
@@ -139,7 +146,6 @@ class HomeView extends StatelessWidget {
           icon: const Icon(
             Icons.star_border,
             color: AppColors.white,
-            size: 30,
           ),
         ),
       ],
@@ -154,7 +160,7 @@ class HomeView extends StatelessWidget {
           topRight: Radius.circular(20),
         ),
       ),
-      backgroundColor: AppColors.glowGreen,
+      backgroundColor: AppColors.darkBlue,
       context: context,
       builder: (context) => Column(
         children: [
@@ -235,13 +241,6 @@ class HomeView extends StatelessWidget {
       style: context.textTheme.labelLarge?.copyWith(
         color: AppColors.white,
       ),
-    );
-  }
-
-  AppBar buildAppbar(BuildContext context) {
-    return AppBar(
-      elevation: 0,
-      backgroundColor: AppColors.background,
     );
   }
 }

@@ -1,4 +1,7 @@
+import 'package:elements_app/feature/view/elements/view/elements_list_view.dart';
+import 'package:elements_app/product/constants/api_types.dart';
 import 'package:elements_app/product/constants/app_colors.dart';
+import 'package:elements_app/product/constants/app_strings.dart';
 import 'package:elements_app/product/extensions/context_extensions.dart';
 import 'package:elements_app/product/widget/container/element_group_container.dart';
 import 'package:flutter/material.dart';
@@ -9,11 +12,7 @@ class ElementGroupsView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: AppColors.background,
-        elevation: 0,
-      ),
-      backgroundColor: AppColors.background,
+      appBar: appBar(),
       body: SingleChildScrollView(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -24,14 +23,34 @@ class ElementGroupsView extends StatelessWidget {
                 ElementGroupContainer(
                   color: AppColors.pink,
                   shadowColor: AppColors.shPink,
-                  onTap: () {},
-                  title: "Aktinitler",
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const ElementsListView(
+                          apiType: ApiTypes.actinides,
+                          title: AppStrings.actinides,
+                        ),
+                      ),
+                    );
+                  },
+                  title: AppStrings.actinides,
                 ),
                 ElementGroupContainer(
                   color: AppColors.turquoise,
                   shadowColor: AppColors.shTurquoise,
-                  onTap: () {},
-                  title: "Alkali Metaller",
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const ElementsListView(
+                          apiType: ApiTypes.alkaliMetal,
+                          title: AppStrings.alkaline,
+                        ),
+                      ),
+                    );
+                  },
+                  title: AppStrings.alkaline,
                 ),
               ],
             ),
@@ -42,14 +61,34 @@ class ElementGroupsView extends StatelessWidget {
                 ElementGroupContainer(
                   color: AppColors.yellow,
                   shadowColor: AppColors.shYellow,
-                  onTap: () {},
-                  title: "Toprak Alkali Metaller",
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const ElementsListView(
+                          apiType: ApiTypes.alkalineEarthMetal,
+                          title: AppStrings.earthAlkaline,
+                        ),
+                      ),
+                    );
+                  },
+                  title: AppStrings.earthAlkaline,
                 ),
                 ElementGroupContainer(
                   color: AppColors.lightGreen,
                   shadowColor: AppColors.shLightGreen,
-                  onTap: () {},
-                  title: "Halojenler",
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const ElementsListView(
+                          apiType: ApiTypes.halogen,
+                          title: AppStrings.halogens,
+                        ),
+                      ),
+                    );
+                  },
+                  title: AppStrings.halogens,
                 ),
               ],
             ),
@@ -60,14 +99,34 @@ class ElementGroupsView extends StatelessWidget {
                 ElementGroupContainer(
                   color: AppColors.skinColor,
                   shadowColor: AppColors.shSkinColor,
-                  onTap: () {},
-                  title: "Metalimsiler",
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const ElementsListView(
+                          apiType: ApiTypes.metalloid,
+                          title: AppStrings.metalloids,
+                        ),
+                      ),
+                    );
+                  },
+                  title: AppStrings.metalloids,
                 ),
                 ElementGroupContainer(
                   color: AppColors.glowGreen,
                   shadowColor: AppColors.shGlowGreen,
-                  onTap: () {},
-                  title: "Soy Gazlar",
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const ElementsListView(
+                          apiType: ApiTypes.nobleGases,
+                          title: AppStrings.nobleGases,
+                        ),
+                      ),
+                    );
+                  },
+                  title: AppStrings.nobleGases,
                 ),
               ],
             ),
@@ -78,14 +137,34 @@ class ElementGroupsView extends StatelessWidget {
                 ElementGroupContainer(
                   color: AppColors.steelBlue,
                   shadowColor: AppColors.shSteelBlue,
-                  onTap: () {},
-                  title: "Geçiş Sonrası Metaller",
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const ElementsListView(
+                          apiType: ApiTypes.postTransition,
+                          title: AppStrings.postTransition,
+                        ),
+                      ),
+                    );
+                  },
+                  title: AppStrings.postTransition,
                 ),
                 ElementGroupContainer(
                   color: AppColors.powderRed,
                   shadowColor: AppColors.shPowderRed,
-                  onTap: () {},
-                  title: "Reaktif Ametaller",
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const ElementsListView(
+                          apiType: ApiTypes.reactiveNonmetal,
+                          title: AppStrings.reactiveNonmetal,
+                        ),
+                      ),
+                    );
+                  },
+                  title: AppStrings.reactiveNonmetal,
                 ),
               ],
             ),
@@ -96,14 +175,34 @@ class ElementGroupsView extends StatelessWidget {
                 ElementGroupContainer(
                   color: AppColors.purple,
                   shadowColor: AppColors.shPurple,
-                  onTap: () {},
-                  title: "Geçiş Metaller",
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const ElementsListView(
+                          apiType: ApiTypes.transitionMetal,
+                          title: AppStrings.transitionMetal,
+                        ),
+                      ),
+                    );
+                  },
+                  title: AppStrings.transitionMetal,
                 ),
                 ElementGroupContainer(
                   color: AppColors.darkWhite,
                   shadowColor: AppColors.shDarkWhite,
-                  onTap: () {},
-                  title: "Bilinmeyenler",
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const ElementsListView(
+                          apiType: ApiTypes.unknown,
+                          title: AppStrings.unknown,
+                        ),
+                      ),
+                    );
+                  },
+                  title: AppStrings.unknown,
                 ),
               ],
             ),
@@ -111,6 +210,12 @@ class ElementGroupsView extends StatelessWidget {
           ],
         ),
       ),
+    );
+  }
+
+  AppBar appBar() {
+    return AppBar(
+      title: const Text("Element Grupları"),
     );
   }
 
