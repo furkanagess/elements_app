@@ -9,12 +9,23 @@ dependencies:
   flutter:
     sdk: flutter
   cupertino_icons: ^1.0.2
+  
+  # Network
   http: ^1.1.0
-  very_good_analysis: ^5.1.0
   equatable: ^2.0.5
   json_annotation: ^4.8.1
+
+  # State Management
   provider: ^6.0.5
+
+  # Analysis
+  very_good_analysis: ^5.1.0
+
+  # UI 
   lottie: ^2.6.0
+  flutter_svg: ^2.0.7
+  animated_button: ^0.2.0
+  like_button: ^2.0.5
 
 dev_dependencies:
   flutter_test:
@@ -29,4 +40,5 @@ flutter:
   assets:
     - assets/lottie/
     - assets/svg/
+    - assets/img/
 
