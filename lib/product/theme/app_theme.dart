@@ -1,4 +1,4 @@
-import 'package:elements_app/product/constants/app_colors.dart';
+import 'package:elements_app/product/constants/themeConstants/app_colors.dart';
 import 'package:flutter/material.dart';
 
 class AppTheme {
@@ -15,7 +15,7 @@ class AppTheme {
         size: 30,
       ),
       floatingActionButtonTheme: const FloatingActionButtonThemeData(
-        backgroundColor: AppColors.pink,
+        backgroundColor: AppColors.purple,
         elevation: 3,
       ),
     );
