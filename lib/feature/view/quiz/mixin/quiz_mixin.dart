@@ -1,6 +1,6 @@
 import 'dart:convert';
 import 'dart:math';
-import 'package:elements_app/product/constants/app_colors.dart';
+import 'package:elements_app/product/constants/themeConstants/app_colors.dart';
 import 'package:elements_app/product/extensions/context_extensions.dart';
 import 'package:http/http.dart' as http;
 import 'package:elements_app/feature/model/periodic_element.dart';
