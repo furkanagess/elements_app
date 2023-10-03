@@ -1,11 +1,13 @@
 // ignore_for_file: library_private_types_in_public_api
 
 import 'package:elements_app/feature/view/quiz/mixin/quiz_mixin.dart';
-import 'package:elements_app/product/constants/app_colors.dart';
+import 'package:elements_app/product/constants/themeConstants/app_colors.dart';
+import 'package:elements_app/product/constants/assetConstants/svg_constants.dart';
 import 'package:elements_app/product/extensions/context_extensions.dart';
 import 'package:elements_app/product/widget/container/element_group_container.dart';
 import 'package:elements_app/product/widget/container/element_symbol_container.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:lottie/lottie.dart';
 
 class QuizView extends StatefulWidget {
@@ -28,15 +30,7 @@ class _QuizViewState extends State<QuizView> with QuizMixin {
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       appBar: appBar(),
       body: isLoading
-          ? Center(
-              child: Lottie.asset(
-                'assets/lottie/loading.json',
-                fit: BoxFit.cover,
-                reverse: true,
-                repeat: true,
-                height: context.dynamicHeight(0.1),
-              ),
-            )
+          ? loadingIndicator(context)
           : Padding(
               padding: context.paddingNormal,
               child: Column(
@@ -61,12 +55,23 @@ class _QuizViewState extends State<QuizView> with QuizMixin {
     );
   }
 
+  Center loadingIndicator(BuildContext context) {
+    return Center(
+      child: Lottie.asset(
+        'assets/lottie/loading.json',
+        fit: BoxFit.cover,
+        reverse: true,
+        repeat: true,
+        height: context.dynamicHeight(0.1),
+      ),
+    );
+  }
+
   FloatingActionButton fabButton() {
     return FloatingActionButton(
-      backgroundColor: AppColors.pink,
       onPressed: askQuestion,
-      child: const Icon(
-        Icons.refresh,
+      child: SvgPicture.asset(
+        SVGConstants.instance.refresh,
         color: AppColors.background,
       ),
     );
@@ -89,6 +94,31 @@ class _QuizViewState extends State<QuizView> with QuizMixin {
       children: options.map((option) {
         return Padding(
           padding: context.paddingLow,
+          // child: AnimatedButton(
+          //   color: AppColors.pink,
+          //   duration: 2,
+          //   shadowDegree: ShadowDegree.light,
+          //   width: context.dynamicWidth(0.4),
+          //   height: context.dynamicHeight(0.18),
+          //   shape: BoxShape.rectangle,
+          //   onPressed: () {
+          //     checkAnswer(option);
+          //   },
+          //   child: Center(
+          //     child: Padding(
+          //       padding: context.paddingLowHorizontal,
+          //       child: Text(
+          //         option,
+          //         textAlign: TextAlign.center,
+          //         style: context.textTheme.headlineSmall?.copyWith(
+          //           fontWeight: FontWeight.bold,
+          //           color: AppColors.background,
+          //         ),
+          //       ),
+          //     ),
+          //   ),
+          // ),
+
           child: ElementGroupContainer(
             color: AppColors.turquoise,
             shadowColor: AppColors.shTurquoise,

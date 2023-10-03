@@ -1,6 +1,6 @@
 import 'package:elements_app/feature/model/periodic_element.dart';
-import 'package:elements_app/product/constants/app_colors.dart';
-import 'package:elements_app/product/constants/app_strings.dart';
+import 'package:elements_app/product/constants/themeConstants/app_colors.dart';
+import 'package:elements_app/product/constants/themeConstants/app_strings.dart';
 import 'package:elements_app/product/extensions/color_extension.dart';
 import 'package:elements_app/product/extensions/context_extensions.dart';
 import 'package:elements_app/product/widget/container/element_symbol_container.dart';
