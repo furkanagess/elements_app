@@ -1,20 +1,23 @@
 import 'package:elements_app/product/constants/themeConstants/app_colors.dart';
 import 'package:elements_app/product/extensions/context_extensions.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 @immutable
-class ElementGroupContainer extends StatelessWidget {
-  const ElementGroupContainer({
+class HomeContainer extends StatelessWidget {
+  const HomeContainer({
     super.key,
     this.onTap,
     this.color,
     this.shadowColor,
     this.title,
+    this.svg,
   });
   final VoidCallback? onTap;
   final Color? color;
   final Color? shadowColor;
   final String? title;
+  final String? svg;
 
   @override
   Widget build(BuildContext context) {
@@ -35,16 +38,22 @@ class ElementGroupContainer extends StatelessWidget {
           color: color,
         ),
         child: Center(
-          child: Padding(
-            padding: context.paddingLowHorizontal,
-            child: Text(
-              textAlign: TextAlign.center,
-              title!,
-              style: context.textTheme.headlineSmall?.copyWith(
-                fontWeight: FontWeight.bold,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              SvgPicture.asset(
+                svg!,
                 color: AppColors.background,
+                height: context.dynamicHeight(0.1),
               ),
-            ),
+              Text(
+                title!,
+                style: context.textTheme.headlineSmall?.copyWith(
+                  color: AppColors.background,
+                  fontWeight: FontWeight.bold,
+                ),
+              )
+            ],
           ),
         ),
       ),
