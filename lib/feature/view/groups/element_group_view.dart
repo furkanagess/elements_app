@@ -23,6 +23,20 @@ class ElementGroupView extends StatelessWidget {
             spacer(context, 0.05),
             metalloidAndUnknownRow(context),
             spacer(context, 0.05),
+            ElementGroupContainer(
+              color: AppColors.lightGreen,
+              shadowColor: AppColors.shLightGreen,
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const ElementsListView(
+                        apiType: ApiTypes.halogen, title: "Halogens"),
+                  ),
+                );
+              },
+              title: "Halogen Group",
+            ),
           ],
         ),
       ),

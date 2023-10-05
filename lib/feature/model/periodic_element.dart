@@ -5,7 +5,7 @@ part 'periodic_element.g.dart';
 
 @immutable
 @JsonSerializable()
-final class PeriodicElement with EquatableMixin {
+class PeriodicElement with EquatableMixin {
   final int? number;
   final String? name;
   final String? symbol;
@@ -55,7 +55,7 @@ final class PeriodicElement with EquatableMixin {
         usage,
         source,
         colors,
-        shColor,
+        shColor
       ];
 
   PeriodicElement copyWith({
