@@ -172,7 +172,7 @@ class MetalGroupView extends StatelessWidget {
 
   AppBar appBar() {
     return AppBar(
-      title: const Text("Metal Grubu"),
+      title: const Text(AppStrings.metalGroups),
     );
   }
 

@@ -31,11 +31,13 @@ class ElementGroupView extends StatelessWidget {
                   context,
                   MaterialPageRoute(
                     builder: (context) => const ElementsListView(
-                        apiType: ApiTypes.halogen, title: "Halogens"),
+                      apiType: ApiTypes.halogen,
+                      title: AppStrings.halogens,
+                    ),
                   ),
                 );
               },
-              title: "Halogen Group",
+              title: AppStrings.halogenGroup,
             ),
           ],
         ),
@@ -75,7 +77,7 @@ class ElementGroupView extends StatelessWidget {
           ),
         );
       },
-      title: "Metal Grubu",
+      title: AppStrings.metalGroups,
     );
   }
 
@@ -91,7 +93,7 @@ class ElementGroupView extends StatelessWidget {
           ),
         );
       },
-      title: "Ametal Grubu",
+      title: AppStrings.nonMetalGroup,
     );
   }
 
@@ -116,25 +118,28 @@ class ElementGroupView extends StatelessWidget {
 
   ElementGroupContainer unknownGroupContainer(BuildContext context) {
     return ElementGroupContainer(
-        color: AppColors.darkWhite,
-        shadowColor: AppColors.shDarkWhite,
-        onTap: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => const ElementsListView(
-                apiType: ApiTypes.unknown,
-                title: AppStrings.unknown,
-              ),
+      color: AppColors.darkWhite,
+      shadowColor: AppColors.shDarkWhite,
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => const ElementsListView(
+              apiType: ApiTypes.unknown,
+              title: AppStrings.unknown,
             ),
-          );
-        },
-        title: "Bilinmeyen");
+          ),
+        );
+      },
+      title: AppStrings.unknown,
+    );
   }
 
   AppBar appBar() {
     return AppBar(
-      title: const Text("Element Grupları"),
+      title: const Text(
+        AppStrings.elementGroups,
+      ),
     );
   }
 

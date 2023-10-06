@@ -1,10 +1,10 @@
 // ignore_for_file: library_private_types_in_public_api
 
 import 'package:elements_app/feature/model/periodic_element.dart';
-import 'package:elements_app/feature/view/elementsList/mixin/elements_list_view.dart';
+import 'package:elements_app/feature/view/elementsList/mixin/elements_list_view_mixin.dart';
 import 'package:elements_app/feature/view/quiz/view/quiz_view.dart';
 import 'package:elements_app/product/constants/themeConstants/app_colors.dart';
-import 'package:elements_app/product/constants/assetConstants/svg_constants.dart';
+import 'package:elements_app/product/constants/assets_constants.dart';
 import 'package:elements_app/product/extensions/context_extensions.dart';
 import 'package:elements_app/product/widget/container/element_container.dart';
 import 'package:flutter/material.dart';
@@ -39,15 +39,7 @@ class _ElementsListViewState extends State<ElementsListView>
               future: elementList,
               builder: (context, snapshot) {
                 if (snapshot.connectionState == ConnectionState.waiting) {
-                  return Center(
-                    child: Lottie.asset(
-                      'assets/lottie/loading_chemistry.json',
-                      fit: BoxFit.cover,
-                      reverse: true,
-                      repeat: true,
-                      height: context.dynamicHeight(0.1),
-                    ),
-                  );
+                  return loadingIndicator(context);
                 } else {
                   final elements = snapshot.data;
                   return ListView.builder(
@@ -66,7 +58,7 @@ class _ElementsListViewState extends State<ElementsListView>
   Center loadingIndicator(BuildContext context) {
     return Center(
       child: Lottie.asset(
-        'assets/lottie/loading_chemistry.json',
+        AssetConstants.instance.lottieLoadingChemistry,
         fit: BoxFit.cover,
         reverse: true,
         repeat: true,
@@ -78,7 +70,7 @@ class _ElementsListViewState extends State<ElementsListView>
   FloatingActionButton quizFabButton(BuildContext context) {
     return FloatingActionButton(
       child: SvgPicture.asset(
-        SVGConstants.instance.gameThree,
+        AssetConstants.instance.svgGameThree,
         color: AppColors.background,
       ),
       onPressed: () {

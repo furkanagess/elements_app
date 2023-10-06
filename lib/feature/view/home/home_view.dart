@@ -4,7 +4,7 @@ import 'package:elements_app/feature/view/quiz/view/quiz_view.dart';
 import 'package:elements_app/product/constants/serviceConstants/api_types.dart';
 import 'package:elements_app/product/constants/themeConstants/app_colors.dart';
 import 'package:elements_app/product/constants/themeConstants/app_strings.dart';
-import 'package:elements_app/product/constants/assetConstants/svg_constants.dart';
+import 'package:elements_app/product/constants/assets_constants.dart';
 import 'package:elements_app/product/extensions/context_extensions.dart';
 import 'package:elements_app/product/widget/button/gradient_button.dart';
 import 'package:elements_app/product/widget/container/home_container.dart';
@@ -54,8 +54,8 @@ class HomeView extends StatelessWidget {
           },
           shadowColor: AppColors.shYellow,
           color: AppColors.yellow,
-          title: "Nedir",
-          svg: SVGConstants.instance.questionTwo,
+          title: AppStrings.what,
+          svg: AssetConstants.instance.svgQuestionTwo,
         ),
         HomeContainer(
           onTap: () {
@@ -71,8 +71,8 @@ class HomeView extends StatelessWidget {
           },
           shadowColor: AppColors.shPink,
           color: AppColors.pink,
-          title: "Quiz",
-          svg: SVGConstants.instance.gameThree,
+          title: AppStrings.quiz,
+          svg: AssetConstants.instance.svgGameThree,
         ),
       ],
     );
@@ -96,8 +96,8 @@ class HomeView extends StatelessWidget {
           },
           shadowColor: AppColors.shTurquoise,
           color: AppColors.turquoise,
-          title: "Elementler",
-          svg: SVGConstants.instance.elementSvg,
+          title: AppStrings.appName,
+          svg: AssetConstants.instance.svgElement,
         ),
         HomeContainer(
           onTap: () {
@@ -110,8 +110,8 @@ class HomeView extends StatelessWidget {
           },
           shadowColor: AppColors.shGlowGreen,
           color: AppColors.glowGreen,
-          title: "Gruplar",
-          svg: SVGConstants.instance.elementGroup,
+          title: AppStrings.groups,
+          svg: AssetConstants.instance.svgElementGroup,
         ),
       ],
     );
@@ -144,7 +144,7 @@ class HomeView extends StatelessWidget {
         reportBottomSheet(context);
       },
       icon: SvgPicture.asset(
-        SVGConstants.instance.warning,
+        AssetConstants.instance.svgWarning,
         color: AppColors.pink,
         height: context.dynamicHeight(0.04),
       ),
@@ -155,7 +155,7 @@ class HomeView extends StatelessWidget {
     return IconButton(
       onPressed: () {},
       icon: SvgPicture.asset(
-        SVGConstants.instance.starTwo,
+        AssetConstants.instance.svgStarTwo,
         color: AppColors.turquoise,
         height: context.dynamicHeight(0.04),
       ),
@@ -168,7 +168,7 @@ class HomeView extends StatelessWidget {
         helpPopUp(context);
       },
       icon: SvgPicture.asset(
-        SVGConstants.instance.questionThree,
+        AssetConstants.instance.svgQuestionThree,
         color: AppColors.yellow,
         height: context.dynamicHeight(0.04),
       ),
@@ -194,11 +194,11 @@ class HomeView extends StatelessWidget {
             children: [
               SizedBox(height: context.dynamicHeight(0.05)),
               const FeedbackLongTextField(
-                title: 'Please give us a feedback for developing the App',
+                title: AppStrings.feedback,
               ),
               SizedBox(height: context.dynamicHeight(0.01)),
               GradientButton(
-                title: 'Send your feedback',
+                title: AppStrings.sendFeedback,
                 onTap: () => Navigator.pop(context),
               ),
               SizedBox(height: context.dynamicHeight(0.1)),
