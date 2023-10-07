@@ -1,14 +1,15 @@
 import 'package:elements_app/feature/view/elementsList/view/elements_list_view.dart';
 import 'package:elements_app/feature/view/groups/element_group_view.dart';
+import 'package:elements_app/feature/view/info/view/what_is_view.dart';
 import 'package:elements_app/feature/view/quiz/view/quiz_view.dart';
-import 'package:elements_app/product/constants/serviceConstants/api_types.dart';
-import 'package:elements_app/product/constants/themeConstants/app_colors.dart';
-import 'package:elements_app/product/constants/themeConstants/app_strings.dart';
+import 'package:elements_app/product/constants/api_types.dart';
+import 'package:elements_app/product/constants/app_colors.dart';
+import 'package:elements_app/product/constants/app_strings.dart';
 import 'package:elements_app/product/constants/assets_constants.dart';
 import 'package:elements_app/product/extensions/context_extensions.dart';
 import 'package:elements_app/product/widget/button/gradient_button.dart';
 import 'package:elements_app/product/widget/container/home_container.dart';
-import 'package:elements_app/product/widget/long_feedback_textfield.dart';
+import 'package:elements_app/product/widget/textField/long_feedback_textfield.dart';
 import 'package:elements_app/product/widget/text/text_icon_row.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -23,58 +24,66 @@ class HomeView extends StatelessWidget {
       appBar: AppBar(),
       body: Column(
         children: [
-          SizedBox(height: context.dynamicHeight(0.02)),
+          spacer(context, 0.02),
           const Spacer(),
           elementGroupRowOne(context),
-          SizedBox(height: context.dynamicHeight(0.04)),
+          spacer(context, 0.04),
           elementGroupRowTwo(context),
           divider(context),
-          langAndHelpRow(context),
-          SizedBox(height: context.dynamicHeight(0.02)),
+          reportAndRateRow(context),
+          spacer(context, 0.02),
         ],
       ),
     );
   }
 
+  SizedBox spacer(BuildContext context, double value) =>
+      SizedBox(height: context.dynamicHeight(value));
+
   Row elementGroupRowTwo(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
-        HomeContainer(
-          onTap: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => const ElementsListView(
-                  apiType: ApiTypes.actinides,
-                  title: AppStrings.actinides,
-                ),
-              ),
-            );
-          },
-          shadowColor: AppColors.shYellow,
-          color: AppColors.yellow,
-          title: AppStrings.what,
-          svg: AssetConstants.instance.svgQuestionTwo,
-        ),
-        HomeContainer(
-          onTap: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => const QuizView(
-                  apiType: ApiTypes.allElements,
-                  title: AppStrings.allElements,
-                ),
-              ),
-            );
-          },
-          shadowColor: AppColors.shPink,
-          color: AppColors.pink,
-          title: AppStrings.quiz,
-          svg: AssetConstants.instance.svgGameThree,
-        ),
+        whatIsContainer(context),
+        quizContainer(context),
       ],
+    );
+  }
+
+  HomeContainer quizContainer(BuildContext context) {
+    return HomeContainer(
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => const QuizView(
+              apiType: ApiTypes.allElements,
+              title: AppStrings.allElements,
+            ),
+          ),
+        );
+      },
+      shadowColor: AppColors.shPink,
+      color: AppColors.pink,
+      title: AppStrings.quiz,
+      svg: AssetConstants.instance.svgGameThree,
+    );
+  }
+
+  HomeContainer whatIsContainer(BuildContext context) {
+    return HomeContainer(
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => const WhatIsView(),
+          ),
+        );
+      },
+      shadowColor: AppColors.shYellow,
+      color: AppColors.yellow,
+      title: AppStrings.what,
+      svg: AssetConstants.instance.svgQuestionTwo,
     );
   }
 
@@ -82,38 +91,46 @@ class HomeView extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
-        HomeContainer(
-          onTap: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => const ElementsListView(
-                  apiType: ApiTypes.allElements,
-                  title: AppStrings.allElements,
-                ),
-              ),
-            );
-          },
-          shadowColor: AppColors.shTurquoise,
-          color: AppColors.turquoise,
-          title: AppStrings.appName,
-          svg: AssetConstants.instance.svgElement,
-        ),
-        HomeContainer(
-          onTap: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => const ElementGroupView(),
-              ),
-            );
-          },
-          shadowColor: AppColors.shGlowGreen,
-          color: AppColors.glowGreen,
-          title: AppStrings.groups,
-          svg: AssetConstants.instance.svgElementGroup,
-        ),
+        elementsContainer(context),
+        elementGroupsContainer(context),
       ],
+    );
+  }
+
+  HomeContainer elementsContainer(BuildContext context) {
+    return HomeContainer(
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => const ElementsListView(
+              apiType: ApiTypes.allElements,
+              title: AppStrings.allElements,
+            ),
+          ),
+        );
+      },
+      shadowColor: AppColors.shTurquoise,
+      color: AppColors.turquoise,
+      title: AppStrings.appName,
+      svg: AssetConstants.instance.svgElement,
+    );
+  }
+
+  HomeContainer elementGroupsContainer(BuildContext context) {
+    return HomeContainer(
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => const ElementGroupView(),
+          ),
+        );
+      },
+      shadowColor: AppColors.shGlowGreen,
+      color: AppColors.glowGreen,
+      title: AppStrings.groups,
+      svg: AssetConstants.instance.svgElementGroup,
     );
   }
 
@@ -123,11 +140,11 @@ class HomeView extends StatelessWidget {
       indent: 10,
       endIndent: 10,
       height: context.dynamicHeight(0.075),
-      color: AppColors.purple,
+      color: AppColors.powderRed,
     );
   }
 
-  Row langAndHelpRow(BuildContext context) {
+  Row reportAndRateRow(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [

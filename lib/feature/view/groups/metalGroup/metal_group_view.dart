@@ -1,7 +1,7 @@
 import 'package:elements_app/feature/view/elementsList/view/elements_list_view.dart';
-import 'package:elements_app/product/constants/serviceConstants/api_types.dart';
-import 'package:elements_app/product/constants/themeConstants/app_colors.dart';
-import 'package:elements_app/product/constants/themeConstants/app_strings.dart';
+import 'package:elements_app/product/constants/api_types.dart';
+import 'package:elements_app/product/constants/app_colors.dart';
+import 'package:elements_app/product/constants/app_strings.dart';
 import 'package:elements_app/product/extensions/context_extensions.dart';
 import 'package:elements_app/product/widget/container/element_group_container.dart';
 import 'package:flutter/material.dart';

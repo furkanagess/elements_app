@@ -1,7 +1,7 @@
 // ignore_for_file: library_private_types_in_public_api
 
 import 'package:elements_app/feature/view/quiz/mixin/quiz_mixin.dart';
-import 'package:elements_app/product/constants/themeConstants/app_colors.dart';
+import 'package:elements_app/product/constants/app_colors.dart';
 import 'package:elements_app/product/constants/assets_constants.dart';
 import 'package:elements_app/product/extensions/context_extensions.dart';
 import 'package:elements_app/product/widget/container/element_group_container.dart';

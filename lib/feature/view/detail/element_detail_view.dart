@@ -1,6 +1,6 @@
 import 'package:elements_app/feature/model/periodic_element.dart';
-import 'package:elements_app/product/constants/themeConstants/app_colors.dart';
-import 'package:elements_app/product/constants/themeConstants/app_strings.dart';
+import 'package:elements_app/product/constants/app_colors.dart';
+import 'package:elements_app/product/constants/app_strings.dart';
 import 'package:elements_app/product/extensions/color_extension.dart';
 import 'package:elements_app/product/extensions/context_extensions.dart';
 import 'package:elements_app/product/widget/container/element_symbol_container.dart';
@@ -55,26 +55,39 @@ class ElementDetailView extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Expanded(
-                child: ElementDetailRowText(
-                    title: AppStrings.block, value: element.block)),
-            const VerticalDivider(
-              color: Colors.white,
-              thickness: 2,
+              child: blockPart(),
             ),
+            verticalDivider(),
             Expanded(
-              child: ElementDetailRowText(
-                  title: AppStrings.period, value: element.period),
+              child: periodPart(),
             ),
-            const VerticalDivider(
-              color: Colors.white,
-              thickness: 2,
-            ),
+            verticalDivider(),
             Expanded(
-                child: ElementDetailRowText(
-                    title: AppStrings.group, value: element.group)),
+              child: groupPart(),
+            ),
           ],
         ),
       ),
+    );
+  }
+
+  ElementDetailRowText groupPart() {
+    return ElementDetailRowText(title: AppStrings.group, value: element.group);
+  }
+
+  ElementDetailRowText periodPart() {
+    return ElementDetailRowText(
+        title: AppStrings.period, value: element.period);
+  }
+
+  ElementDetailRowText blockPart() {
+    return ElementDetailRowText(title: AppStrings.block, value: element.block);
+  }
+
+  VerticalDivider verticalDivider() {
+    return const VerticalDivider(
+      color: Colors.white,
+      thickness: 2,
     );
   }
 
@@ -114,25 +127,37 @@ class ElementDetailView extends StatelessWidget {
           children: [
             Column(
               children: [
-                ElementInfoParagraph(
-                  title: AppStrings.description,
-                  paragraph: element.description,
-                ),
-                SizedBox(height: context.dynamicHeight(0.05)),
-                ElementInfoParagraph(
-                  title: AppStrings.usage,
-                  paragraph: element.usage,
-                ),
-                SizedBox(height: context.dynamicHeight(0.05)),
-                ElementInfoParagraph(
-                  title: AppStrings.source,
-                  paragraph: element.source,
-                ),
+                descriptionParagraph(),
+                spacer(context, 0.05),
+                usageParagraph(),
+                spacer(context, 0.05),
+                sourceParagraph(),
               ],
             ),
           ],
         ),
       ),
+    );
+  }
+
+  ElementInfoParagraph sourceParagraph() {
+    return ElementInfoParagraph(
+      title: AppStrings.source,
+      paragraph: element.source,
+    );
+  }
+
+  ElementInfoParagraph usageParagraph() {
+    return ElementInfoParagraph(
+      title: AppStrings.usage,
+      paragraph: element.usage,
+    );
+  }
+
+  ElementInfoParagraph descriptionParagraph() {
+    return ElementInfoParagraph(
+      title: AppStrings.description,
+      paragraph: element.description,
     );
   }
 

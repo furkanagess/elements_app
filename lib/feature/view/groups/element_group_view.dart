@@ -1,9 +1,9 @@
 import 'package:elements_app/feature/view/elementsList/view/elements_list_view.dart';
 import 'package:elements_app/feature/view/groups/metalGroup/metal_group_view.dart';
 import 'package:elements_app/feature/view/groups/nonMetalGroup/non_metal_group_view.dart';
-import 'package:elements_app/product/constants/serviceConstants/api_types.dart';
-import 'package:elements_app/product/constants/themeConstants/app_colors.dart';
-import 'package:elements_app/product/constants/themeConstants/app_strings.dart';
+import 'package:elements_app/product/constants/api_types.dart';
+import 'package:elements_app/product/constants/app_colors.dart';
+import 'package:elements_app/product/constants/app_strings.dart';
 import 'package:elements_app/product/extensions/context_extensions.dart';
 import 'package:elements_app/product/widget/container/element_group_container.dart';
 import 'package:flutter/material.dart';
@@ -23,25 +23,29 @@ class ElementGroupView extends StatelessWidget {
             spacer(context, 0.05),
             metalloidAndUnknownRow(context),
             spacer(context, 0.05),
-            ElementGroupContainer(
-              color: AppColors.lightGreen,
-              shadowColor: AppColors.shLightGreen,
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const ElementsListView(
-                      apiType: ApiTypes.halogen,
-                      title: AppStrings.halogens,
-                    ),
-                  ),
-                );
-              },
-              title: AppStrings.halogenGroup,
-            ),
+            unknownGroupContainer(context),
           ],
         ),
       ),
+    );
+  }
+
+  ElementGroupContainer halogenContainer(BuildContext context) {
+    return ElementGroupContainer(
+      color: AppColors.lightGreen,
+      shadowColor: AppColors.shLightGreen,
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => const ElementsListView(
+              apiType: ApiTypes.halogen,
+              title: AppStrings.halogens,
+            ),
+          ),
+        );
+      },
+      title: AppStrings.halogenGroup,
     );
   }
 
@@ -50,7 +54,7 @@ class ElementGroupView extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
         metalloidGroupContainer(context),
-        unknownGroupContainer(context),
+        halogenContainer(context),
       ],
     );
   }
