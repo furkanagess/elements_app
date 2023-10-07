@@ -1,5 +1,5 @@
 import 'package:elements_app/feature/view/home/home_view.dart';
-import 'package:elements_app/product/constants/themeConstants/app_strings.dart';
+import 'package:elements_app/product/constants/app_strings.dart';
 import 'package:elements_app/product/theme/app_theme.dart';
 import 'package:flutter/material.dart';
 
