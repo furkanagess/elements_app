@@ -4,8 +4,8 @@ class AssetConstants {
 
   static AssetConstants get instance => _instace ??= AssetConstants._init();
 
-  String toSVG(String name) => "assets/svg/$name.svg";
-
+  // SVG
+  String toSVG(String src) => "assets/svg/$src.svg";
   String get svgElementGroup => toSVG("element_group");
   String get svgElement => toSVG("element-svg");
   String get svgGameTwo => toSVG("game_2");
@@ -18,13 +18,13 @@ class AssetConstants {
   String get svgStar => toSVG("star");
   String get svgStarTwo => toSVG("star-2");
   String get svgWarning => toSVG("warning");
-
+  String get right => toSVG("right-icon");
   // Lottie
-  String toLottie(String name) => "assets/lottie/$name.json";
-  String get lottieCorrectTwo => toSVG("correct_2");
-  String get lottieCorrect => toSVG("correct");
-  String get lottieLoadingChem => toSVG("loading_chem");
-  String get lottieLoadingChemistry => toSVG("loading_chemistry");
-  String get lottieLoading => toSVG("loading");
-  String get lottieWrong => toSVG("wrong");
+  String toLottie(String src) => "assets/lottie/$src.json";
+  String get lottieCorrectTwo => toLottie("correct_2");
+  String get lottieCorrect => toLottie("correct");
+  String get lottieLoadingChem => toLottie("loading_chem");
+  String get lottieLoadingChemistry => toLottie("loading_chemistry");
+  String get lottieLoading => toLottie("loading");
+  String get lottieWrong => toLottie("wrong");
 }
