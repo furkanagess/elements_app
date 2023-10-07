@@ -1,6 +1,7 @@
 import 'package:elements_app/feature/model/periodic_element.dart';
 import 'package:elements_app/product/constants/app_colors.dart';
 import 'package:elements_app/product/constants/app_strings.dart';
+import 'package:elements_app/product/constants/assets_constants.dart';
 import 'package:elements_app/product/extensions/color_extension.dart';
 import 'package:elements_app/product/extensions/context_extensions.dart';
 import 'package:elements_app/product/widget/container/element_symbol_container.dart';
@@ -8,6 +9,7 @@ import 'package:elements_app/product/widget/text/element_detail_row.dart';
 import 'package:elements_app/product/widget/text/element_info_long_text.dart';
 import 'package:elements_app/product/widget/text/element_info_row.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class ElementDetailView extends StatelessWidget {
   final PeriodicElement element;
@@ -57,11 +59,11 @@ class ElementDetailView extends StatelessWidget {
             Expanded(
               child: blockPart(),
             ),
-            verticalDivider(),
+            dividerSVG(context),
             Expanded(
               child: periodPart(),
             ),
-            verticalDivider(),
+            dividerSVG(context),
             Expanded(
               child: groupPart(),
             ),
@@ -128,14 +130,25 @@ class ElementDetailView extends StatelessWidget {
             Column(
               children: [
                 descriptionParagraph(),
-                spacer(context, 0.05),
+                dividerSVG(context),
                 usageParagraph(),
-                spacer(context, 0.05),
+                dividerSVG(context),
                 sourceParagraph(),
               ],
             ),
           ],
         ),
+      ),
+    );
+  }
+
+  Widget dividerSVG(BuildContext context) {
+    return Padding(
+      padding: context.paddingLow,
+      child: SvgPicture.asset(
+        AssetConstants.instance.svgTestTube,
+        color: Colors.white,
+        height: context.dynamicHeight(0.035),
       ),
     );
   }

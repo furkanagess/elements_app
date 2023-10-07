@@ -24,8 +24,10 @@ final class FeedbackLongTextField extends StatelessWidget {
         style: const TextStyle(color: AppColors.background),
         maxLength: 300,
         decoration: InputDecoration(
-          hintStyle: context.textTheme.bodyMedium
-              ?.copyWith(color: AppColors.background),
+          hintStyle: context.textTheme.bodyMedium?.copyWith(
+            color: AppColors.background,
+            fontWeight: FontWeight.bold,
+          ),
           hintText: title,
           hoverColor: AppColors.background,
           focusColor: AppColors.background,

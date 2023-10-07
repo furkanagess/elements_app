@@ -18,7 +18,11 @@ class AssetConstants {
   String get svgStar => toSVG("star");
   String get svgStarTwo => toSVG("star-2");
   String get svgWarning => toSVG("warning");
-  String get right => toSVG("right-icon");
+  String get svgRight => toSVG("right-icon");
+  String get svgTube => toSVG("tube");
+  String get svgScience => toSVG("science");
+  String get svgScienceTwo => toSVG("science_two");
+  String get svgTestTube => toSVG("test_tube");
   // Lottie
   String toLottie(String src) => "assets/lottie/$src.json";
   String get lottieCorrectTwo => toLottie("correct_2");
