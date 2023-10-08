@@ -4,9 +4,10 @@ import 'package:flutter/material.dart';
 class AppStrings {
   const AppStrings._();
   // General
-  static const String appName = 'Elements';
+  static const String appName = 'Elements ~ Learn & Quiz';
   static const String errorMsg = 'An error occured';
   // All Elements
+  static const String elements = 'Elements';
   static const String allElements = 'All Elements';
   // Element Detail
   static const String block = 'Block';
@@ -19,17 +20,17 @@ class AppStrings {
   static const String usage = 'Usage';
   static const String source = 'Source';
   // Element Types
-  static const String actinides = 'Actanide';
-  static const String alkaline = 'Alkaline Metal';
-  static const String earthAlkaline = 'Earth Alkaline Metal';
-  static const String halogens = 'Halogen';
-  static const String lanthanides = 'Lanthanide';
-  static const String metalloids = 'Metalloid';
-  static const String nobleGases = 'Noble Gas';
-  static const String postTransition = 'Post Transition Metal';
-  static const String reactiveNonmetal = 'Reactive Nonmetal';
-  static const String transitionMetal = 'Transition Metal';
-  static const String unknown = 'Unknown';
+  static const String actinides = 'Actanides';
+  static const String alkaline = 'Alkaline Metals';
+  static const String earthAlkaline = 'Earth Alkaline Metals';
+  static const String halogens = 'Halogens';
+  static const String lanthanides = 'Lanthanides';
+  static const String metalloids = 'Metalloids';
+  static const String nobleGases = 'Noble Gases';
+  static const String postTransition = 'Post Transition Metals';
+  static const String reactiveNonmetal = 'Reactive Nonmetals';
+  static const String transitionMetal = 'Transition Metals';
+  static const String unknown = 'Unknowns';
 
   // Element Groups
   static const String elementGroups = 'Element Groups';
