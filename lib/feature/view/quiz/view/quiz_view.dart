@@ -83,7 +83,7 @@ class _QuizViewState extends State<QuizView> with QuizMixin {
   AppBar appBar() {
     return AppBar(
       title: Text(
-        "${widget.title} Quizi",
+        "${widget.title} Quiz",
       ),
     );
   }

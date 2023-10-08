@@ -13,15 +13,18 @@ class MetalGroupView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: appBar(),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          spacer(context, 0.02),
-          transitionsMetalsRow(context),
-          alkalineMetalsRow(context),
-          otherMetalsRow(context),
-          spacer(context, 0.04),
-        ],
+      body: Padding(
+        padding: context.paddingLowHorizontal,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            spacer(context, 0.02),
+            transitionsMetalsRow(context),
+            alkalineMetalsRow(context),
+            otherMetalsRow(context),
+            spacer(context, 0.04),
+          ],
+        ),
       ),
     );
   }

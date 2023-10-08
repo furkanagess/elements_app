@@ -21,25 +21,55 @@ class HomeView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      appBar: AppBar(),
-      body: Column(
-        children: [
-          spacer(context, 0.02),
-          const Spacer(),
-          elementGroupRowOne(context),
-          spacer(context, 0.04),
-          elementGroupRowTwo(context),
-          divider(context),
-          reportAndRateRow(context),
-          spacer(context, 0.02),
-        ],
+      body: Padding(
+        padding: context.paddingLowHorizontal,
+        child: Column(
+          children: [
+            spacerVertical(context, 0.05),
+            Padding(
+              padding: context.paddingLowHorizontal,
+              child: Container(
+                height: context.dynamicHeight(0.075),
+                decoration: BoxDecoration(
+                  border: Border.all(
+                    color: AppColors.purple,
+                  ),
+                  color: AppColors.background,
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                child: Center(
+                  child: Text(
+                    AppStrings.appName,
+                    style: context.textTheme.headlineSmall?.copyWith(
+                      color: AppColors.darkWhite,
+                    ),
+                  ),
+                ),
+              ),
+            ),
+            spacerVertical(context, 0.03),
+            SvgPicture.asset(
+              AssetConstants.instance.svgScientist,
+              height: context.dynamicHeight(0.2),
+            ),
+            spacerVertical(context, 0.02),
+            const Spacer(),
+            elementGroupRowOne(context),
+            spacerVertical(context, 0.04),
+            elementGroupRowTwo(context),
+            divider(context),
+            reportAndRateRow(context),
+            spacerVertical(context, 0.02),
+          ],
+        ),
       ),
     );
   }
 
-  SizedBox spacer(BuildContext context, double value) =>
+  SizedBox spacerVertical(BuildContext context, double value) =>
       SizedBox(height: context.dynamicHeight(value));
-
+  SizedBox spacerHorizontal(BuildContext context, double value) =>
+      SizedBox(height: context.dynamicWidth(value));
   Row elementGroupRowTwo(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -112,7 +142,7 @@ class HomeView extends StatelessWidget {
       },
       shadowColor: AppColors.shTurquoise,
       color: AppColors.turquoise,
-      title: AppStrings.appName,
+      title: AppStrings.elements,
       svg: AssetConstants.instance.svgElement,
     );
   }
@@ -140,7 +170,7 @@ class HomeView extends StatelessWidget {
       indent: 10,
       endIndent: 10,
       height: context.dynamicHeight(0.075),
-      color: AppColors.powderRed,
+      color: AppColors.purple,
     );
   }
 

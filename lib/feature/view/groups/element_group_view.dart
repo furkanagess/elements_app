@@ -16,15 +16,18 @@ class ElementGroupView extends StatelessWidget {
     return Scaffold(
       appBar: appBar(),
       body: SingleChildScrollView(
-        child: Column(
-          children: [
-            spacer(context, 0.05),
-            metalAndNonmetalRow(context),
-            spacer(context, 0.05),
-            metalloidAndUnknownRow(context),
-            spacer(context, 0.05),
-            unknownGroupContainer(context),
-          ],
+        child: Padding(
+          padding: context.paddingLowHorizontal,
+          child: Column(
+            children: [
+              spacer(context, 0.05),
+              metalAndNonmetalRow(context),
+              spacer(context, 0.05),
+              metalloidAndUnknownRow(context),
+              spacer(context, 0.05),
+              unknownGroupContainer(context),
+            ],
+          ),
         ),
       ),
     );

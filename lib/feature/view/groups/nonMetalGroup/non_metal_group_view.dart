@@ -13,18 +13,21 @@ class NonMetalGroupView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: appBar(),
-      body: Column(
-        children: [
-          spacer(context, 0.05),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              reactiveNonmetalContainer(context),
-              nobleGasesContainer(context),
-            ],
-          ),
-          spacer(context, 0.05),
-        ],
+      body: Padding(
+        padding: context.paddingLowHorizontal,
+        child: Column(
+          children: [
+            spacer(context, 0.05),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                reactiveNonmetalContainer(context),
+                nobleGasesContainer(context),
+              ],
+            ),
+            spacer(context, 0.05),
+          ],
+        ),
       ),
     );
   }
