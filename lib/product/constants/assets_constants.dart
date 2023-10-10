@@ -25,6 +25,12 @@ class AssetConstants {
   String get svgTestTube => toSVG("test_tube");
   String get svgScientist => toSVG("scientist");
   String get svgAlienScientist => toSVG("alien_scientist");
+  String get svgPeriodicTable => toSVG("periodic-table");
+  String get svgTableIcon => toSVG("table-icon");
+  String get svgGroup => toSVG("group");
+  String get svgPeriod => toSVG("period");
+  String get svgInfoTable => toSVG("info-table");
+  String get svgBlock => toSVG("block");
   // Lottie
   String toLottie(String src) => "assets/lottie/$src.json";
   String get lottieCorrectTwo => toLottie("correct_2");
