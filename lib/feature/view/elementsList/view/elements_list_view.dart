@@ -29,30 +29,34 @@ class _ElementsListViewState extends State<ElementsListView>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      floatingActionButton: quizFabButton(context),
-      appBar: AppBar(
-        title: Text(widget.title),
-      ),
-      body: isLoading
-          ? loadingIndicator(context)
-          : FutureBuilder<List<PeriodicElement>>(
-              future: elementList,
-              builder: (context, snapshot) {
-                if (snapshot.connectionState == ConnectionState.waiting) {
-                  return loadingIndicator(context);
-                } else {
-                  final elements = snapshot.data;
-                  return ListView.builder(
-                    itemCount: elements!.length,
-                    itemBuilder: (context, index) {
-                      final element = elements[index];
-                      return ElementContainer(element: element);
-                    },
-                  );
-                }
-              },
-            ),
-    );
+        floatingActionButton: quizFabButton(context),
+        body: NestedScrollView(
+          floatHeaderSlivers: true,
+          headerSliverBuilder: (context, innerBoxIsScrolled) => [
+            SliverAppBar(
+              title: Text(widget.title),
+            )
+          ],
+          body: isLoading
+              ? loadingIndicator(context)
+              : FutureBuilder<List<PeriodicElement>>(
+                  future: elementList,
+                  builder: (context, snapshot) {
+                    if (snapshot.connectionState == ConnectionState.waiting) {
+                      return loadingIndicator(context);
+                    } else {
+                      final elements = snapshot.data;
+                      return ListView.builder(
+                        itemCount: elements!.length,
+                        itemBuilder: (context, index) {
+                          final element = elements[index];
+                          return ElementContainer(element: element);
+                        },
+                      );
+                    }
+                  },
+                ),
+        ));
   }
 
   Center loadingIndicator(BuildContext context) {
@@ -69,6 +73,7 @@ class _ElementsListViewState extends State<ElementsListView>
 
   FloatingActionButton quizFabButton(BuildContext context) {
     return FloatingActionButton(
+      splashColor: AppColors.glowGreen,
       child: SvgPicture.asset(
         AssetConstants.instance.svgGameThree,
         color: AppColors.background,

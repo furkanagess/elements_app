@@ -21,23 +21,26 @@ class ElementDetailView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: context.paddingNormal,
-          child: Column(
-            children: [
-              symbolAndInfoRow(context),
-              spacer(context, 0.05),
-              categoryContainer(context),
-              spacer(context, 0.03),
-              blockPeriodGroupContainer(context),
-              spacer(context, 0.03),
-              elementInfoContainer(context),
-            ],
-          ),
-        ),
-      ),
+      body: NestedScrollView(
+          headerSliverBuilder: (context, innerBoxIsScrolled) => [
+                const SliverAppBar(),
+              ],
+          body: SingleChildScrollView(
+            child: Padding(
+              padding: context.paddingNormal,
+              child: Column(
+                children: [
+                  symbolAndInfoRow(context),
+                  spacer(context, 0.05),
+                  categoryContainer(context),
+                  spacer(context, 0.03),
+                  blockPeriodGroupContainer(context),
+                  spacer(context, 0.03),
+                  elementInfoContainer(context),
+                ],
+              ),
+            ),
+          )),
     );
   }
 
@@ -59,17 +62,24 @@ class ElementDetailView extends StatelessWidget {
             Expanded(
               child: blockPart(),
             ),
-            dividerSVG(context),
+            verticalWhiteDivider(),
             Expanded(
               child: periodPart(),
             ),
-            dividerSVG(context),
+            verticalWhiteDivider(),
             Expanded(
               child: groupPart(),
             ),
           ],
         ),
       ),
+    );
+  }
+
+  VerticalDivider verticalWhiteDivider() {
+    return const VerticalDivider(
+      thickness: 1,
+      color: AppColors.white,
     );
   }
 
@@ -122,7 +132,7 @@ class ElementDetailView extends StatelessWidget {
         color: AppColors.darkBlue,
       ),
       child: Padding(
-        padding: const EdgeInsets.all(16),
+        padding: context.paddingNormal,
         child: Column(
           mainAxisSize: MainAxisSize.min, // Column'un boyutunu minimize et
           crossAxisAlignment: CrossAxisAlignment.stretch,
