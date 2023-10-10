@@ -1,10 +1,12 @@
+// ignore_for_file: deprecated_member_use
+
 import 'package:elements_app/feature/view/elementsList/view/elements_list_view.dart';
-import 'package:elements_app/feature/view/groups/element_group_view.dart';
-import 'package:elements_app/feature/view/info/view/what_is_view.dart';
-import 'package:elements_app/feature/view/quiz/view/quiz_view.dart';
+import 'package:elements_app/feature/view/home/groups/element_group_view.dart';
+import 'package:elements_app/feature/view/home/info/view/info_view.dart';
+import 'package:elements_app/feature/view/home/quiz/view/quiz_view.dart';
 import 'package:elements_app/product/constants/api_types.dart';
 import 'package:elements_app/product/constants/app_colors.dart';
-import 'package:elements_app/product/constants/app_strings.dart';
+import 'package:elements_app/product/constants/stringConstants/app_strings.dart';
 import 'package:elements_app/product/constants/assets_constants.dart';
 import 'package:elements_app/product/extensions/context_extensions.dart';
 import 'package:elements_app/product/widget/button/gradient_button.dart';
@@ -13,6 +15,7 @@ import 'package:elements_app/product/widget/textField/long_feedback_textfield.da
 import 'package:elements_app/product/widget/text/text_icon_row.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:neon_widgets/neon_widgets.dart';
 
 class HomeView extends StatelessWidget {
   const HomeView({super.key});
@@ -26,34 +29,13 @@ class HomeView extends StatelessWidget {
         child: Column(
           children: [
             spacerVertical(context, 0.05),
-            Padding(
-              padding: context.paddingLowHorizontal,
-              child: Container(
-                height: context.dynamicHeight(0.075),
-                decoration: BoxDecoration(
-                  border: Border.all(
-                    color: AppColors.purple,
-                  ),
-                  color: AppColors.background,
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                child: Center(
-                  child: Text(
-                    AppStrings.appName,
-                    style: context.textTheme.headlineSmall?.copyWith(
-                      color: AppColors.darkWhite,
-                    ),
-                  ),
-                ),
-              ),
-            ),
+            appWelcome(context),
             spacerVertical(context, 0.03),
-            SvgPicture.asset(
-              AssetConstants.instance.svgScientist,
+            Image.asset(
+              "assets/img/table-home-icon.png",
               height: context.dynamicHeight(0.2),
             ),
-            spacerVertical(context, 0.02),
-            const Spacer(),
+            spacerVertical(context, 0.05),
             elementGroupRowOne(context),
             spacerVertical(context, 0.04),
             elementGroupRowTwo(context),
@@ -61,6 +43,45 @@ class HomeView extends StatelessWidget {
             reportAndRateRow(context),
             spacerVertical(context, 0.02),
           ],
+        ),
+      ),
+    );
+  }
+
+  Widget homeSVG(BuildContext context) {
+    return SvgPicture.asset(
+      AssetConstants.instance.svgAlienScientist,
+      height: context.dynamicHeight(0.2),
+    );
+  }
+
+  Padding appWelcome(BuildContext context) {
+    return Padding(
+      padding: context.paddingLowHorizontal,
+      child: Container(
+        height: context.dynamicHeight(0.075),
+        decoration: BoxDecoration(
+          boxShadow: const [
+            BoxShadow(
+              color: AppColors.shPurple,
+              offset: Offset(2, 2),
+              spreadRadius: 1,
+            ),
+          ],
+          border: Border.all(
+            color: AppColors.purple,
+          ),
+          color: AppColors.background,
+          borderRadius: BorderRadius.circular(10),
+        ),
+        child: const Center(
+          child: NeonText(
+            text: AppStrings.appName,
+            fontWeight: FontWeight.bold,
+            isSoftWrap: true,
+            spreadColor: Colors.purple,
+            blurRadius: 100,
+          ),
         ),
       ),
     );
