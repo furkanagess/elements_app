@@ -1,5 +1,5 @@
 import 'package:elements_app/feature/model/periodic_element.dart';
-import 'package:elements_app/feature/view/detail/element_detail_view.dart';
+import 'package:elements_app/feature/view/elementDetail/element_detail_view.dart';
 import 'package:elements_app/product/constants/app_colors.dart';
 import 'package:elements_app/product/extensions/color_extension.dart';
 import 'package:elements_app/product/extensions/context_extensions.dart';

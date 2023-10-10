@@ -1,59 +1,62 @@
-// ignore_for_file: deprecated_member_use
-
 import 'package:elements_app/product/constants/app_colors.dart';
+import 'package:elements_app/product/constants/assets_constants.dart';
 import 'package:elements_app/product/extensions/context_extensions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 @immutable
-class HomeContainer extends StatelessWidget {
-  const HomeContainer({
-    super.key,
-    this.onTap,
-    this.color,
-    this.shadowColor,
-    this.title,
-    this.svg,
-  });
+final class WhatIsContainer extends StatelessWidget {
   final VoidCallback? onTap;
-  final Color? color;
-  final Color? shadowColor;
-  final String? title;
-  final String? svg;
+  final String title;
+  final Color color;
+  final Color shColor;
+  const WhatIsContainer({
+    super.key,
+    required this.title,
+    required this.color,
+    required this.shColor,
+    required this.onTap,
+  });
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: onTap,
       child: Container(
-        height: context.dynamicHeight(0.2),
-        width: context.dynamicWidth(0.4),
+        height: context.dynamicHeight(0.075),
         decoration: BoxDecoration(
           boxShadow: [
             BoxShadow(
-              color: shadowColor!,
+              color: shColor,
               offset: const Offset(4, 4),
               spreadRadius: 1,
             ),
           ],
-          borderRadius: BorderRadius.circular(10),
           color: color,
+          borderRadius: BorderRadius.circular(10),
         ),
-        child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        child: Padding(
+          padding: context.paddingLowHorizontal,
+          child: Row(
             children: [
               SvgPicture.asset(
-                svg!,
-                color: AppColors.background,
-                height: context.dynamicHeight(0.1),
+                AssetConstants.instance.svgQuestionTwo,
+                height: context.dynamicHeight(0.05),
+              ),
+              SizedBox(
+                width: context.dynamicWidth(0.05),
               ),
               Text(
-                title!,
+                title,
                 style: context.textTheme.headlineSmall?.copyWith(
                   color: AppColors.background,
                   fontWeight: FontWeight.bold,
                 ),
+              ),
+              const Spacer(),
+              const Icon(
+                Icons.arrow_right_alt_outlined,
+                size: 40,
               )
             ],
           ),
