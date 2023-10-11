@@ -47,6 +47,7 @@ class InfoStrings {
       '  Modern quantum mechanics explains these periodic trends in properties in terms of electron shells. ';
   static const String periodDesc2 =
       '  There are currently seven complete periods in the periodic table, comprising the 118 known elements. Any new elements will be placed into an eighth period; see extended periodic table. The elements are colour-coded below by their block: red for the s-block, yellow for the p-block, blue for the d-block, and green for the f-block.';
+
   // Block
   static const String blockDesc1 =
       '  A block of the periodic table is a set of elements unified by the atomic orbitals their valence electrons or vacancies lie in.';
