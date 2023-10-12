@@ -44,7 +44,7 @@ final class WhatIsContainer extends StatelessWidget {
                 height: context.dynamicHeight(0.05),
               ),
               SizedBox(
-                width: context.dynamicWidth(0.05),
+                width: context.dynamicWidth(0.02),
               ),
               Text(
                 title,
