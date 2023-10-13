@@ -3,12 +3,16 @@ import 'package:flutter/material.dart';
 @immutable
 class AppStrings {
   const AppStrings._();
+
   // General
   static const String appName = 'Elements ~ Learn & Quiz';
   static const String errorMsg = 'An error occured';
+  static const String space = '';
+
   // All Elements
   static const String elements = 'Elements';
   static const String allElements = 'All Elements';
+
   // Element Detail
   static const String block = 'Block';
   static const String period = 'Period';
@@ -19,6 +23,7 @@ class AppStrings {
   static const String description = 'Description';
   static const String usage = 'Usage';
   static const String source = 'Source';
+
   // Element Types
   static const String actinides = 'Actanides';
   static const String alkaline = 'Alkaline Metals';
@@ -48,4 +53,12 @@ class AppStrings {
   static const String feedback =
       'Please give us a feedback for developing the App';
   static const String sendFeedback = 'Send your feedback';
+
+  // Quiz
+  static const String nextQuestion = 'Next Question';
+  static const String backToQuestion = 'Back to Question';
+
+  // Info
+  static const String elementTypes = 'Element Types';
+  static const String whatIs = 'What is';
 }

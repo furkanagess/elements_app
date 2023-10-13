@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 @immutable
 final class ApiTypes {
   const ApiTypes._();
+
   // Base
   static const String baseUrl =
       'https://raw.githubusercontent.com/furkanagess/periodic_table_data_set/master/';
@@ -24,6 +25,7 @@ final class ApiTypes {
   static const String reactiveNonmetal = '${baseUrl}reactive_nonmetal.json';
   static const String transitionMetal = '${baseUrl}transition_metal.json';
   static const String unknown = '${baseUrl}unknown.json';
+
   // Element info
   static const String whatIs = '${baseUrl}what_is.json';
   static const String elementTypes = '${baseUrl}element_types.json';

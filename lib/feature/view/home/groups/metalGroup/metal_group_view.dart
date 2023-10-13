@@ -1,4 +1,4 @@
-import 'package:elements_app/feature/view/elementsList/view/elements_list_view.dart';
+import 'package:elements_app/feature/view/elementsList/elements_list_view.dart';
 import 'package:elements_app/product/constants/api_types.dart';
 import 'package:elements_app/product/constants/app_colors.dart';
 import 'package:elements_app/product/constants/stringConstants/app_strings.dart';

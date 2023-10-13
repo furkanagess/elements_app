@@ -1,6 +1,7 @@
 import 'package:elements_app/feature/model/info.dart';
-import 'package:elements_app/feature/view/home/info/subInfo/infoDetail/view/info_detail_view.dart';
+import 'package:elements_app/feature/view/home/info/subInfo/infoDetail/info_detail_view.dart';
 import 'package:elements_app/product/constants/app_colors.dart';
+import 'package:elements_app/product/constants/assets_constants.dart';
 import 'package:elements_app/product/extensions/context_extensions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -46,7 +47,7 @@ final class WhatIsContainer extends StatelessWidget {
             child: Row(
               children: [
                 SvgPicture.asset(
-                  "assets/svg/question-2.svg",
+                  AssetConstants.instance.svgQuestionTwo,
                   height: context.dynamicHeight(0.05),
                 ),
                 SizedBox(

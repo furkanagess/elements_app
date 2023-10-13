@@ -31,6 +31,7 @@ class AssetConstants {
   String get svgPeriod => toSVG("period");
   String get svgInfoTable => toSVG("info-table");
   String get svgBlock => toSVG("block");
+
   // Lottie
   String toLottie(String src) => "assets/lottie/$src.json";
   String get lottieCorrectTwo => toLottie("correct_2");
@@ -39,4 +40,8 @@ class AssetConstants {
   String get lottieLoadingChemistry => toLottie("loading_chemistry");
   String get lottieLoading => toLottie("loading");
   String get lottieWrong => toLottie("wrong");
+
+  // PNG
+  String toPNG(String src) => "assets/img/$src.png";
+  String get pngHomeImage => toLottie("table-home-icon");
 }

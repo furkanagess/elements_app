@@ -1,9 +1,9 @@
 // ignore_for_file: deprecated_member_use
 
-import 'package:elements_app/feature/view/elementsList/view/elements_list_view.dart';
+import 'package:elements_app/feature/view/elementsList/elements_list_view.dart';
 import 'package:elements_app/feature/view/home/groups/element_group_view.dart';
-import 'package:elements_app/feature/view/home/info/view/info_view.dart';
-import 'package:elements_app/feature/view/home/quiz/view/quiz_view.dart';
+import 'package:elements_app/feature/view/home/info/info_view.dart';
+import 'package:elements_app/feature/view/home/quiz/quiz_view.dart';
 import 'package:elements_app/product/constants/api_types.dart';
 import 'package:elements_app/product/constants/app_colors.dart';
 import 'package:elements_app/product/constants/stringConstants/app_strings.dart';
@@ -31,10 +31,7 @@ class HomeView extends StatelessWidget {
             spacerVertical(context, 0.05),
             appWelcome(context),
             spacerVertical(context, 0.03),
-            Image.asset(
-              "assets/img/table-home-icon.png",
-              height: context.dynamicHeight(0.2),
-            ),
+            homeImage(context),
             spacerVertical(context, 0.05),
             elementGroupRowOne(context),
             spacerVertical(context, 0.04),
@@ -45,6 +42,13 @@ class HomeView extends StatelessWidget {
           ],
         ),
       ),
+    );
+  }
+
+  Image homeImage(BuildContext context) {
+    return Image.asset(
+      AssetConstants.instance.pngHomeImage,
+      height: context.dynamicHeight(0.2),
     );
   }
 
@@ -127,9 +131,9 @@ class HomeView extends StatelessWidget {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => InfoView(
+            builder: (context) => const InfoView(
               apiType: ApiTypes.whatIs,
-              title: "What is",
+              title: AppStrings.whatIs,
             ),
           ),
         );

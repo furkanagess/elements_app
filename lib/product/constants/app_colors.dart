@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 @immutable
 class AppColors {
   const AppColors._();
+
   // General Colors
   static const Color transparent = Colors.transparent;
   static const Color white = Color(0xFFFFFFFF);

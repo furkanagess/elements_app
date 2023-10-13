@@ -1,4 +1,4 @@
-import 'package:elements_app/feature/view/elementsList/view/elements_list_view.dart';
+import 'package:elements_app/feature/view/elementsList/elements_list_view.dart';
 import 'package:elements_app/feature/view/home/groups/metalGroup/metal_group_view.dart';
 import 'package:elements_app/feature/view/home/groups/nonMetalGroup/non_metal_group_view.dart';
 import 'package:elements_app/product/constants/api_types.dart';
