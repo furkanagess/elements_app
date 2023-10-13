@@ -127,7 +127,10 @@ class HomeView extends StatelessWidget {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => const WhatIsView(),
+            builder: (context) => InfoView(
+              apiType: ApiTypes.whatIs,
+              title: "What is",
+            ),
           ),
         );
       },
@@ -164,7 +167,7 @@ class HomeView extends StatelessWidget {
       shadowColor: AppColors.shTurquoise,
       color: AppColors.turquoise,
       title: AppStrings.elements,
-      svg: AssetConstants.instance.svgElement,
+      svg: AssetConstants.instance.svgScienceTwo,
     );
   }
 
