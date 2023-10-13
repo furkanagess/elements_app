@@ -116,41 +116,76 @@ mixin QuizMixin on State<QuizView> {
               height: context.dynamicHeight(0.3)),
           actions: <Widget>[
             Center(
-              child: InkWell(
-                onTap: () {
-                  Navigator.of(context).pop(); // close popup
-                  setState(
-                    () {
-                      if (selectedOption == correctAnswer) {
-                        correctCount++;
-                        askQuestion(); // ask new question
-                      } else {
-                        wrongCount++;
-                      }
-                    },
-                  );
-                },
-                child: Container(
-                  width: context.dynamicWidth(0.4),
-                  height: context.dynamicHeight(0.05),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
-                    color: AppColors.darkBlue,
+              child: Column(
+                children: [
+                  selectedOption == correctAnswer
+                      ? Container(
+                          width: context.dynamicWidth(0.7),
+                          height: context.dynamicHeight(0.075),
+                          decoration: BoxDecoration(
+                            boxShadow: const [
+                              BoxShadow(
+                                color: AppColors.shPurple,
+                                offset: Offset(4, 4),
+                                spreadRadius: 1,
+                              ),
+                            ],
+                            color: AppColors.purple,
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          child: Center(
+                            child: Text(
+                              selectedOption == correctAnswer
+                                  ? "$correctAnswer = $questionSymbol"
+                                  : "",
+                              style: context.textTheme.headlineSmall?.copyWith(
+                                color: AppColors.background,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ),
+                        )
+                      : const SizedBox.shrink(),
+                  SizedBox(
+                    height: context.dynamicHeight(0.05),
                   ),
-                  child: Center(
-                    child: Text(
-                      selectedOption == correctAnswer
-                          ? "Next Question"
-                          : "Back to Question",
-                      style: context.textTheme.bodyLarge?.copyWith(
-                        color: selectedOption == correctAnswer
-                            ? AppColors.white
-                            : AppColors.white,
-                        fontWeight: FontWeight.bold,
+                  InkWell(
+                    onTap: () {
+                      Navigator.of(context).pop(); // close popup
+                      setState(
+                        () {
+                          if (selectedOption == correctAnswer) {
+                            correctCount++;
+                            askQuestion(); // ask new question
+                          } else {
+                            wrongCount++;
+                          }
+                        },
+                      );
+                    },
+                    child: Container(
+                      width: context.dynamicWidth(0.4),
+                      height: context.dynamicHeight(0.05),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        color: AppColors.darkBlue,
+                      ),
+                      child: Center(
+                        child: Text(
+                          selectedOption == correctAnswer
+                              ? "Next Question"
+                              : "Back to Question",
+                          style: context.textTheme.bodyLarge?.copyWith(
+                            color: selectedOption == correctAnswer
+                                ? AppColors.white
+                                : AppColors.white,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
                       ),
                     ),
                   ),
-                ),
+                ],
               ),
             )
           ],
