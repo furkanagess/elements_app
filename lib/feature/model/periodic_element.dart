@@ -5,7 +5,7 @@ part 'periodic_element.g.dart';
 
 @immutable
 @JsonSerializable()
-class PeriodicElement with EquatableMixin {
+final class PeriodicElement with EquatableMixin {
   final int? number;
   final String? name;
   final String? symbol;
