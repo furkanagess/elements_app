@@ -43,5 +43,5 @@ class AssetConstants {
 
   // PNG
   String toPNG(String src) => "assets/img/$src.png";
-  String get pngHomeImage => toLottie("table-home-icon");
+  String get pngHomeImage => toPNG("table-home-icon");
 }
