@@ -7,6 +7,7 @@ import 'package:elements_app/product/constants/assets_constants.dart';
 import 'package:elements_app/product/extensions/color_extension.dart';
 import 'package:elements_app/product/extensions/context_extensions.dart';
 import 'package:elements_app/product/widget/container/element_symbol_container.dart';
+import 'package:elements_app/product/widget/scaffold/app_scaffold.dart';
 import 'package:elements_app/product/widget/text/element_detail_row.dart';
 import 'package:elements_app/product/widget/text/element_info_long_text.dart';
 import 'package:elements_app/product/widget/text/element_info_row.dart';
@@ -22,27 +23,29 @@ class ElementDetailView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: NestedScrollView(
-          headerSliverBuilder: (context, innerBoxIsScrolled) => [
-                const SliverAppBar(),
-              ],
-          body: SingleChildScrollView(
-            child: Padding(
-              padding: context.paddingNormal,
-              child: Column(
-                children: [
-                  symbolAndInfoRow(context),
-                  spacer(context, 0.05),
-                  categoryContainer(context),
-                  spacer(context, 0.03),
-                  blockPeriodGroupContainer(context),
-                  spacer(context, 0.03),
-                  elementInfoContainer(context),
+    return AppScaffold(
+      child: Scaffold(
+        body: NestedScrollView(
+            headerSliverBuilder: (context, innerBoxIsScrolled) => [
+                  const SliverAppBar(),
                 ],
+            body: SingleChildScrollView(
+              child: Padding(
+                padding: context.paddingNormal,
+                child: Column(
+                  children: [
+                    symbolAndInfoRow(context),
+                    spacer(context, 0.05),
+                    categoryContainer(context),
+                    spacer(context, 0.03),
+                    blockPeriodGroupContainer(context),
+                    spacer(context, 0.03),
+                    elementInfoContainer(context),
+                  ],
+                ),
               ),
-            ),
-          )),
+            )),
+      ),
     );
   }
 

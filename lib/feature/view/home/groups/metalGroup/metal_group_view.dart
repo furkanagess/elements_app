@@ -4,6 +4,7 @@ import 'package:elements_app/product/constants/app_colors.dart';
 import 'package:elements_app/product/constants/stringConstants/app_strings.dart';
 import 'package:elements_app/product/extensions/context_extensions.dart';
 import 'package:elements_app/product/widget/container/element_group_container.dart';
+import 'package:elements_app/product/widget/scaffold/app_scaffold.dart';
 import 'package:flutter/material.dart';
 
 class MetalGroupView extends StatelessWidget {
@@ -11,19 +12,21 @@ class MetalGroupView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: appBar(),
-      body: Padding(
-        padding: context.paddingLowHorizontal,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            spacer(context, 0.02),
-            transitionsMetalsRow(context),
-            alkalineMetalsRow(context),
-            otherMetalsRow(context),
-            spacer(context, 0.04),
-          ],
+    return AppScaffold(
+      child: Scaffold(
+        appBar: appBar(),
+        body: Padding(
+          padding: context.paddingLowHorizontal,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              spacer(context, 0.02),
+              transitionsMetalsRow(context),
+              alkalineMetalsRow(context),
+              otherMetalsRow(context),
+              spacer(context, 0.04),
+            ],
+          ),
         ),
       ),
     );

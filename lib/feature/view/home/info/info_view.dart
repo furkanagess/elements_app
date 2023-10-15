@@ -8,6 +8,7 @@ import 'package:elements_app/product/constants/stringConstants/app_strings.dart'
 import 'package:elements_app/product/extensions/context_extensions.dart';
 import 'package:elements_app/product/widget/circuless/loading_bar.dart';
 import 'package:elements_app/product/widget/container/what_is_container.dart';
+import 'package:elements_app/product/widget/scaffold/app_scaffold.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
@@ -27,16 +28,18 @@ class InfoView extends StatefulWidget {
 class _InfoViewState extends State<InfoView> with InfoViewMixin {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: buildAppbar(),
-      body: isLoading
-          ? const LoadingBar()
-          : Column(
-              children: [
-                elementTypesContainer(context),
-                infoListBuilder(),
-              ],
-            ),
+    return AppScaffold(
+      child: Scaffold(
+        appBar: buildAppbar(),
+        body: isLoading
+            ? const LoadingBar()
+            : Column(
+                children: [
+                  elementTypesContainer(context),
+                  infoListBuilder(),
+                ],
+              ),
+      ),
     );
   }
 

@@ -6,6 +6,7 @@ import 'package:elements_app/product/constants/app_colors.dart';
 import 'package:elements_app/product/constants/stringConstants/app_strings.dart';
 import 'package:elements_app/product/extensions/context_extensions.dart';
 import 'package:elements_app/product/widget/container/element_group_container.dart';
+import 'package:elements_app/product/widget/scaffold/app_scaffold.dart';
 import 'package:flutter/material.dart';
 
 class ElementGroupView extends StatelessWidget {
@@ -13,20 +14,22 @@ class ElementGroupView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: appBar(),
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: context.paddingLowHorizontal,
-          child: Column(
-            children: [
-              spacer(context, 0.05),
-              metalAndNonmetalRow(context),
-              spacer(context, 0.05),
-              metalloidAndUnknownRow(context),
-              spacer(context, 0.05),
-              unknownGroupContainer(context),
-            ],
+    return AppScaffold(
+      child: Scaffold(
+        appBar: appBar(),
+        body: SingleChildScrollView(
+          child: Padding(
+            padding: context.paddingLowHorizontal,
+            child: Column(
+              children: [
+                spacer(context, 0.05),
+                metalAndNonmetalRow(context),
+                spacer(context, 0.05),
+                metalloidAndUnknownRow(context),
+                spacer(context, 0.05),
+                unknownGroupContainer(context),
+              ],
+            ),
           ),
         ),
       ),

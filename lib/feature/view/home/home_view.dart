@@ -11,6 +11,7 @@ import 'package:elements_app/product/constants/assets_constants.dart';
 import 'package:elements_app/product/extensions/context_extensions.dart';
 import 'package:elements_app/product/widget/button/gradient_button.dart';
 import 'package:elements_app/product/widget/container/home_container.dart';
+import 'package:elements_app/product/widget/scaffold/app_scaffold.dart';
 import 'package:elements_app/product/widget/textField/long_feedback_textfield.dart';
 import 'package:elements_app/product/widget/text/text_icon_row.dart';
 import 'package:flutter/material.dart';
@@ -22,24 +23,26 @@ class HomeView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      resizeToAvoidBottomInset: false,
-      body: Padding(
-        padding: context.paddingLowHorizontal,
-        child: Column(
-          children: [
-            spacerVertical(context, 0.05),
-            appWelcome(context),
-            spacerVertical(context, 0.03),
-            homeImage(context),
-            spacerVertical(context, 0.05),
-            elementGroupRowOne(context),
-            spacerVertical(context, 0.04),
-            elementGroupRowTwo(context),
-            divider(context),
-            reportAndRateRow(context),
-            spacerVertical(context, 0.02),
-          ],
+    return AppScaffold(
+      child: Scaffold(
+        resizeToAvoidBottomInset: false,
+        body: Padding(
+          padding: context.paddingLowHorizontal,
+          child: Column(
+            children: [
+              spacerVertical(context, 0.05),
+              appWelcome(context),
+              spacerVertical(context, 0.03),
+              homeImage(context),
+              spacerVertical(context, 0.05),
+              elementGroupRowOne(context),
+              spacerVertical(context, 0.04),
+              elementGroupRowTwo(context),
+              divider(context),
+              reportAndRateRow(context),
+              spacerVertical(context, 0.02),
+            ],
+          ),
         ),
       ),
     );
