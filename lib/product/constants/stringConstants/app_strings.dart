@@ -61,4 +61,8 @@ class AppStrings {
   // Info
   static const String elementTypes = 'Element Types';
   static const String whatIs = 'What is';
+
+  // Connection
+  static const String connectionError =
+      'Please check your internet connection!';
 }

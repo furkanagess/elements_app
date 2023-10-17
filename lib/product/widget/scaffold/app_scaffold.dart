@@ -1,5 +1,9 @@
 import 'package:elements_app/feature/service/network_service.dart';
+import 'package:elements_app/product/constants/assets_constants.dart';
+import 'package:elements_app/product/constants/stringConstants/app_strings.dart';
+import 'package:elements_app/product/extensions/context_extensions.dart';
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
 
 class AppScaffold extends StatelessWidget {
@@ -18,7 +22,23 @@ class AppScaffold extends StatelessWidget {
           : Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Center(child: Text("Pleasce check your internet connection !")),
+                Column(
+                  children: [
+                    Center(
+                      child: Lottie.asset(
+                        AssetConstants.instance.lottieConnection,
+                        fit: BoxFit.cover,
+                        reverse: true,
+                        repeat: true,
+                        height: context.dynamicHeight(0.3),
+                      ),
+                    ),
+                    Text(
+                      AppStrings.connectionError,
+                      style: context.textTheme.bodyMedium,
+                    )
+                  ],
+                ),
               ],
             ),
     );
