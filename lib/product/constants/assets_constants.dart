@@ -40,7 +40,7 @@ class AssetConstants {
   String get lottieLoadingChemistry => toLottie("loading_chemistry");
   String get lottieLoading => toLottie("loading");
   String get lottieWrong => toLottie("wrong");
-
+  String get lottieConnection => toLottie("no-connection");
   // PNG
   String toPNG(String src) => "assets/img/$src.png";
   String get pngHomeImage => toPNG("table-home-icon");
