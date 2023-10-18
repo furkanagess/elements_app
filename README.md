@@ -1,16 +1,43 @@
-# elements_app
+# Elements ~ Learn & Quiz
 
 A new Flutter project.
 
-## Getting Started
+## Application Screenshots
 
-This project is a starting point for a Flutter application.
+<table>
+  <tr>
+    <td>Home Page</td>
+    <td>All Elements Page</td>
+    <td>Element Group Page</td> 
+  </tr>  
+  <tr>
+    <td><img src="screenshots/home.jpg" width=300 height=420></td>
+     <td><img src="screenshots/all-elements.jpg" width=300 height=420></td>
+   <td><img src="screenshots/element-group.jpg" width=300 height=420></td>
+  </tr>
+</table>
+<table>
+  <tr>
+    <td>What Is Page</td>
+    <td>What Is Detail Page</td>
+    <td>Element Types Page</td> 
+  </tr>  
+  <tr>
+    <td><img src="screenshots/what-is.jpg" width=300 height=420></td>
+     <td><img src="screenshots/what-is-detail.jpg" width=300 height=420></td>
+   <td><img src="screenshots/element-types.jpg" width=300 height=420></td>
+  </tr>
+</table>
+<table>
+  <tr>
+    <td>Quiz Page</td>
+    <td>Quiz Error </td>
+    <td>Loading</td> 
+  </tr>  
+  <tr>
+    <td><img src="screenshots/quiz.jpg" width=300 height=420></td>
+     <td><img src="screenshots/error.jpg" width=300 height=420></td>
+   <td><img src="screenshots/loading.jpg" width=300 height=420></td>
+  </tr>
+</table>
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
