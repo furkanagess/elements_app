@@ -1,6 +1,7 @@
 # Flutter  Elements ~ Learn & Quiz App
 
   The application developed with Flutter contains information about the Periodic Table elements. It also includes explanations about the Periodic Table, groups, periods, elements, blocks, and element types. The application also features a quiz section where you need to select the correct element name based on the element symbol.
+  
 ## Application Screenshots
 
 <table>
@@ -30,8 +31,7 @@
      <td><img src="screenshots/error.jpg" width=350 height=420></td>
    <td><img src="screenshots/loading.jpg" width=350 height=420></td>
      
-  </tr>
-  
+  </tr> 
 <table>
   <tr>
         <td>No Connection</td> 
@@ -45,4 +45,17 @@
              <td><img src="screenshots/what-is-detail.jpg" width=350 height=420></td>
           <td><img src="screenshots/feedback.jpg" width=350 height=420></td>
   </tr>
+  </table>
 
+  
+## Libraries & Technologies
+- for data set => https://github.com/furkanagess/periodic_table_data_set
+- http => https://pub.dev/packages/http
+- equatable => https://pub.dev/packages/equatable
+- json_annotation => https://pub.dev/packages/json_annotation
+- provider => https://pub.dev/packages/provider
+- very_good_analysis => https://pub.dev/packages/very_good_analysis
+- lottie => https://pub.dev/packages/lottie
+- flutter_svg => https://pub.dev/packages/flutter_svg
+- connectivity_plus => https://pub.dev/packages/connectivity_plus
+  
