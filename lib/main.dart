@@ -1,16 +1,22 @@
 import 'package:elements_app/feature/service/network_service.dart';
+import 'package:elements_app/feature/view/ad_test_view.dart';
 import 'package:elements_app/feature/view/home/home_view.dart';
 import 'package:elements_app/product/constants/stringConstants/app_strings.dart';
 import 'package:elements_app/product/theme/app_theme.dart';
 import 'package:flutter/material.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:provider/provider.dart';
 
-void main() => runApp(MultiProvider(providers: [
-      StreamProvider(
-        create: (context) => NetworkService().controller.stream,
-        initialData: NetworkStatus.online,
-      ),
-    ], child: const MyApp()));
+void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  MobileAds.instance.initialize();
+  runApp(MultiProvider(providers: [
+    StreamProvider(
+      create: (context) => NetworkService().controller.stream,
+      initialData: NetworkStatus.online,
+    ),
+  ], child: const MyApp()));
+}
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -21,7 +27,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: AppStrings.appName,
       theme: AppTheme().theme,
-      home: const HomeView(),
+      home: const AdTestView(),
     );
   }
 }
