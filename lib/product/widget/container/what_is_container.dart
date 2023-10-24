@@ -1,4 +1,5 @@
 import 'package:elements_app/feature/model/info.dart';
+import 'package:elements_app/feature/provider/localization_provider.dart';
 import 'package:elements_app/feature/view/home/info/subInfo/infoDetail/info_detail_view.dart';
 import 'package:elements_app/product/constants/app_colors.dart';
 import 'package:elements_app/product/constants/assets_constants.dart';
@@ -6,6 +7,7 @@ import 'package:elements_app/product/extensions/context_extensions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:elements_app/product/extensions/color_extension.dart';
+import 'package:provider/provider.dart';
 
 @immutable
 final class WhatIsContainer extends StatelessWidget {
@@ -18,6 +20,7 @@ final class WhatIsContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    bool isTr = Provider.of<LocalizationProvider>(context).isTr;
     return InkWell(
       onTap: () {
         Navigator.push(
@@ -54,7 +57,7 @@ final class WhatIsContainer extends StatelessWidget {
                   width: context.dynamicWidth(0.03),
                 ),
                 Text(
-                  info.title!,
+                  isTr ? info.trTitle! : info.enTitle!,
                   style: context.textTheme.headlineSmall?.copyWith(
                     color: AppColors.background,
                     fontWeight: FontWeight.bold,

@@ -1,9 +1,11 @@
 import 'package:elements_app/feature/model/periodic_element.dart';
+import 'package:elements_app/feature/provider/localization_provider.dart';
 import 'package:elements_app/feature/view/elementDetail/element_detail_view.dart';
 import 'package:elements_app/product/constants/app_colors.dart';
 import 'package:elements_app/product/extensions/color_extension.dart';
 import 'package:elements_app/product/extensions/context_extensions.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 @immutable
 final class ElementContainer extends StatelessWidget {
@@ -15,6 +17,7 @@ final class ElementContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    bool isTr = Provider.of<LocalizationProvider>(context).isTr;
     return Padding(
       padding: context.paddingNormal,
       child: InkWell(
@@ -64,7 +67,7 @@ final class ElementContainer extends StatelessWidget {
               ),
               const Spacer(),
               Text(
-                element.name.toString(),
+                isTr ? element.trName.toString() : element.enName.toString(),
                 style: context.textTheme.headlineSmall?.copyWith(
                   color: AppColors.background,
                   fontWeight: FontWeight.bold,

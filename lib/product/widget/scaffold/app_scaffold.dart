@@ -1,6 +1,8 @@
+import 'package:elements_app/feature/provider/localization_provider.dart';
 import 'package:elements_app/feature/service/network_service.dart';
 import 'package:elements_app/product/constants/assets_constants.dart';
-import 'package:elements_app/product/constants/stringConstants/app_strings.dart';
+import 'package:elements_app/product/constants/stringConstants/en_app_strings.dart';
+import 'package:elements_app/product/constants/stringConstants/tr_app_strings.dart';
 import 'package:elements_app/product/extensions/context_extensions.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
@@ -15,6 +17,7 @@ class AppScaffold extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    bool isTr = Provider.of<LocalizationProvider>(context).isTr;
     var networkStatus = Provider.of<NetworkStatus>(context);
     return Scaffold(
       body: networkStatus == NetworkStatus.online
@@ -34,7 +37,9 @@ class AppScaffold extends StatelessWidget {
                       ),
                     ),
                     Text(
-                      AppStrings.connectionError,
+                      isTr
+                          ? TrAppStrings.connectionError
+                          : EnAppStrings.connectionError,
                       style: context.textTheme.bodyMedium,
                     )
                   ],
