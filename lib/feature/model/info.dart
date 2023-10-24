@@ -3,25 +3,37 @@ import 'package:equatable/equatable.dart';
 part 'info.g.dart';
 
 @JsonSerializable()
-final class Info with EquatableMixin {
-  String? title;
-  String? desc1;
-  String? desc2;
-  String? desc3;
-  String? desc4;
-  String? desc5;
+class Info with EquatableMixin {
+  String? enTitle;
+  String? enDesc1;
+  String? enDesc2;
+  String? enDesc3;
+  String? enDesc4;
+  String? enDesc5;
   String? svg;
+  String? trTitle;
+  String? trDesc1;
+  String? trDesc2;
+  String? trDesc3;
+  String? trDesc4;
+  String? trDesc5;
   String? colors;
   String? shColor;
 
   Info({
-    this.title,
-    this.desc1,
-    this.desc2,
-    this.desc3,
-    this.desc4,
-    this.desc5,
+    this.enTitle,
+    this.enDesc1,
+    this.enDesc2,
+    this.enDesc3,
+    this.enDesc4,
+    this.enDesc5,
     this.svg,
+    this.trTitle,
+    this.trDesc1,
+    this.trDesc2,
+    this.trDesc3,
+    this.trDesc4,
+    this.trDesc5,
     this.colors,
     this.shColor,
   });
@@ -31,28 +43,55 @@ final class Info with EquatableMixin {
   Map<String, dynamic> toJson() => _$InfoToJson(this);
 
   @override
-  List<Object?> get props =>
-      [title, desc1, desc2, desc3, desc4, desc5, svg, colors, shColor];
+  List<Object?> get props => [
+        enTitle,
+        enDesc1,
+        enDesc2,
+        enDesc3,
+        enDesc4,
+        enDesc5,
+        svg,
+        trTitle,
+        trDesc1,
+        trDesc2,
+        trDesc3,
+        trDesc4,
+        trDesc5,
+        colors,
+        shColor
+      ];
 
   Info copyWith({
-    String? title,
-    String? desc1,
-    String? desc2,
-    String? desc3,
-    String? desc4,
-    String? desc5,
+    String? enTitle,
+    String? enDesc1,
+    String? enDesc2,
+    String? enDesc3,
+    String? enDesc4,
+    String? enDesc5,
     String? svg,
+    String? trTitle,
+    String? trDesc1,
+    String? trDesc2,
+    String? trDesc3,
+    String? trDesc4,
+    String? trDesc5,
     String? colors,
     String? shColor,
   }) {
     return Info(
-      title: title ?? this.title,
-      desc1: desc1 ?? this.desc1,
-      desc2: desc2 ?? this.desc2,
-      desc3: desc3 ?? this.desc3,
-      desc4: desc4 ?? this.desc4,
-      desc5: desc5 ?? this.desc5,
+      enTitle: enTitle ?? this.enTitle,
+      enDesc1: enDesc1 ?? this.enDesc1,
+      enDesc2: enDesc2 ?? this.enDesc2,
+      enDesc3: enDesc3 ?? this.enDesc3,
+      enDesc4: enDesc4 ?? this.enDesc4,
+      enDesc5: enDesc5 ?? this.enDesc5,
       svg: svg ?? this.svg,
+      trTitle: trTitle ?? this.trTitle,
+      trDesc1: trDesc1 ?? this.trDesc1,
+      trDesc2: trDesc2 ?? this.trDesc2,
+      trDesc3: trDesc3 ?? this.trDesc3,
+      trDesc4: trDesc4 ?? this.trDesc4,
+      trDesc5: trDesc5 ?? this.trDesc5,
       colors: colors ?? this.colors,
       shColor: shColor ?? this.shColor,
     );

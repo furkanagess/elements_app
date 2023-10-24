@@ -1,37 +1,45 @@
-import 'package:flutter/material.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:equatable/equatable.dart';
 part 'periodic_element.g.dart';
 
-@immutable
 @JsonSerializable()
-final class PeriodicElement with EquatableMixin {
-  final int? number;
-  final String? name;
-  final String? symbol;
-  final String? weight;
-  final String? category;
-  final String? block;
-  final String? period;
-  final String? group;
-  final String? description;
-  final String? usage;
-  final String? source;
-  final String? colors;
-  final String? shColor;
+class PeriodicElement with EquatableMixin {
+  int? number;
+  String? enName;
+  String? symbol;
+  String? weight;
+  String? enCategory;
+  String? block;
+  String? period;
+  String? group;
+  String? enDescription;
+  String? enUsage;
+  String? enSource;
+  String? trName;
+  String? trCategory;
+  String? trDescription;
+  String? trUsage;
+  String? trSource;
+  String? colors;
+  String? shColor;
 
   PeriodicElement({
     this.number,
-    this.name,
+    this.enName,
     this.symbol,
     this.weight,
-    this.category,
+    this.enCategory,
     this.block,
     this.period,
     this.group,
-    this.description,
-    this.usage,
-    this.source,
+    this.enDescription,
+    this.enUsage,
+    this.enSource,
+    this.trName,
+    this.trCategory,
+    this.trDescription,
+    this.trUsage,
+    this.trSource,
     this.colors,
     this.shColor,
   });
@@ -44,47 +52,62 @@ final class PeriodicElement with EquatableMixin {
   @override
   List<Object?> get props => [
         number,
-        name,
+        enName,
         symbol,
         weight,
-        category,
+        enCategory,
         block,
         period,
         group,
-        description,
-        usage,
-        source,
+        enDescription,
+        enUsage,
+        enSource,
+        trName,
+        trCategory,
+        trDescription,
+        trUsage,
+        trSource,
         colors,
         shColor
       ];
 
   PeriodicElement copyWith({
     int? number,
-    String? name,
+    String? enName,
     String? symbol,
     String? weight,
-    String? category,
+    String? enCategory,
     String? block,
     String? period,
     String? group,
-    String? description,
-    String? usage,
-    String? source,
+    String? enDescription,
+    String? enUsage,
+    String? enSource,
+    String? trName,
+    String? trCategory,
+    String? trDescription,
+    String? trUsage,
+    String? trSource,
     String? colors,
     String? shColor,
   }) {
     return PeriodicElement(
       number: number ?? this.number,
-      name: name ?? this.name,
+      enName: enName ?? this.enName,
       symbol: symbol ?? this.symbol,
       weight: weight ?? this.weight,
-      category: category ?? this.category,
+      enCategory: enCategory ?? this.enCategory,
       block: block ?? this.block,
       period: period ?? this.period,
       group: group ?? this.group,
-      description: description ?? this.description,
-      usage: usage ?? this.usage,
-      source: source ?? this.source,
+      enDescription: enDescription ?? this.enDescription,
+      enUsage: enUsage ?? this.enUsage,
+      enSource: enSource ?? this.enSource,
+      trName: trName ?? this.trName,
+      trCategory: trCategory ?? this.trCategory,
+      trDescription: trDescription ?? this.trDescription,
+      trUsage: trUsage ?? this.trUsage,
+      trSource: trSource ?? this.trSource,
       colors: colors ?? this.colors,
       shColor: shColor ?? this.shColor,
     );
