@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 @immutable
-class AppStrings {
-  const AppStrings._();
+final class EnAppStrings {
+  const EnAppStrings._();
 
   // General
   static const String appName = 'Elements ~ Learn & Quiz';
@@ -60,7 +60,6 @@ class AppStrings {
 
   // Info
   static const String elementTypes = 'Element Types';
-  static const String whatIs = 'What is';
 
   // Connection
   static const String connectionError =
