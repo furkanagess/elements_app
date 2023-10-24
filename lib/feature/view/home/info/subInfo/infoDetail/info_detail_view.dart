@@ -1,12 +1,16 @@
 // ignore_for_file: deprecated_member_use
 
 import 'package:elements_app/feature/model/info.dart';
+import 'package:elements_app/feature/provider/localization_provider.dart';
 import 'package:elements_app/product/constants/app_colors.dart';
+import 'package:elements_app/product/constants/stringConstants/en_app_strings.dart';
+import 'package:elements_app/product/constants/stringConstants/tr_app_strings.dart';
 import 'package:elements_app/product/extensions/context_extensions.dart';
 import 'package:elements_app/product/widget/scaffold/app_scaffold.dart';
 import 'package:elements_app/product/widget/text/element_info_long_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:provider/provider.dart';
 
 class InfoDetailView extends StatelessWidget {
   final Info info;
@@ -18,12 +22,14 @@ class InfoDetailView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    bool isTr = Provider.of<LocalizationProvider>(context).isTr;
     return AppScaffold(
       child: Scaffold(
         body: NestedScrollView(
           headerSliverBuilder: (context, innerBoxIsScrolled) => [
-            const SliverAppBar(
-              title: Text("Description"),
+            SliverAppBar(
+              title: Text(
+                  isTr ? TrAppStrings.description : EnAppStrings.description),
             ),
           ],
           body: Padding(
@@ -54,19 +60,24 @@ class InfoDetailView extends StatelessWidget {
                           Column(
                             children: [
                               Text(
-                                info.title!,
+                                isTr ? info.trTitle! : info.enTitle!,
                                 style: context.textTheme.headlineMedium
                                     ?.copyWith(color: AppColors.white),
                               ),
-                              usageParagraph(info.desc1!),
+                              usageParagraph(
+                                  isTr ? info.trDesc1! : info.enDesc1!),
                               dividerSVG(context),
-                              usageParagraph(info.desc2!),
+                              usageParagraph(
+                                  isTr ? info.trDesc2! : info.enDesc2!),
                               dividerSVG(context),
-                              usageParagraph(info.desc3!),
+                              usageParagraph(
+                                  isTr ? info.trDesc3! : info.enDesc3!),
                               dividerSVG(context),
-                              usageParagraph(info.desc4!),
+                              usageParagraph(
+                                  isTr ? info.trDesc4! : info.enDesc4!),
                               dividerSVG(context),
-                              usageParagraph(info.desc5!),
+                              usageParagraph(
+                                  isTr ? info.trDesc5! : info.enDesc5!),
                             ],
                           ),
                         ],
@@ -93,10 +104,10 @@ class InfoDetailView extends StatelessWidget {
     );
   }
 
-  ElementInfoParagraph usageParagraph(String descTwo) {
+  ElementInfoParagraph usageParagraph(String desc) {
     return ElementInfoParagraph(
-      title: "",
-      paragraph: descTwo,
+      title: EnAppStrings.space,
+      paragraph: desc,
     );
   }
 }

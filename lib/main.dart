@@ -1,7 +1,7 @@
+import 'package:elements_app/feature/provider/localization_provider.dart';
 import 'package:elements_app/feature/service/network_service.dart';
-import 'package:elements_app/feature/view/ad_test_view.dart';
 import 'package:elements_app/feature/view/home/home_view.dart';
-import 'package:elements_app/product/constants/stringConstants/app_strings.dart';
+import 'package:elements_app/product/constants/stringConstants/en_app_strings.dart';
 import 'package:elements_app/product/theme/app_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
@@ -15,6 +15,9 @@ void main() {
       create: (context) => NetworkService().controller.stream,
       initialData: NetworkStatus.online,
     ),
+    ChangeNotifierProvider<LocalizationProvider>(
+      create: (context) => LocalizationProvider(),
+    )
   ], child: const MyApp()));
 }
 
@@ -25,9 +28,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: AppStrings.appName,
+      title: EnAppStrings.appName,
       theme: AppTheme().theme,
-      home: const AdTestView(),
+      home: const HomeView(),
     );
   }
 }

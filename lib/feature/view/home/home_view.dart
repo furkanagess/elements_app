@@ -1,13 +1,15 @@
 // ignore_for_file: deprecated_member_use
 
+import 'package:elements_app/feature/provider/localization_provider.dart';
 import 'package:elements_app/feature/view/elementsList/elements_list_view.dart';
 import 'package:elements_app/feature/view/home/groups/element_group_view.dart';
 import 'package:elements_app/feature/view/home/info/info_view.dart';
 import 'package:elements_app/feature/view/home/quiz/quiz_view.dart';
 import 'package:elements_app/product/constants/api_types.dart';
 import 'package:elements_app/product/constants/app_colors.dart';
-import 'package:elements_app/product/constants/stringConstants/app_strings.dart';
+import 'package:elements_app/product/constants/stringConstants/en_app_strings.dart';
 import 'package:elements_app/product/constants/assets_constants.dart';
+import 'package:elements_app/product/constants/stringConstants/tr_app_strings.dart';
 import 'package:elements_app/product/extensions/context_extensions.dart';
 import 'package:elements_app/product/widget/button/gradient_button.dart';
 import 'package:elements_app/product/widget/container/home_container.dart';
@@ -17,12 +19,14 @@ import 'package:elements_app/product/widget/text/text_icon_row.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:neon_widgets/neon_widgets.dart';
+import 'package:provider/provider.dart';
 
 class HomeView extends StatelessWidget {
   const HomeView({super.key});
 
   @override
   Widget build(BuildContext context) {
+    bool isTr = Provider.of<LocalizationProvider>(context).isTr;
     return AppScaffold(
       child: Scaffold(
         resizeToAvoidBottomInset: false,
@@ -35,11 +39,11 @@ class HomeView extends StatelessWidget {
               spacerVertical(context, 0.03),
               homeImage(context),
               spacerVertical(context, 0.05),
-              elementGroupRowOne(context),
+              elementGroupRowOne(context, isTr),
               spacerVertical(context, 0.04),
-              elementGroupRowTwo(context),
+              elementGroupRowTwo(context, isTr),
               divider(context),
-              reportAndRateRow(context),
+              reportAndRateRow(context, isTr),
               spacerVertical(context, 0.02),
             ],
           ),
@@ -83,7 +87,7 @@ class HomeView extends StatelessWidget {
         ),
         child: const Center(
           child: NeonText(
-            text: AppStrings.appName,
+            text: EnAppStrings.appName,
             fontWeight: FontWeight.bold,
             isSoftWrap: true,
             spreadColor: Colors.purple,
@@ -98,87 +102,87 @@ class HomeView extends StatelessWidget {
       SizedBox(height: context.dynamicHeight(value));
   SizedBox spacerHorizontal(BuildContext context, double value) =>
       SizedBox(height: context.dynamicWidth(value));
-  Row elementGroupRowTwo(BuildContext context) {
+  Row elementGroupRowTwo(BuildContext context, bool isTr) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
-        whatIsContainer(context),
-        quizContainer(context),
+        whatIsContainer(context, isTr),
+        quizContainer(context, isTr),
       ],
     );
   }
 
-  HomeContainer quizContainer(BuildContext context) {
+  HomeContainer quizContainer(BuildContext context, bool isTr) {
     return HomeContainer(
       onTap: () {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => const QuizView(
+            builder: (context) => QuizView(
               apiType: ApiTypes.allElements,
-              title: AppStrings.allElements,
+              title: isTr ? TrAppStrings.allElements : EnAppStrings.allElements,
             ),
           ),
         );
       },
       shadowColor: AppColors.shPink,
       color: AppColors.pink,
-      title: AppStrings.quiz,
+      title: isTr ? TrAppStrings.quiz : EnAppStrings.quiz,
       svg: AssetConstants.instance.svgGameThree,
     );
   }
 
-  HomeContainer whatIsContainer(BuildContext context) {
+  HomeContainer whatIsContainer(BuildContext context, bool isTr) {
     return HomeContainer(
       onTap: () {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => const InfoView(
+            builder: (context) => InfoView(
               apiType: ApiTypes.whatIs,
-              title: AppStrings.whatIs,
+              title: isTr ? TrAppStrings.what : EnAppStrings.what,
             ),
           ),
         );
       },
       shadowColor: AppColors.shYellow,
       color: AppColors.yellow,
-      title: AppStrings.what,
+      title: isTr ? TrAppStrings.what : EnAppStrings.what,
       svg: AssetConstants.instance.svgQuestionTwo,
     );
   }
 
-  Row elementGroupRowOne(BuildContext context) {
+  Row elementGroupRowOne(BuildContext context, bool isTr) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
-        elementsContainer(context),
-        elementGroupsContainer(context),
+        elementsContainer(context, isTr),
+        elementGroupsContainer(context, isTr),
       ],
     );
   }
 
-  HomeContainer elementsContainer(BuildContext context) {
+  HomeContainer elementsContainer(BuildContext context, bool isTr) {
     return HomeContainer(
       onTap: () {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => const ElementsListView(
+            builder: (context) => ElementsListView(
               apiType: ApiTypes.allElements,
-              title: AppStrings.allElements,
+              title: isTr ? TrAppStrings.allElements : EnAppStrings.allElements,
             ),
           ),
         );
       },
       shadowColor: AppColors.shTurquoise,
       color: AppColors.turquoise,
-      title: AppStrings.elements,
+      title: isTr ? TrAppStrings.allElements : EnAppStrings.elements,
       svg: AssetConstants.instance.svgScienceTwo,
     );
   }
 
-  HomeContainer elementGroupsContainer(BuildContext context) {
+  HomeContainer elementGroupsContainer(BuildContext context, bool isTr) {
     return HomeContainer(
       onTap: () {
         Navigator.push(
@@ -190,7 +194,7 @@ class HomeView extends StatelessWidget {
       },
       shadowColor: AppColors.shGlowGreen,
       color: AppColors.glowGreen,
-      title: AppStrings.groups,
+      title: isTr ? TrAppStrings.groups : EnAppStrings.groups,
       svg: AssetConstants.instance.svgElementGroup,
     );
   }
@@ -205,11 +209,11 @@ class HomeView extends StatelessWidget {
     );
   }
 
-  Row reportAndRateRow(BuildContext context) {
+  Row reportAndRateRow(BuildContext context, bool isTr) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
-        infoButton(context),
+        infoButton(context, isTr),
         rateButton(context),
         reportButton(context),
       ],
@@ -240,16 +244,20 @@ class HomeView extends StatelessWidget {
     );
   }
 
-  IconButton infoButton(BuildContext context) {
-    return IconButton(
-      onPressed: () {
-        helpPopUp(context);
+  Widget infoButton(BuildContext context, bool isTr) {
+    return GestureDetector(
+      onTap: () {
+        Provider.of<LocalizationProvider>(context, listen: false).toggleBool();
       },
-      icon: SvgPicture.asset(
-        AssetConstants.instance.svgQuestionThree,
-        color: AppColors.yellow,
-        height: context.dynamicHeight(0.04),
-      ),
+      child: isTr
+          ? SvgPicture.asset(
+              "assets/svg/us-flag.svg",
+              height: context.dynamicHeight(0.06),
+            )
+          : SvgPicture.asset(
+              "assets/svg/turkey-flag.svg",
+              height: context.dynamicHeight(0.06),
+            ),
     );
   }
 
@@ -272,11 +280,11 @@ class HomeView extends StatelessWidget {
             children: [
               SizedBox(height: context.dynamicHeight(0.05)),
               const FeedbackLongTextField(
-                title: AppStrings.feedback,
+                title: EnAppStrings.feedback,
               ),
               SizedBox(height: context.dynamicHeight(0.01)),
               GradientButton(
-                title: AppStrings.sendFeedback,
+                title: EnAppStrings.sendFeedback,
                 onTap: () => Navigator.pop(context),
               ),
               SizedBox(height: context.dynamicHeight(0.1)),
@@ -297,31 +305,31 @@ class HomeView extends StatelessWidget {
           children: [
             SizedBox(height: context.dynamicHeight(0.05)),
             const TextIconRow(
-              title: AppStrings.appName,
+              title: EnAppStrings.appName,
               color: AppColors.purple,
               icon: Icons.science,
             ),
             SizedBox(height: context.dynamicHeight(0.01)),
             const TextIconRow(
-              title: AppStrings.appName,
+              title: EnAppStrings.appName,
               color: AppColors.pink,
               icon: Icons.science,
             ),
             SizedBox(height: context.dynamicHeight(0.01)),
             const TextIconRow(
-              title: AppStrings.appName,
+              title: EnAppStrings.appName,
               color: AppColors.glowGreen,
               icon: Icons.science,
             ),
             SizedBox(height: context.dynamicHeight(0.01)),
             const TextIconRow(
-              title: AppStrings.appName,
+              title: EnAppStrings.appName,
               color: AppColors.yellow,
               icon: Icons.science,
             ),
             SizedBox(height: context.dynamicHeight(0.03)),
             GradientButton(
-              title: AppStrings.appName,
+              title: EnAppStrings.appName,
               onTap: () => Navigator.pop(context),
             ),
           ],
@@ -332,16 +340,16 @@ class HomeView extends StatelessWidget {
 
   Text headerGroupText(BuildContext context) {
     return Text(
-      AppStrings.appName,
+      EnAppStrings.appName,
       style: context.textTheme.labelLarge?.copyWith(
         color: AppColors.white,
       ),
     );
   }
 
-  Text headerElementText(BuildContext context) {
+  Text headerElementText(BuildContext context, bool isTr) {
     return Text(
-      AppStrings.allElements,
+      isTr ? TrAppStrings.allElements : EnAppStrings.allElements,
       style: context.textTheme.labelLarge?.copyWith(
         color: AppColors.white,
       ),

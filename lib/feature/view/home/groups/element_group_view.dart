@@ -1,19 +1,23 @@
+import 'package:elements_app/feature/provider/localization_provider.dart';
 import 'package:elements_app/feature/view/elementsList/elements_list_view.dart';
 import 'package:elements_app/feature/view/home/groups/metalGroup/metal_group_view.dart';
 import 'package:elements_app/feature/view/home/groups/nonMetalGroup/non_metal_group_view.dart';
 import 'package:elements_app/product/constants/api_types.dart';
 import 'package:elements_app/product/constants/app_colors.dart';
-import 'package:elements_app/product/constants/stringConstants/app_strings.dart';
+import 'package:elements_app/product/constants/stringConstants/en_app_strings.dart';
+import 'package:elements_app/product/constants/stringConstants/tr_app_strings.dart';
 import 'package:elements_app/product/extensions/context_extensions.dart';
 import 'package:elements_app/product/widget/container/element_group_container.dart';
 import 'package:elements_app/product/widget/scaffold/app_scaffold.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class ElementGroupView extends StatelessWidget {
   const ElementGroupView({super.key});
 
   @override
   Widget build(BuildContext context) {
+    bool isTr = Provider.of<LocalizationProvider>(context).isTr;
     return AppScaffold(
       child: Scaffold(
         appBar: appBar(),
@@ -23,11 +27,11 @@ class ElementGroupView extends StatelessWidget {
             child: Column(
               children: [
                 spacer(context, 0.05),
-                metalAndNonmetalRow(context),
+                metalAndNonmetalRow(context, isTr),
                 spacer(context, 0.05),
-                metalloidAndUnknownRow(context),
+                metalloidAndUnknownRow(context, isTr),
                 spacer(context, 0.05),
-                unknownGroupContainer(context),
+                unknownGroupContainer(context, isTr),
               ],
             ),
           ),
@@ -36,7 +40,7 @@ class ElementGroupView extends StatelessWidget {
     );
   }
 
-  ElementGroupContainer halogenContainer(BuildContext context) {
+  ElementGroupContainer halogenContainer(BuildContext context, bool isTr) {
     return ElementGroupContainer(
       color: AppColors.lightGreen,
       shadowColor: AppColors.shLightGreen,
@@ -44,38 +48,38 @@ class ElementGroupView extends StatelessWidget {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => const ElementsListView(
+            builder: (context) => ElementsListView(
               apiType: ApiTypes.halogen,
-              title: AppStrings.halogens,
+              title: isTr ? TrAppStrings.halogenGroups : EnAppStrings.halogens,
             ),
           ),
         );
       },
-      title: AppStrings.halogenGroup,
+      title: isTr ? TrAppStrings.halogenGroups : EnAppStrings.halogenGroup,
     );
   }
 
-  Row metalloidAndUnknownRow(BuildContext context) {
+  Row metalloidAndUnknownRow(BuildContext context, bool isTr) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
-        metalloidGroupContainer(context),
-        halogenContainer(context),
+        metalloidGroupContainer(context, isTr),
+        halogenContainer(context, isTr),
       ],
     );
   }
 
-  Row metalAndNonmetalRow(BuildContext context) {
+  Row metalAndNonmetalRow(BuildContext context, bool isTr) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
-        metalGroupContainer(context),
-        nonmetalGroupContainer(context),
+        metalGroupContainer(context, isTr),
+        nonmetalGroupContainer(context, isTr),
       ],
     );
   }
 
-  ElementGroupContainer metalGroupContainer(BuildContext context) {
+  ElementGroupContainer metalGroupContainer(BuildContext context, bool isTr) {
     return ElementGroupContainer(
       color: AppColors.purple,
       shadowColor: AppColors.shPurple,
@@ -87,11 +91,12 @@ class ElementGroupView extends StatelessWidget {
           ),
         );
       },
-      title: AppStrings.metalGroups,
+      title: isTr ? TrAppStrings.metalGroups : EnAppStrings.metalGroups,
     );
   }
 
-  ElementGroupContainer nonmetalGroupContainer(BuildContext context) {
+  ElementGroupContainer nonmetalGroupContainer(
+      BuildContext context, bool isTr) {
     return ElementGroupContainer(
       color: AppColors.powderRed,
       shadowColor: AppColors.shPowderRed,
@@ -103,11 +108,12 @@ class ElementGroupView extends StatelessWidget {
           ),
         );
       },
-      title: AppStrings.nonMetalGroup,
+      title: isTr ? TrAppStrings.nonMetalGroups : EnAppStrings.nonMetalGroup,
     );
   }
 
-  ElementGroupContainer metalloidGroupContainer(BuildContext context) {
+  ElementGroupContainer metalloidGroupContainer(
+      BuildContext context, bool isTr) {
     return ElementGroupContainer(
       color: AppColors.skinColor,
       shadowColor: AppColors.shSkinColor,
@@ -115,18 +121,18 @@ class ElementGroupView extends StatelessWidget {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => const ElementsListView(
+            builder: (context) => ElementsListView(
               apiType: ApiTypes.metalloid,
-              title: AppStrings.metalloids,
+              title: isTr ? TrAppStrings.metalloids : EnAppStrings.metalloids,
             ),
           ),
         );
       },
-      title: AppStrings.metalloidGroup,
+      title: isTr ? TrAppStrings.metalloidGroups : EnAppStrings.metalloidGroup,
     );
   }
 
-  ElementGroupContainer unknownGroupContainer(BuildContext context) {
+  ElementGroupContainer unknownGroupContainer(BuildContext context, bool isTr) {
     return ElementGroupContainer(
       color: AppColors.darkWhite,
       shadowColor: AppColors.shDarkWhite,
@@ -134,21 +140,21 @@ class ElementGroupView extends StatelessWidget {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => const ElementsListView(
+            builder: (context) => ElementsListView(
               apiType: ApiTypes.unknown,
-              title: AppStrings.unknown,
+              title: isTr ? TrAppStrings.unknown : EnAppStrings.unknown,
             ),
           ),
         );
       },
-      title: AppStrings.unknown,
+      title: isTr ? TrAppStrings.unknown : EnAppStrings.unknown,
     );
   }
 
   AppBar appBar() {
     return AppBar(
       title: const Text(
-        AppStrings.elementGroups,
+        EnAppStrings.elementGroups,
       ),
     );
   }

@@ -1,20 +1,24 @@
+import 'package:elements_app/feature/provider/localization_provider.dart';
 import 'package:elements_app/feature/view/elementsList/elements_list_view.dart';
 import 'package:elements_app/product/constants/api_types.dart';
 import 'package:elements_app/product/constants/app_colors.dart';
-import 'package:elements_app/product/constants/stringConstants/app_strings.dart';
+import 'package:elements_app/product/constants/stringConstants/en_app_strings.dart';
+import 'package:elements_app/product/constants/stringConstants/tr_app_strings.dart';
 import 'package:elements_app/product/extensions/context_extensions.dart';
 import 'package:elements_app/product/widget/container/element_group_container.dart';
 import 'package:elements_app/product/widget/scaffold/app_scaffold.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class NonMetalGroupView extends StatelessWidget {
   const NonMetalGroupView({super.key});
 
   @override
   Widget build(BuildContext context) {
+    bool isTr = Provider.of<LocalizationProvider>(context).isTr;
     return AppScaffold(
       child: Scaffold(
-        appBar: appBar(),
+        appBar: appBar(isTr),
         body: Padding(
           padding: context.paddingLowHorizontal,
           child: Column(
@@ -23,8 +27,8 @@ class NonMetalGroupView extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  reactiveNonmetalContainer(context),
-                  nobleGasesContainer(context),
+                  reactiveNonmetalContainer(context, isTr),
+                  nobleGasesContainer(context, isTr),
                 ],
               ),
               spacer(context, 0.05),
@@ -35,7 +39,7 @@ class NonMetalGroupView extends StatelessWidget {
     );
   }
 
-  ElementGroupContainer nobleGasesContainer(BuildContext context) {
+  ElementGroupContainer nobleGasesContainer(BuildContext context, bool isTr) {
     return ElementGroupContainer(
       color: AppColors.glowGreen,
       shadowColor: AppColors.shGlowGreen,
@@ -43,18 +47,19 @@ class NonMetalGroupView extends StatelessWidget {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => const ElementsListView(
+            builder: (context) => ElementsListView(
               apiType: ApiTypes.nobleGases,
-              title: AppStrings.nobleGases,
+              title: isTr ? TrAppStrings.nobleGases : EnAppStrings.nobleGases,
             ),
           ),
         );
       },
-      title: AppStrings.nobleGases,
+      title: isTr ? TrAppStrings.nobleGases : EnAppStrings.nobleGases,
     );
   }
 
-  ElementGroupContainer reactiveNonmetalContainer(BuildContext context) {
+  ElementGroupContainer reactiveNonmetalContainer(
+      BuildContext context, bool isTr) {
     return ElementGroupContainer(
       color: AppColors.powderRed,
       shadowColor: AppColors.shPowderRed,
@@ -62,20 +67,24 @@ class NonMetalGroupView extends StatelessWidget {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => const ElementsListView(
+            builder: (context) => ElementsListView(
               apiType: ApiTypes.reactiveNonmetal,
-              title: AppStrings.reactiveNonmetal,
+              title: isTr
+                  ? TrAppStrings.reactiveNonmetal
+                  : EnAppStrings.reactiveNonmetal,
             ),
           ),
         );
       },
-      title: AppStrings.reactiveNonmetal,
+      title:
+          isTr ? TrAppStrings.reactiveNonmetal : EnAppStrings.reactiveNonmetal,
     );
   }
 
-  AppBar appBar() {
+  AppBar appBar(isTr) {
     return AppBar(
-      title: const Text(AppStrings.nonMetalGroup),
+      title:
+          Text(isTr ? TrAppStrings.nonMetalGroups : EnAppStrings.nonMetalGroup),
     );
   }
 

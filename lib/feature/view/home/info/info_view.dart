@@ -1,16 +1,19 @@
 import 'package:elements_app/feature/model/info.dart';
+import 'package:elements_app/feature/provider/localization_provider.dart';
 import 'package:elements_app/feature/view/home/info/subInfo/elementType/element_type_view.dart';
 import 'package:elements_app/feature/mixin/info/info_mixin.dart';
 import 'package:elements_app/product/constants/api_types.dart';
 import 'package:elements_app/product/constants/app_colors.dart';
 import 'package:elements_app/product/constants/assets_constants.dart';
-import 'package:elements_app/product/constants/stringConstants/app_strings.dart';
+import 'package:elements_app/product/constants/stringConstants/en_app_strings.dart';
+import 'package:elements_app/product/constants/stringConstants/tr_app_strings.dart';
 import 'package:elements_app/product/extensions/context_extensions.dart';
 import 'package:elements_app/product/widget/circuless/loading_bar.dart';
 import 'package:elements_app/product/widget/container/what_is_container.dart';
 import 'package:elements_app/product/widget/scaffold/app_scaffold.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:provider/provider.dart';
 
 class InfoView extends StatefulWidget {
   final String apiType;
@@ -28,6 +31,7 @@ class InfoView extends StatefulWidget {
 class _InfoViewState extends State<InfoView> with InfoViewMixin {
   @override
   Widget build(BuildContext context) {
+    bool isTr = Provider.of<LocalizationProvider>(context).isTr;
     return AppScaffold(
       child: Scaffold(
         appBar: buildAppbar(),
@@ -35,7 +39,7 @@ class _InfoViewState extends State<InfoView> with InfoViewMixin {
             ? const LoadingBar()
             : Column(
                 children: [
-                  elementTypesContainer(context),
+                  elementTypesContainer(context, isTr),
                   infoListBuilder(),
                 ],
               ),
@@ -70,15 +74,16 @@ class _InfoViewState extends State<InfoView> with InfoViewMixin {
     );
   }
 
-  InkWell elementTypesContainer(BuildContext context) {
+  InkWell elementTypesContainer(BuildContext context, bool isTr) {
     return InkWell(
       onTap: () {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => const ElementTypeView(
+            builder: (context) => ElementTypeView(
               apiType: ApiTypes.elementTypes,
-              title: AppStrings.elementTypes,
+              title:
+                  isTr ? TrAppStrings.elementTypes : EnAppStrings.elementTypes,
             ),
           ),
         );
@@ -110,7 +115,7 @@ class _InfoViewState extends State<InfoView> with InfoViewMixin {
                   width: context.dynamicWidth(0.03),
                 ),
                 Text(
-                  AppStrings.elementTypes,
+                  isTr ? TrAppStrings.elementTypes : EnAppStrings.elementTypes,
                   style: context.textTheme.headlineSmall?.copyWith(
                     color: AppColors.background,
                     fontWeight: FontWeight.bold,

@@ -1,9 +1,11 @@
 // ignore_for_file: deprecated_member_use
 
 import 'package:elements_app/feature/model/periodic_element.dart';
+import 'package:elements_app/feature/provider/localization_provider.dart';
 import 'package:elements_app/product/constants/app_colors.dart';
-import 'package:elements_app/product/constants/stringConstants/app_strings.dart';
+import 'package:elements_app/product/constants/stringConstants/en_app_strings.dart';
 import 'package:elements_app/product/constants/assets_constants.dart';
+import 'package:elements_app/product/constants/stringConstants/tr_app_strings.dart';
 import 'package:elements_app/product/extensions/color_extension.dart';
 import 'package:elements_app/product/extensions/context_extensions.dart';
 import 'package:elements_app/product/widget/container/element_symbol_container.dart';
@@ -13,6 +15,7 @@ import 'package:elements_app/product/widget/text/element_info_long_text.dart';
 import 'package:elements_app/product/widget/text/element_info_row.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:provider/provider.dart';
 
 class ElementDetailView extends StatelessWidget {
   final PeriodicElement element;
@@ -23,6 +26,7 @@ class ElementDetailView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    bool isTr = Provider.of<LocalizationProvider>(context).isTr;
     return AppScaffold(
       child: Scaffold(
         body: NestedScrollView(
@@ -34,13 +38,13 @@ class ElementDetailView extends StatelessWidget {
                 padding: context.paddingNormal,
                 child: Column(
                   children: [
-                    symbolAndInfoRow(context),
+                    symbolAndInfoRow(context, isTr),
                     spacer(context, 0.05),
-                    categoryContainer(context),
+                    categoryContainer(context, isTr),
                     spacer(context, 0.03),
-                    blockPeriodGroupContainer(context),
+                    blockPeriodGroupContainer(context, isTr),
                     spacer(context, 0.03),
-                    elementInfoContainer(context),
+                    elementInfoContainer(context, isTr),
                   ],
                 ),
               ),
@@ -52,7 +56,7 @@ class ElementDetailView extends StatelessWidget {
   SizedBox spacer(BuildContext context, double value) =>
       SizedBox(height: context.dynamicHeight(value));
 
-  Container blockPeriodGroupContainer(BuildContext context) {
+  Container blockPeriodGroupContainer(BuildContext context, bool isTr) {
     return Container(
       height: context.dynamicHeight(0.1),
       decoration: BoxDecoration(
@@ -65,15 +69,15 @@ class ElementDetailView extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Expanded(
-              child: blockPart(),
+              child: blockPart(isTr),
             ),
             verticalWhiteDivider(),
             Expanded(
-              child: periodPart(),
+              child: periodPart(isTr),
             ),
             verticalWhiteDivider(),
             Expanded(
-              child: groupPart(),
+              child: groupPart(isTr),
             ),
           ],
         ),
@@ -88,17 +92,22 @@ class ElementDetailView extends StatelessWidget {
     );
   }
 
-  ElementDetailRowText groupPart() {
-    return ElementDetailRowText(title: AppStrings.group, value: element.group);
-  }
-
-  ElementDetailRowText periodPart() {
+  ElementDetailRowText groupPart(bool isTr) {
     return ElementDetailRowText(
-        title: AppStrings.period, value: element.period);
+        title: isTr ? TrAppStrings.group : EnAppStrings.group,
+        value: element.group);
   }
 
-  ElementDetailRowText blockPart() {
-    return ElementDetailRowText(title: AppStrings.block, value: element.block);
+  ElementDetailRowText periodPart(bool isTr) {
+    return ElementDetailRowText(
+        title: isTr ? TrAppStrings.period : EnAppStrings.period,
+        value: element.period);
+  }
+
+  ElementDetailRowText blockPart(bool isTr) {
+    return ElementDetailRowText(
+        title: isTr ? TrAppStrings.block : EnAppStrings.block,
+        value: element.block);
   }
 
   VerticalDivider verticalDivider() {
@@ -108,7 +117,7 @@ class ElementDetailView extends StatelessWidget {
     );
   }
 
-  Container categoryContainer(BuildContext context) {
+  Container categoryContainer(BuildContext context, bool isTr) {
     return Container(
       height: context.dynamicHeight(0.08),
       decoration: BoxDecoration(
@@ -120,7 +129,9 @@ class ElementDetailView extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Text(
-            element.category.toString().toUpperCase(),
+            isTr
+                ? element.trCategory.toString().toUpperCase()
+                : element.enCategory.toString().toUpperCase(),
             style: context.textTheme.titleLarge?.copyWith(
               color: AppColors.background,
             ),
@@ -130,7 +141,7 @@ class ElementDetailView extends StatelessWidget {
     );
   }
 
-  Container elementInfoContainer(BuildContext context) {
+  Container elementInfoContainer(BuildContext context, bool isTr) {
     return Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10),
@@ -144,11 +155,11 @@ class ElementDetailView extends StatelessWidget {
           children: [
             Column(
               children: [
-                descriptionParagraph(),
+                descriptionParagraph(isTr),
                 dividerSVG(context),
-                usageParagraph(),
+                usageParagraph(isTr),
                 dividerSVG(context),
-                sourceParagraph(),
+                sourceParagraph(isTr),
               ],
             ),
           ],
@@ -168,28 +179,28 @@ class ElementDetailView extends StatelessWidget {
     );
   }
 
-  ElementInfoParagraph sourceParagraph() {
+  ElementInfoParagraph sourceParagraph(bool isTr) {
     return ElementInfoParagraph(
-      title: AppStrings.source,
-      paragraph: element.source,
+      title: isTr ? TrAppStrings.source : EnAppStrings.source,
+      paragraph: isTr ? element.trSource : element.enSource,
     );
   }
 
-  ElementInfoParagraph usageParagraph() {
+  ElementInfoParagraph usageParagraph(bool isTr) {
     return ElementInfoParagraph(
-      title: AppStrings.usage,
-      paragraph: element.usage,
+      title: isTr ? TrAppStrings.usage : EnAppStrings.usage,
+      paragraph: isTr ? element.trUsage : element.enUsage,
     );
   }
 
-  ElementInfoParagraph descriptionParagraph() {
+  ElementInfoParagraph descriptionParagraph(bool isTr) {
     return ElementInfoParagraph(
-      title: AppStrings.description,
-      paragraph: element.description,
+      title: isTr ? TrAppStrings.description : EnAppStrings.description,
+      paragraph: isTr ? element.trDescription : element.enDescription,
     );
   }
 
-  Row symbolAndInfoRow(BuildContext context) {
+  Row symbolAndInfoRow(BuildContext context, bool isTr) {
     return Row(
       children: [
         ElementSymbolContainer(
@@ -201,10 +212,18 @@ class ElementDetailView extends StatelessWidget {
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            ElementInfoRow(title: AppStrings.name, value: element.name),
             ElementInfoRow(
-                title: AppStrings.number, value: element.number.toString()),
-            ElementInfoRow(title: AppStrings.weight, value: element.weight),
+              title: isTr ? TrAppStrings.name : EnAppStrings.name,
+              value: isTr ? element.trName : element.enName,
+            ),
+            ElementInfoRow(
+              title: isTr ? TrAppStrings.number : EnAppStrings.number,
+              value: element.number.toString(),
+            ),
+            ElementInfoRow(
+              title: isTr ? TrAppStrings.weight : EnAppStrings.weight,
+              value: element.weight,
+            ),
           ],
         ),
       ],
