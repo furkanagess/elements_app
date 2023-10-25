@@ -44,7 +44,6 @@ mixin TestMixin on State {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     createInterstitialAd();
   }

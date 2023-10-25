@@ -1,12 +1,12 @@
 import 'dart:convert';
 import 'dart:math';
+import 'package:elements_app/feature/view/home/quiz/quiz_view.dart';
 import 'package:elements_app/product/constants/app_colors.dart';
 import 'package:elements_app/product/constants/assets_constants.dart';
-import 'package:elements_app/product/constants/stringConstants/en_app_strings.dart';
+import 'package:elements_app/product/constants/stringConstants/tr_app_strings.dart';
 import 'package:elements_app/product/extensions/context_extensions.dart';
 import 'package:http/http.dart' as http;
 import 'package:elements_app/feature/model/periodic_element.dart';
-import 'package:elements_app/feature/view/home/quiz/quiz_view.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 
@@ -19,8 +19,6 @@ mixin QuizMixin on State<QuizView> {
   int correctCount = 0; // correct answer count
   int wrongCount = 0; // wrong answer count
   bool isLoading = true; // check circuless progress bar
-  bool isTr = false;
-
   @override
   void initState() {
     isLoading = true;
@@ -41,16 +39,14 @@ mixin QuizMixin on State<QuizView> {
       for (var elementData in data) {
         PeriodicElement element = PeriodicElement(
           symbol: elementData['symbol'],
-          trName: elementData['name'],
+          enName: elementData['enName'],
         );
         elements.add(element);
       }
       // get random element
       Random random = Random();
       PeriodicElement randomElement = elements[random.nextInt(elements.length)];
-      correctAnswer = isTr
-          ? randomElement.trName.toString()
-          : randomElement.enName.toString();
+      correctAnswer = randomElement.enName.toString();
 
       // build options
       options = [correctAnswer]; // add correct answer to options
@@ -58,11 +54,8 @@ mixin QuizMixin on State<QuizView> {
       while (options.length < 4) {
         PeriodicElement randomOption =
             elements[random.nextInt(elements.length)];
-        if (!options
-            .contains(isTr ? randomOption.trName : randomOption.enName)) {
-          options.add(isTr
-              ? randomOption.trName.toString()
-              : randomOption.enName.toString());
+        if (!options.contains(randomOption.enName)) {
+          options.add(randomOption.enName.toString());
         }
       }
 
@@ -88,8 +81,7 @@ mixin QuizMixin on State<QuizView> {
       elements.shuffle();
       PeriodicElement newElement = elements.first;
       questionSymbol = newElement.symbol.toString();
-      correctAnswer =
-          isTr ? newElement.trName.toString() : newElement.enName.toString();
+      correctAnswer = newElement.enName.toString();
 
       options.clear();
       options.add(correctAnswer);
@@ -97,11 +89,8 @@ mixin QuizMixin on State<QuizView> {
       while (options.length < 4) {
         PeriodicElement randomOption =
             elements[Random().nextInt(elements.length)];
-        if (!options
-            .contains(isTr ? randomOption.trName : randomOption.enName)) {
-          options.add(isTr
-              ? randomOption.trName.toString()
-              : randomOption.enName.toString());
+        if (!options.contains(randomOption.enName)) {
+          options.add(randomOption.enName.toString());
         }
       }
 
@@ -150,7 +139,7 @@ mixin QuizMixin on State<QuizView> {
                             child: Text(
                               selectedOption == correctAnswer
                                   ? "$correctAnswer = $questionSymbol"
-                                  : EnAppStrings.space,
+                                  : TrAppStrings.space,
                               style: context.textTheme.headlineSmall?.copyWith(
                                 color: AppColors.background,
                                 fontWeight: FontWeight.bold,
@@ -186,8 +175,8 @@ mixin QuizMixin on State<QuizView> {
                       child: Center(
                         child: Text(
                           selectedOption == correctAnswer
-                              ? EnAppStrings.nextQuestion
-                              : EnAppStrings.backToQuestion,
+                              ? "Next Question"
+                              : "Back to Question",
                           style: context.textTheme.bodyLarge?.copyWith(
                             color: selectedOption == correctAnswer
                                 ? AppColors.white
@@ -212,8 +201,7 @@ mixin QuizMixin on State<QuizView> {
       // Move into new example =>
       elements.shuffle(); // Shuffle elements
       PeriodicElement newElement = elements.first; // pick a new element
-      correctAnswer =
-          isTr ? newElement.trName.toString() : newElement.enName.toString();
+      correctAnswer = newElement.enName.toString();
 
       // update şık options
       options.clear();
@@ -222,11 +210,8 @@ mixin QuizMixin on State<QuizView> {
       while (options.length < 4) {
         PeriodicElement randomOption =
             elements[Random().nextInt(elements.length)];
-        if (!options
-            .contains(isTr ? randomOption.trName : randomOption.enName)) {
-          options.add(isTr
-              ? randomOption.trName.toString()
-              : randomOption.enName.toString());
+        if (!options.contains(randomOption.enName)) {
+          options.add(randomOption.enName.toString());
         }
       }
 
