@@ -23,8 +23,8 @@ class AssetConstants {
   String get svgScience => toSVG("science");
   String get svgScienceTwo => toSVG("science_two");
   String get svgTestTube => toSVG("test_tube");
-  String get svgScientist => toSVG("scientist");
-  String get svgAlienScientist => toSVG("alien_scientist");
+  // String get svgScientist => toSVG("scientist");
+  // String get svgAlienScientist => toSVG("alien_scientist");
   String get svgPeriodicTable => toSVG("periodic-table");
   String get svgTableIcon => toSVG("table-icon");
   String get svgGroup => toSVG("group");
@@ -34,11 +34,11 @@ class AssetConstants {
 
   // Lottie
   String toLottie(String src) => "assets/lottie/$src.json";
-  String get lottieCorrectTwo => toLottie("correct_2");
+
   String get lottieCorrect => toLottie("correct");
-  String get lottieLoadingChem => toLottie("loading_chem");
+//  String get lottieLoadingChem => toLottie("loading_chem");
   String get lottieLoadingChemistry => toLottie("loading_chemistry");
-  String get lottieLoading => toLottie("loading");
+  // String get lottieLoading => toLottie("loading");
   String get lottieWrong => toLottie("wrong");
   String get lottieConnection => toLottie("no-connection");
   // PNG
