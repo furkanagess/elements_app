@@ -42,7 +42,7 @@ final class TrAppStrings {
 
   // Anasayfa
   static const String what = 'Nedir';
-  static const String quiz = 'Quiz';
+  static const String quiz = 'Test';
   static const String groups = 'Gruplar';
 
   // Quiz
