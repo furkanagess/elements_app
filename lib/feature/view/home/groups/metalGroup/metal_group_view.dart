@@ -81,7 +81,7 @@ class MetalGroupView extends StatelessWidget {
           ),
         );
       },
-      title: EnAppStrings.actinides,
+      title: isTr ? TrAppStrings.actinides : EnAppStrings.actinides,
     );
   }
 
@@ -100,7 +100,7 @@ class MetalGroupView extends StatelessWidget {
           ),
         );
       },
-      title: EnAppStrings.lanthanides,
+      title: isTr ? TrAppStrings.lanthanides : EnAppStrings.lanthanides,
     );
   }
 
@@ -120,7 +120,7 @@ class MetalGroupView extends StatelessWidget {
           ),
         );
       },
-      title: EnAppStrings.alkaline,
+      title: isTr ? TrAppStrings.alkaline : EnAppStrings.alkaline,
     );
   }
 
@@ -142,7 +142,7 @@ class MetalGroupView extends StatelessWidget {
           ),
         );
       },
-      title: EnAppStrings.earthAlkaline,
+      title: isTr ? TrAppStrings.earthAlkaline : EnAppStrings.earthAlkaline,
     );
   }
 
@@ -164,7 +164,7 @@ class MetalGroupView extends StatelessWidget {
           ),
         );
       },
-      title: EnAppStrings.transitionMetal,
+      title: isTr ? TrAppStrings.transitionMetal : EnAppStrings.transitionMetal,
     );
   }
 
@@ -186,7 +186,7 @@ class MetalGroupView extends StatelessWidget {
           ),
         );
       },
-      title: EnAppStrings.postTransition,
+      title: isTr ? TrAppStrings.postTransition : EnAppStrings.postTransition,
     );
   }
 

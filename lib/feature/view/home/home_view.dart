@@ -1,5 +1,4 @@
-// ignore_for_file: deprecated_member_use
-
+import 'package:elements_app/feature/mixin/test_mixin.dart';
 import 'package:elements_app/feature/provider/localization_provider.dart';
 import 'package:elements_app/feature/view/elementsList/elements_list_view.dart';
 import 'package:elements_app/feature/view/home/groups/element_group_view.dart';
@@ -21,9 +20,14 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:neon_widgets/neon_widgets.dart';
 import 'package:provider/provider.dart';
 
-class HomeView extends StatelessWidget {
+class HomeView extends StatefulWidget {
   const HomeView({super.key});
 
+  @override
+  State<StatefulWidget> createState() => _HomeViewState();
+}
+
+class _HomeViewState extends State<StatefulWidget> with TestMixin {
   @override
   Widget build(BuildContext context) {
     bool isTr = Provider.of<LocalizationProvider>(context).isTr;
@@ -55,13 +59,6 @@ class HomeView extends StatelessWidget {
   Image homeImage(BuildContext context) {
     return Image.asset(
       AssetConstants.instance.pngHomeImage,
-      height: context.dynamicHeight(0.2),
-    );
-  }
-
-  Widget homeSVG(BuildContext context) {
-    return SvgPicture.asset(
-      AssetConstants.instance.svgAlienScientist,
       height: context.dynamicHeight(0.2),
     );
   }
@@ -100,8 +97,10 @@ class HomeView extends StatelessWidget {
 
   SizedBox spacerVertical(BuildContext context, double value) =>
       SizedBox(height: context.dynamicHeight(value));
+
   SizedBox spacerHorizontal(BuildContext context, double value) =>
       SizedBox(height: context.dynamicWidth(value));
+
   Row elementGroupRowTwo(BuildContext context, bool isTr) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -112,9 +111,13 @@ class HomeView extends StatelessWidget {
     );
   }
 
-  HomeContainer quizContainer(BuildContext context, bool isTr) {
+  HomeContainer quizContainer(
+    BuildContext context,
+    bool isTr,
+  ) {
     return HomeContainer(
       onTap: () {
+        // showInterstitialAd();
         Navigator.push(
           context,
           MaterialPageRoute(

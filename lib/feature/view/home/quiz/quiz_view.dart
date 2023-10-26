@@ -59,18 +59,6 @@ class _QuizViewState extends State<QuizView> with QuizMixin {
     );
   }
 
-  Center loadingIndicator(BuildContext context) {
-    return Center(
-      child: Lottie.asset(
-        AssetConstants.instance.lottieLoading,
-        fit: BoxFit.cover,
-        reverse: true,
-        repeat: true,
-        height: context.dynamicHeight(0.1),
-      ),
-    );
-  }
-
   FloatingActionButton fabButton() {
     return FloatingActionButton(
       onPressed: askQuestion,
