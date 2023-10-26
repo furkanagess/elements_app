@@ -33,7 +33,7 @@ dependencies:
 
   # Ads
   google_mobile_ads: ^3.1.0
-  flutter_launcher_icons: ^0.13.1
+  
 
 dev_dependencies:
   flutter_test:
@@ -41,12 +41,14 @@ dev_dependencies:
   flutter_lints: ^2.0.0
   json_serializable: ^6.7.1
   build_runner: ^2.4.6
+  flutter_launcher_icons: ^0.13.1
 
 flutter_launcher_icons:
-  android: true
+  android: "launcher_icon"
   ios: true
-  image_path: "assets/img/e-logo.png"
-  adaptive_icon_background: "assets/img/play_store_512-removebg.png"
+  image_path: "assets/img/element_logo.png"
+  min_sdk_android: 21 
+
 
 flutter:
 
