@@ -1,12 +1,10 @@
 import 'package:elements_app/feature/model/info.dart';
 import 'package:elements_app/feature/mixin/elementType/element_type_mixin.dart';
-import 'package:elements_app/product/constants/assets_constants.dart';
-import 'package:elements_app/product/extensions/context_extensions.dart';
+
+import 'package:elements_app/product/widget/circuless/loading_bar.dart';
 import 'package:elements_app/product/widget/container/what_is_container.dart';
 import 'package:elements_app/product/widget/scaffold/app_scaffold.dart';
 import 'package:flutter/material.dart';
-
-import 'package:lottie/lottie.dart';
 
 class ElementTypeView extends StatefulWidget {
   final String apiType;
@@ -34,28 +32,12 @@ class _ElementTypeViewState extends State<ElementTypeView>
             ),
           ],
           body: isLoading
-              ? Center(
-                  child: Lottie.asset(
-                    AssetConstants.instance.lottieLoadingChemistry,
-                    fit: BoxFit.cover,
-                    reverse: true,
-                    repeat: true,
-                    height: context.dynamicHeight(0.1),
-                  ),
-                )
+              ? const LoadingBar()
               : FutureBuilder<List<Info>>(
                   future: infoList,
                   builder: (context, snapshot) {
                     if (snapshot.connectionState == ConnectionState.waiting) {
-                      return Center(
-                        child: Lottie.asset(
-                          AssetConstants.instance.lottieLoadingChemistry,
-                          fit: BoxFit.cover,
-                          reverse: true,
-                          repeat: true,
-                          height: context.dynamicHeight(0.1),
-                        ),
-                      );
+                      return const LoadingBar();
                     } else {
                       final infos = snapshot.data;
                       return ListView.builder(

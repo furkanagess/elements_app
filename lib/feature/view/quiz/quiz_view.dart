@@ -10,7 +10,6 @@ import 'package:elements_app/product/widget/container/element_symbol_container.d
 import 'package:elements_app/product/widget/scaffold/app_scaffold.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:lottie/lottie.dart';
 
 class QuizView extends StatefulWidget {
   final String apiType;

@@ -1,7 +1,7 @@
 import 'package:elements_app/feature/provider/localization_provider.dart';
 import 'package:elements_app/feature/view/elementsList/elements_list_view.dart';
-import 'package:elements_app/feature/view/home/groups/metalGroup/metal_group_view.dart';
-import 'package:elements_app/feature/view/home/groups/nonMetalGroup/non_metal_group_view.dart';
+import 'package:elements_app/feature/view/groups/metalGroup/metal_group_view.dart';
+import 'package:elements_app/feature/view/groups/nonMetalGroup/non_metal_group_view.dart';
 import 'package:elements_app/product/constants/api_types.dart';
 import 'package:elements_app/product/constants/app_colors.dart';
 import 'package:elements_app/product/constants/stringConstants/en_app_strings.dart';

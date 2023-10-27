@@ -1,5 +1,3 @@
-// ignore_for_file: deprecated_member_use
-
 import 'package:elements_app/feature/model/periodic_element.dart';
 import 'package:elements_app/feature/provider/localization_provider.dart';
 import 'package:elements_app/product/constants/app_colors.dart';
@@ -173,7 +171,7 @@ class ElementDetailView extends StatelessWidget {
       padding: context.paddingLow,
       child: SvgPicture.asset(
         AssetConstants.instance.svgTestTube,
-        color: Colors.white,
+        colorFilter: const ColorFilter.mode(AppColors.white, BlendMode.srcIn),
         height: context.dynamicHeight(0.035),
       ),
     );

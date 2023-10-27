@@ -1,9 +1,9 @@
 import 'package:elements_app/feature/mixin/test_mixin.dart';
 import 'package:elements_app/feature/provider/localization_provider.dart';
 import 'package:elements_app/feature/view/elementsList/elements_list_view.dart';
-import 'package:elements_app/feature/view/home/groups/element_group_view.dart';
-import 'package:elements_app/feature/view/home/info/info_view.dart';
-import 'package:elements_app/feature/view/home/quiz/quiz_view.dart';
+import 'package:elements_app/feature/view/groups/element_group_view.dart';
+import 'package:elements_app/feature/view/info/info_view.dart';
+import 'package:elements_app/feature/view/quiz/quiz_view.dart';
 import 'package:elements_app/product/constants/api_types.dart';
 import 'package:elements_app/product/constants/app_colors.dart';
 import 'package:elements_app/product/constants/stringConstants/en_app_strings.dart';
@@ -14,7 +14,6 @@ import 'package:elements_app/product/widget/button/gradient_button.dart';
 import 'package:elements_app/product/widget/container/home_container.dart';
 import 'package:elements_app/product/widget/scaffold/app_scaffold.dart';
 import 'package:elements_app/product/widget/textField/long_feedback_textfield.dart';
-import 'package:elements_app/product/widget/text/text_icon_row.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:neon_widgets/neon_widgets.dart';
@@ -117,7 +116,7 @@ class _HomeViewState extends State<StatefulWidget> with TestMixin {
   ) {
     return HomeContainer(
       onTap: () {
-        // showInterstitialAd();
+        showInterstitialAd();
         Navigator.push(
           context,
           MaterialPageRoute(
@@ -216,7 +215,7 @@ class _HomeViewState extends State<StatefulWidget> with TestMixin {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
-        infoButton(context, isTr),
+        localizationFlags(context, isTr),
         rateButton(context),
         reportButton(context),
       ],
@@ -230,7 +229,7 @@ class _HomeViewState extends State<StatefulWidget> with TestMixin {
       },
       icon: SvgPicture.asset(
         AssetConstants.instance.svgWarning,
-        color: AppColors.pink,
+        colorFilter: const ColorFilter.mode(AppColors.pink, BlendMode.srcIn),
         height: context.dynamicHeight(0.04),
       ),
     );
@@ -241,24 +240,25 @@ class _HomeViewState extends State<StatefulWidget> with TestMixin {
       onPressed: () {},
       icon: SvgPicture.asset(
         AssetConstants.instance.svgStarTwo,
-        color: AppColors.turquoise,
+        colorFilter:
+            const ColorFilter.mode(AppColors.turquoise, BlendMode.srcIn),
         height: context.dynamicHeight(0.04),
       ),
     );
   }
 
-  Widget infoButton(BuildContext context, bool isTr) {
+  Widget localizationFlags(BuildContext context, bool isTr) {
     return GestureDetector(
       onTap: () {
         Provider.of<LocalizationProvider>(context, listen: false).toggleBool();
       },
       child: isTr
           ? SvgPicture.asset(
-              "assets/svg/us-flag.svg",
+              AssetConstants.instance.svgUsFlag,
               height: context.dynamicHeight(0.06),
             )
           : SvgPicture.asset(
-              "assets/svg/turkey-flag.svg",
+              AssetConstants.instance.svgTrFlag,
               height: context.dynamicHeight(0.06),
             ),
     );
@@ -293,49 +293,6 @@ class _HomeViewState extends State<StatefulWidget> with TestMixin {
               SizedBox(height: context.dynamicHeight(0.1)),
             ],
           ),
-        ),
-      ),
-    );
-  }
-
-  Future<dynamic> helpPopUp(BuildContext context) {
-    return showDialog(
-      context: context,
-      builder: (context) => AlertDialog(
-        elevation: 3,
-        backgroundColor: AppColors.darkBlue,
-        title: Column(
-          children: [
-            SizedBox(height: context.dynamicHeight(0.05)),
-            const TextIconRow(
-              title: EnAppStrings.appName,
-              color: AppColors.purple,
-              icon: Icons.science,
-            ),
-            SizedBox(height: context.dynamicHeight(0.01)),
-            const TextIconRow(
-              title: EnAppStrings.appName,
-              color: AppColors.pink,
-              icon: Icons.science,
-            ),
-            SizedBox(height: context.dynamicHeight(0.01)),
-            const TextIconRow(
-              title: EnAppStrings.appName,
-              color: AppColors.glowGreen,
-              icon: Icons.science,
-            ),
-            SizedBox(height: context.dynamicHeight(0.01)),
-            const TextIconRow(
-              title: EnAppStrings.appName,
-              color: AppColors.yellow,
-              icon: Icons.science,
-            ),
-            SizedBox(height: context.dynamicHeight(0.03)),
-            GradientButton(
-              title: EnAppStrings.appName,
-              onTap: () => Navigator.pop(context),
-            ),
-          ],
         ),
       ),
     );

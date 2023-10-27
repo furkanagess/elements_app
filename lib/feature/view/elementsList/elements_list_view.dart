@@ -1,8 +1,6 @@
-// ignore_for_file: library_private_types_in_public_api, deprecated_member_use
-
 import 'package:elements_app/feature/model/periodic_element.dart';
 import 'package:elements_app/feature/mixin/elementList/elements_list_view_mixin.dart';
-import 'package:elements_app/feature/view/home/quiz/quiz_view.dart';
+import 'package:elements_app/feature/view/quiz/quiz_view.dart';
 import 'package:elements_app/product/constants/app_colors.dart';
 import 'package:elements_app/product/constants/assets_constants.dart';
 import 'package:elements_app/product/extensions/context_extensions.dart';
@@ -81,7 +79,8 @@ class _ElementsListViewState extends State<ElementsListView>
       splashColor: AppColors.glowGreen,
       child: SvgPicture.asset(
         AssetConstants.instance.svgGameThree,
-        color: AppColors.background,
+        colorFilter:
+            const ColorFilter.mode(AppColors.background, BlendMode.srcIn),
       ),
       onPressed: () {
         Navigator.push(

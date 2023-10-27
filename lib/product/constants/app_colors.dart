@@ -8,9 +8,7 @@ class AppColors {
   static const Color transparent = Colors.transparent;
   static const Color white = Color(0xFFFFFFFF);
   static const Color background = Color(0xff212437);
-  static const Color darkBlue = Color(0xff13132c);
-  static const Color transparentWhite = Color(0xff353535);
-  static const Color lightWhite = Color(0xffadadad);
+  static const Color darkBlue = Color(0xff13132c); // detail pages bgColor
 
   // Element Base Colors
   static const Color yellow = Color(0xffFBF0B2); // Earth Alkaline
