@@ -1,8 +1,12 @@
-class AssetConstants {
-  AssetConstants._init();
+import 'package:flutter/widgets.dart';
+
+@immutable
+final class AssetConstants {
+  const AssetConstants._init();
   static AssetConstants? _instace;
 
-  static AssetConstants get instance => _instace ??= AssetConstants._init();
+  static AssetConstants get instance =>
+      _instace ??= const AssetConstants._init();
 
   // SVG
   String toSVG(String src) => "assets/svg/$src.svg";

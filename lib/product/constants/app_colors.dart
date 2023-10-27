@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 @immutable
-class AppColors {
+final class AppColors {
   const AppColors._();
 
   // General Colors

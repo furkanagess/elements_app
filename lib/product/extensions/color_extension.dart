@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-// This extension's job is fixing string colors that came from api
+// This extension's job is fixing string colors that came from dataset
 extension ColorExtension on String {
   toColor() {
     var hexStringColor = this;

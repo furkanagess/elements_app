@@ -1,4 +1,4 @@
-import 'package:elements_app/feature/mixin/test_mixin.dart';
+import 'package:elements_app/feature/mixin/admob/ad_mob_mixin.dart';
 import 'package:elements_app/feature/provider/localization_provider.dart';
 import 'package:elements_app/feature/view/elementsList/elements_list_view.dart';
 import 'package:elements_app/feature/view/groups/element_group_view.dart';
@@ -26,7 +26,7 @@ class HomeView extends StatefulWidget {
   State<StatefulWidget> createState() => _HomeViewState();
 }
 
-class _HomeViewState extends State<StatefulWidget> with TestMixin {
+class _HomeViewState extends State<StatefulWidget> with AdMobMixin {
   @override
   Widget build(BuildContext context) {
     bool isTr = Provider.of<LocalizationProvider>(context).isTr;
