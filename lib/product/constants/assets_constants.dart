@@ -6,41 +6,29 @@ class AssetConstants {
 
   // SVG
   String toSVG(String src) => "assets/svg/$src.svg";
-  String get svgElementGroup => toSVG("element_group");
-  String get svgElement => toSVG("element-svg");
-  String get svgGameTwo => toSVG("game_2");
-  String get svgGameThree => toSVG("game-3");
-  String get svgGame => toSVG("game");
-  String get svgQuestionTwo => toSVG("question-2");
-  String get svgQuestion => toSVG("question");
-  String get svgQuestionThree => toSVG("question-3");
-  String get svgRefresh => toSVG("refresh");
-  String get svgStar => toSVG("star");
-  String get svgStarTwo => toSVG("star-2");
-  String get svgWarning => toSVG("warning");
-  String get svgRight => toSVG("right-icon");
-  String get svgTube => toSVG("tube");
-  String get svgScience => toSVG("science");
-  String get svgScienceTwo => toSVG("science_two");
-  String get svgTestTube => toSVG("test_tube");
-  // String get svgScientist => toSVG("scientist");
-  // String get svgAlienScientist => toSVG("alien_scientist");
-  String get svgPeriodicTable => toSVG("periodic-table");
-  String get svgTableIcon => toSVG("table-icon");
-  String get svgGroup => toSVG("group");
-  String get svgPeriod => toSVG("period");
-  String get svgInfoTable => toSVG("info-table");
-  String get svgBlock => toSVG("block");
+  String get svgElementGroup => toSVG("element_group"); // used
+  String get svgGameThree => toSVG("game-3"); // used
+  String get svgQuestionTwo => toSVG("question-2"); // used
+  String get svgRefresh => toSVG("refresh"); // used
+  String get svgStarTwo => toSVG("star-2"); // used
+  String get svgWarning => toSVG("warning"); // used
+  String get svgTube => toSVG("tube"); // used
+  String get svgScienceTwo => toSVG("science_two"); // used
+  String get svgTestTube => toSVG("test_tube"); // used
+  String get svgGroup => toSVG("group"); // used
+  String get svgPeriod => toSVG("period"); // used
+  String get svgInfoTable => toSVG("info-table"); // used
+  String get svgBlock => toSVG("block"); // used
+  String get svgTrFlag => toSVG("turkey-flag"); // used
+  String get svgUsFlag => toSVG("us-flag"); // used
 
   // Lottie
   String toLottie(String src) => "assets/lottie/$src.json";
+  String get lottieCorrect => toLottie("correct"); // used
+  String get lottieLoadingChemistry => toLottie("loading_chemistry"); // used
+  String get lottieWrong => toLottie("wrong"); // used
+  String get lottieConnection => toLottie("no-connection"); // used
 
-  String get lottieCorrect => toLottie("correct");
-//  String get lottieLoadingChem => toLottie("loading_chem");
-  String get lottieLoadingChemistry => toLottie("loading_chemistry");
-  // String get lottieLoading => toLottie("loading");
-  String get lottieWrong => toLottie("wrong");
-  String get lottieConnection => toLottie("no-connection");
   // PNG
   String toPNG(String src) => "assets/img/$src.png";
   String get pngHomeImage => toPNG("table-home-icon");
