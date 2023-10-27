@@ -2,7 +2,7 @@ import 'package:elements_app/feature/service/google_ads_service.dart';
 import 'package:flutter/widgets.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 
-mixin TestMixin on State {
+mixin AdMobMixin on State {
   final int maxFailedAttempt = 5000;
   int intersititialLoadAttempts = 0;
   InterstitialAd? interstitialAd;
