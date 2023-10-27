@@ -1,4 +1,4 @@
-import 'package:elements_app/feature/mixin/test_mixin.dart';
+import 'package:elements_app/feature/mixin/admob/ad_mob_mixin.dart';
 import 'package:elements_app/feature/view/home/home_view.dart';
 import 'package:elements_app/product/constants/app_colors.dart';
 import 'package:flutter/material.dart';
@@ -10,7 +10,7 @@ class AdTestView extends StatefulWidget {
   State<StatefulWidget> createState() => _AdTestViewState();
 }
 
-class _AdTestViewState extends State<StatefulWidget> with TestMixin {
+class _AdTestViewState extends State<StatefulWidget> with AdMobMixin {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

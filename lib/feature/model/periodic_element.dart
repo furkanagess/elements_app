@@ -1,27 +1,29 @@
+import 'package:flutter/widgets.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:equatable/equatable.dart';
 part 'periodic_element.g.dart';
 
+@immutable
 @JsonSerializable()
-class PeriodicElement with EquatableMixin {
-  int? number;
-  String? enName;
-  String? symbol;
-  String? weight;
-  String? enCategory;
-  String? block;
-  String? period;
-  String? group;
-  String? enDescription;
-  String? enUsage;
-  String? enSource;
-  String? trName;
-  String? trCategory;
-  String? trDescription;
-  String? trUsage;
-  String? trSource;
-  String? colors;
-  String? shColor;
+final class PeriodicElement with EquatableMixin {
+  final int? number;
+  final String? enName;
+  final String? symbol;
+  final String? weight;
+  final String? enCategory;
+  final String? block;
+  final String? period;
+  final String? group;
+  final String? enDescription;
+  final String? enUsage;
+  final String? enSource;
+  final String? trName;
+  final String? trCategory;
+  final String? trDescription;
+  final String? trUsage;
+  final String? trSource;
+  final String? colors;
+  final String? shColor;
 
   PeriodicElement({
     this.number,
@@ -72,24 +74,24 @@ class PeriodicElement with EquatableMixin {
       ];
 
   PeriodicElement copyWith({
-    int? number,
-    String? enName,
-    String? symbol,
-    String? weight,
-    String? enCategory,
-    String? block,
-    String? period,
-    String? group,
-    String? enDescription,
-    String? enUsage,
-    String? enSource,
-    String? trName,
-    String? trCategory,
-    String? trDescription,
-    String? trUsage,
-    String? trSource,
-    String? colors,
-    String? shColor,
+    final int? number,
+    final String? enName,
+    final String? symbol,
+    final String? weight,
+    final String? enCategory,
+    final String? block,
+    final String? period,
+    final String? group,
+    final String? enDescription,
+    final String? enUsage,
+    final String? enSource,
+    final String? trName,
+    final String? trCategory,
+    final String? trDescription,
+    final String? trUsage,
+    final String? trSource,
+    final String? colors,
+    final String? shColor,
   }) {
     return PeriodicElement(
       number: number ?? this.number,

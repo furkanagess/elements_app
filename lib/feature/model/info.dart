@@ -1,24 +1,26 @@
+import 'package:flutter/widgets.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:equatable/equatable.dart';
 part 'info.g.dart';
 
+@immutable
 @JsonSerializable()
-class Info with EquatableMixin {
-  String? enTitle;
-  String? enDesc1;
-  String? enDesc2;
-  String? enDesc3;
-  String? enDesc4;
-  String? enDesc5;
-  String? svg;
-  String? trTitle;
-  String? trDesc1;
-  String? trDesc2;
-  String? trDesc3;
-  String? trDesc4;
-  String? trDesc5;
-  String? colors;
-  String? shColor;
+final class Info with EquatableMixin {
+  final String? enTitle;
+  final String? enDesc1;
+  final String? enDesc2;
+  final String? enDesc3;
+  final String? enDesc4;
+  final String? enDesc5;
+  final String? svg;
+  final String? trTitle;
+  final String? trDesc1;
+  final String? trDesc2;
+  final String? trDesc3;
+  final String? trDesc4;
+  final String? trDesc5;
+  final String? colors;
+  final String? shColor;
 
   Info({
     this.enTitle,
@@ -62,21 +64,21 @@ class Info with EquatableMixin {
       ];
 
   Info copyWith({
-    String? enTitle,
-    String? enDesc1,
-    String? enDesc2,
-    String? enDesc3,
-    String? enDesc4,
-    String? enDesc5,
-    String? svg,
-    String? trTitle,
-    String? trDesc1,
-    String? trDesc2,
-    String? trDesc3,
-    String? trDesc4,
-    String? trDesc5,
-    String? colors,
-    String? shColor,
+    final String? enTitle,
+    final String? enDesc1,
+    final String? enDesc2,
+    final String? enDesc3,
+    final String? enDesc4,
+    final String? enDesc5,
+    final String? svg,
+    final String? trTitle,
+    final String? trDesc1,
+    final String? trDesc2,
+    final String? trDesc3,
+    final String? trDesc4,
+    final String? trDesc5,
+    final String? colors,
+    final String? shColor,
   }) {
     return Info(
       enTitle: enTitle ?? this.enTitle,
