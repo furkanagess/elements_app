@@ -1,6 +1,6 @@
 import 'package:elements_app/feature/model/info.dart';
 import 'package:elements_app/feature/provider/localization_provider.dart';
-import 'package:elements_app/feature/view/home/info/subInfo/infoDetail/info_detail_view.dart';
+import 'package:elements_app/feature/view/info/subInfo/infoDetail/info_detail_view.dart';
 import 'package:elements_app/product/constants/app_colors.dart';
 import 'package:elements_app/product/constants/assets_constants.dart';
 import 'package:elements_app/product/extensions/context_extensions.dart';

@@ -1,6 +1,6 @@
 import 'package:elements_app/feature/model/info.dart';
 import 'package:elements_app/feature/service/api_service.dart';
-import 'package:elements_app/feature/view/home/info/info_view.dart';
+import 'package:elements_app/feature/view/info/info_view.dart';
 import 'package:flutter/material.dart';
 
 mixin InfoViewMixin on State<InfoView> {

@@ -1,6 +1,6 @@
 import 'dart:convert';
 import 'dart:math';
-import 'package:elements_app/feature/view/home/quiz/quiz_view.dart';
+import 'package:elements_app/feature/view/quiz/quiz_view.dart';
 import 'package:elements_app/product/constants/app_colors.dart';
 import 'package:elements_app/product/constants/assets_constants.dart';
 import 'package:elements_app/product/constants/stringConstants/tr_app_strings.dart';
