@@ -255,11 +255,11 @@ class _HomeViewState extends State<StatefulWidget> with AdMobMixin {
       child: isTr
           ? SvgPicture.asset(
               AssetConstants.instance.svgUsFlag,
-              height: context.dynamicHeight(0.06),
+              height: context.dynamicHeight(0.05),
             )
           : SvgPicture.asset(
               AssetConstants.instance.svgTrFlag,
-              height: context.dynamicHeight(0.06),
+              height: context.dynamicHeight(0.05),
             ),
     );
   }

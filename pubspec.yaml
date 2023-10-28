@@ -43,6 +43,7 @@ dev_dependencies:
   json_serializable: ^6.7.1
   build_runner: ^2.4.6
   flutter_launcher_icons: ^0.13.1
+  flutter_native_splash: ^2.3.4
 
 
 flutter_launcher_icons:
@@ -50,8 +51,13 @@ flutter_launcher_icons:
   ios: true
   image_path: "assets/img/remove-bg-logo.png"
   min_sdk_android: 21 
-  adaptive_icon_background: "assets/img/bg-color.png"
-  adaptive_icon_foreground: "assets/img/remove-bg-logo.png"
+  adaptive_icon_background: "#212437"
+  adaptive_icon_foreground: "assets/img/play_store_512.png"
+
+flutter_native_splash:
+  color: "#212437"
+  image: "assets/img/play_store_512.png"
+
  
 
 
