@@ -34,6 +34,7 @@ dependencies:
   # Ads
   google_mobile_ads: ^3.1.0
   
+  
 
 dev_dependencies:
   flutter_test:
@@ -42,6 +43,7 @@ dev_dependencies:
   json_serializable: ^6.7.1
   build_runner: ^2.4.6
   flutter_launcher_icons: ^0.13.1
+  flutter_native_splash: ^2.3.4
 
 flutter_launcher_icons:
   android: "launcher_icon"
@@ -51,12 +53,14 @@ flutter_launcher_icons:
   adaptive_icon_background: "#ffffff"
   adaptive_icon_foreground: "assets/img/my-logo-removebg.png"
  
-
+flutter_native_splash:
+  android: true
+  ios: true 
+  color: "#212437"
+  image: "assets/img/my-logo-removebg.png"
 
 flutter:
-
   uses-material-design: true
-
   assets:
     - assets/lottie/
     - assets/svg/

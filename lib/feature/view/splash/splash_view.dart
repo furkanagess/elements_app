@@ -1,4 +1,4 @@
-import 'package:elements_app/feature/view/home/home_view.dart';
+import 'package:elements_app/feature/view/loading/loading_view.dart';
 import 'package:elements_app/product/constants/app_colors.dart';
 import 'package:elements_app/product/extensions/context_extensions.dart';
 import 'package:flutter/material.dart';
@@ -23,7 +23,7 @@ class _SplashViewState extends State<SplashView>
       const Duration(milliseconds: 1500),
       () => Navigator.of(context).pushReplacement(
         MaterialPageRoute(
-          builder: (_) => const HomeView(),
+          builder: (_) => const LoadingView(),
         ),
       ),
     );
