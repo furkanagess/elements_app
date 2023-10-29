@@ -38,15 +38,30 @@ class _HomeViewState extends State<StatefulWidget> with AdMobMixin {
           child: Column(
             children: [
               spacerVertical(context, 0.05),
-              appWelcome(context),
+              Expanded(
+                child: appWelcome(context),
+              ),
               spacerVertical(context, 0.03),
-              homeImage(context),
+              Expanded(
+                flex: 3,
+                child: homeImage(context),
+              ),
               spacerVertical(context, 0.05),
-              elementGroupRowOne(context, isTr),
-              spacerVertical(context, 0.04),
-              elementGroupRowTwo(context, isTr),
-              divider(context),
-              reportAndRateRow(context, isTr),
+              Expanded(
+                flex: 7,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    elementGroupRowOne(context, isTr),
+                    spacerVertical(context, 0.03),
+                    elementGroupRowTwo(context, isTr),
+                  ],
+                ),
+              ),
+              Expanded(
+                flex: 2,
+                child: settingsRow(context, isTr),
+              ),
               spacerVertical(context, 0.02),
             ],
           ),
@@ -206,18 +221,23 @@ class _HomeViewState extends State<StatefulWidget> with AdMobMixin {
       thickness: 1,
       indent: 10,
       endIndent: 10,
-      height: context.dynamicHeight(0.075),
+      height: context.dynamicHeight(0.05),
       color: AppColors.purple,
     );
   }
 
-  Row reportAndRateRow(BuildContext context, bool isTr) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+  Widget settingsRow(BuildContext context, bool isTr) {
+    return Column(
       children: [
-        localizationFlags(context, isTr),
-        rateButton(context),
-        reportButton(context),
+        divider(context),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            localizationFlags(context, isTr),
+            rateButton(context),
+            reportButton(context),
+          ],
+        ),
       ],
     );
   }
