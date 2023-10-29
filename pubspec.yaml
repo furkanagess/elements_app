@@ -58,10 +58,10 @@ flutter_native_splash:
   android: true
   ios: true 
   color: "#212437"
-  image: assets/img/remove-bg-logo.png
+  image: assets/img/play_store_512.png
   android_12:
     color: "#212437"
-    image: assets/img/remove-bg-logo.png
+    image: assets/img/play_store_512.png
  
 
 
