@@ -57,15 +57,15 @@ flutter_launcher_icons:
 flutter_native_splash:
   android: true
   ios: true 
-  color: "#ffffff"
-  image: assets/img/remove-bg-logo.png
-  color_dark: "#ffffff"
-  color_android: "#42a5f5"
-  color_dark_android: "#042a49"
+  color: "#212437"
+  image: assets/img/512_icon.png
+  color_dark: "#212437"
+  color_android: "#212437"
+  color_dark_android: "#212437"
   android_12:
-    color: "#ffffff"
-    image: assets/img/remove-bg-logo.png
-    color_dark: "#ffffff"
+    color: "#212437"
+    image: assets/img/512_icon.png
+    color_dark: "#212437"
  
 
 
