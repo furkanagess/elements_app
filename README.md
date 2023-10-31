@@ -1,6 +1,14 @@
 # Flutter  Elements ~ Learn & Quiz App
 
   The application developed with Flutter contains information about the Periodic Table elements. It also includes explanations about the Periodic Table, groups, periods, elements, blocks, and element types. The application also features a quiz section where you need to select the correct element name based on the element symbol.
+
+## Application Screenshots
+- Language Support (TR-EN)
+- Internet Connectivity Check
+- Version Control
+- CI / CD Entegration
+- Supports Different Device Screen Sizes
+- In-app Ads
   
 ## Application Screenshots
 
