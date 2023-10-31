@@ -131,7 +131,6 @@ class _HomeViewState extends State<StatefulWidget> with AdMobMixin {
   ) {
     return HomeContainer(
       onTap: () {
-        showInterstitialAd();
         Navigator.push(
           context,
           MaterialPageRoute(
