@@ -4,7 +4,7 @@ import 'package:elements_app/feature/mixin/quiz/quiz_mixin.dart';
 import 'package:elements_app/product/constants/app_colors.dart';
 import 'package:elements_app/product/constants/assets_constants.dart';
 import 'package:elements_app/product/extensions/context_extensions.dart';
-import 'package:elements_app/product/widget/circuless/loading_bar.dart';
+import 'package:elements_app/product/widget/loadingBar/loading_bar.dart';
 import 'package:elements_app/product/widget/container/element_group_container.dart';
 import 'package:elements_app/product/widget/container/element_symbol_container.dart';
 import 'package:elements_app/product/widget/scaffold/app_scaffold.dart';

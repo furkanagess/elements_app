@@ -1,7 +1,7 @@
 import 'package:elements_app/feature/model/info.dart';
 import 'package:elements_app/feature/mixin/elementType/element_type_mixin.dart';
 
-import 'package:elements_app/product/widget/circuless/loading_bar.dart';
+import 'package:elements_app/product/widget/loadingBar/loading_bar.dart';
 import 'package:elements_app/product/widget/container/what_is_container.dart';
 import 'package:elements_app/product/widget/scaffold/app_scaffold.dart';
 import 'package:flutter/material.dart';

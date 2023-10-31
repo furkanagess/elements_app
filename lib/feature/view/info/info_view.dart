@@ -8,7 +8,7 @@ import 'package:elements_app/product/constants/assets_constants.dart';
 import 'package:elements_app/product/constants/stringConstants/en_app_strings.dart';
 import 'package:elements_app/product/constants/stringConstants/tr_app_strings.dart';
 import 'package:elements_app/product/extensions/context_extensions.dart';
-import 'package:elements_app/product/widget/circuless/loading_bar.dart';
+import 'package:elements_app/product/widget/loadingBar/loading_bar.dart';
 import 'package:elements_app/product/widget/container/what_is_container.dart';
 import 'package:elements_app/product/widget/scaffold/app_scaffold.dart';
 import 'package:flutter/material.dart';

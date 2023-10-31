@@ -1,5 +1,5 @@
 import 'package:elements_app/feature/view/home/home_view.dart';
-import 'package:elements_app/product/widget/circuless/loading_bar.dart';
+import 'package:elements_app/product/widget/loadingBar/loading_bar.dart';
 import 'package:flutter/material.dart';
 
 class LoadingView extends StatefulWidget {
