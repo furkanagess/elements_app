@@ -1,15 +1,19 @@
 import 'package:elements_app/feature/provider/localization_provider.dart';
 import 'package:elements_app/feature/service/network_service.dart';
+import 'package:elements_app/feature/service/notifications_service.dart';
 import 'package:elements_app/feature/view/home/home_view.dart';
 import 'package:elements_app/product/constants/stringConstants/en_app_strings.dart';
 import 'package:elements_app/product/theme/app_theme.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:provider/provider.dart';
 
-void main() {
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   MobileAds.instance.initialize();
+  await Firebase.initializeApp();
+  await NotificationService().initNotifications();
 
   runApp(
     MultiProvider(
