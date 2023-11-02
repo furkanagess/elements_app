@@ -24,7 +24,7 @@
 - connectivity_plus => https://pub.dev/packages/connectivity_plus
 - google_mobile_ads => https://pub.dev/packages/google_mobile_ads
 - flutter_native_splash => https://pub.dev/packages/flutter_native_splash
-- flutter_launcher_icons =>  https://pub.dev/packages/flutter_launcher_icons
+- firebase_core => https://pub.dev/packages/firebase_core
 
   
 ## Application Screenshots
