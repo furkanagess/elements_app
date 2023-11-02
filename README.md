@@ -9,7 +9,7 @@
 - CI / CD Entegration
 - Supports Different Device Screen Sizes
 - In-app Ads
-- Notifications
+- Daily Notifications
 
 ## Packages & Technologies
 - Periodic Table Dataset => https://github.com/furkanagess/periodic_table_data_set
