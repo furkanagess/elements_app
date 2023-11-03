@@ -64,8 +64,8 @@
   <tr>
      <td>Loading</td> 
   <td>No Connection</td> 
- <td>Rate</td> 
-    <td>Help</td> 
+ <td>Help</td> 
+    <td>Rate</td> 
   </tr>  
   <tr>
            <td><img src="screenshots/loading.jpg"  width=200 height=400></td>
