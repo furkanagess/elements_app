@@ -21,13 +21,20 @@ final class GradientButton extends StatelessWidget {
         height: context.dynamicHeight(0.06),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10),
-          color: AppColors.background,
+          gradient: const LinearGradient(
+            colors: [
+              AppColors.pink,
+              AppColors.purple,
+            ],
+          ),
         ),
         child: Center(
           child: Text(
             title!,
-            style: context.textTheme.bodyLarge
-                ?.copyWith(color: AppColors.powderRed),
+            style: context.textTheme.titleSmall?.copyWith(
+              color: AppColors.background,
+              fontWeight: FontWeight.bold,
+            ),
           ),
         ),
       ),

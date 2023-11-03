@@ -64,4 +64,9 @@ final class EnAppStrings {
   // Connection
   static const String connectionError =
       'Please check your internet connection!';
+
+  // Rate
+  static const String rateTitle = "Rate This App";
+  static const String rateDescription =
+      "Take a few seconds to rate our app. Your thoughts mean a lot to us.";
 }
