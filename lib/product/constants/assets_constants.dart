@@ -36,4 +36,5 @@ final class AssetConstants {
   // PNG
   String toPNG(String src) => "assets/img/$src.png";
   String get pngHomeImage => toPNG("table-home-icon");
+  String get pngAppIcon => toPNG("remove-bg-logo");
 }
