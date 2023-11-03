@@ -9,6 +9,7 @@
 - CI / CD Entegration
 - Supports Different Device Screen Sizes
 - In-app Ads
+- In-app Rating
 - Daily Notifications
 
 ## Packages & Technologies
