@@ -13,6 +13,7 @@ import 'package:elements_app/product/extensions/context_extensions.dart';
 import 'package:elements_app/product/widget/button/gradient_button.dart';
 import 'package:elements_app/product/widget/container/home_container.dart';
 import 'package:elements_app/product/widget/scaffold/app_scaffold.dart';
+import 'package:elements_app/product/widget/text/text_icon_row.dart';
 import 'package:elements_app/product/widget/textField/long_feedback_textfield.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -40,7 +41,7 @@ class _HomeViewState extends State<StatefulWidget> with AdMobMixin {
             children: [
               spacerVertical(context, 0.05),
               Expanded(
-                child: appWelcome(context),
+                child: appWelcome(context, isTr),
               ),
               spacerVertical(context, 0.03),
               Expanded(
@@ -82,7 +83,7 @@ class _HomeViewState extends State<StatefulWidget> with AdMobMixin {
     );
   }
 
-  Padding appWelcome(BuildContext context) {
+  Padding appWelcome(BuildContext context, bool isTr) {
     return Padding(
       padding: context.paddingLowHorizontal,
       child: Container(
@@ -101,9 +102,9 @@ class _HomeViewState extends State<StatefulWidget> with AdMobMixin {
           color: AppColors.background,
           borderRadius: BorderRadius.circular(10),
         ),
-        child: const Center(
+        child: Center(
           child: NeonText(
-            text: EnAppStrings.appName,
+            text: isTr ? TrAppStrings.appName : EnAppStrings.appName,
             fontWeight: FontWeight.bold,
             isSoftWrap: true,
             spreadColor: Colors.purple,
@@ -240,7 +241,7 @@ class _HomeViewState extends State<StatefulWidget> with AdMobMixin {
           children: [
             localizationFlags(context, isTr),
             rateButton(context, isTr),
-            reportButton(context),
+            helpPopupButton(context),
           ],
         ),
       ],
@@ -255,7 +256,7 @@ class _HomeViewState extends State<StatefulWidget> with AdMobMixin {
       icon: SvgPicture.asset(
         AssetConstants.instance.svgStarTwo,
         colorFilter: const ColorFilter.mode(
-          AppColors.turquoise,
+          AppColors.yellow,
           BlendMode.srcIn,
         ),
         height: context.dynamicHeight(0.04),
@@ -263,15 +264,15 @@ class _HomeViewState extends State<StatefulWidget> with AdMobMixin {
     );
   }
 
-  IconButton reportButton(BuildContext context) {
+  IconButton helpPopupButton(BuildContext context) {
     return IconButton(
       onPressed: () {
-        reportBottomSheet(context);
+        helpPopUp(context);
       },
       icon: SvgPicture.asset(
-        AssetConstants.instance.svgWarning,
+        AssetConstants.instance.svgQuestion,
         colorFilter: const ColorFilter.mode(
-          AppColors.pink,
+          AppColors.glowGreen,
           BlendMode.srcIn,
         ),
         height: context.dynamicHeight(0.04),
@@ -290,7 +291,7 @@ class _HomeViewState extends State<StatefulWidget> with AdMobMixin {
         padding: context.paddingLowVertical,
         child: Container(
           width: context.width,
-          height: context.dynamicHeight(0.4),
+          height: context.dynamicHeight(0.5),
           decoration: const BoxDecoration(
             color: AppColors.background,
             borderRadius: BorderRadius.only(
@@ -313,9 +314,9 @@ class _HomeViewState extends State<StatefulWidget> with AdMobMixin {
                 ),
               ),
               Image.asset(
-                AssetConstants.instance.pngAppIcon,
+                AssetConstants.instance.pngStarLogo,
                 width: context.width,
-                height: context.dynamicHeight(0.15),
+                height: context.dynamicHeight(0.2),
               ),
               Padding(
                 padding: context.paddingNormal,
@@ -329,6 +330,9 @@ class _HomeViewState extends State<StatefulWidget> with AdMobMixin {
                   maxLines: 4,
                   textAlign: TextAlign.center,
                 ),
+              ),
+              SizedBox(
+                height: context.dynamicHeight(0.03),
               ),
               GradientButton(
                 onTap: () {
@@ -364,6 +368,73 @@ class _HomeViewState extends State<StatefulWidget> with AdMobMixin {
     );
   }
 
+  Future<dynamic> helpPopUp(BuildContext context) {
+    return showDialog(
+      barrierDismissible: false,
+      context: context,
+      builder: (context) => AlertDialog(
+        elevation: 3,
+        backgroundColor: AppColors.background,
+        title: Column(
+          children: [
+            Align(
+              alignment: Alignment.topRight,
+              child: IconButton(
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                  icon: const Icon(
+                    Icons.close,
+                    color: AppColors.white,
+                  )),
+            ),
+            Image.asset(
+              AssetConstants.instance.pnginfoLogo,
+              width: context.width,
+              height: context.dynamicHeight(0.2),
+            ),
+            spacerVertical(context, 0.01),
+            const TextIconRow(
+              title:
+                  "Elementlerin renkleri, element'in yer aldığı grubu temsil etmektedir. Her bir renk farklı bir grubu temsil eder.",
+              color: AppColors.purple,
+            ),
+            spacerVertical(context, 0.01),
+            const TextIconRow(
+              title:
+                  "Elementler sayfasına giderek tüm elementler'e erişebilirsin",
+              color: AppColors.yellow,
+            ),
+            spacerVertical(context, 0.01),
+            const TextIconRow(
+              title:
+                  "Nedir sayfasına giderek periyodik tablo ve elementler ile ilgili bilgiler edinebilirsin",
+              color: AppColors.glowGreen,
+            ),
+            spacerVertical(context, 0.01),
+            const TextIconRow(
+              title:
+                  "Grup sayfasına giderek gruplarına göre elementlerin listesine erişebilirsin.",
+              color: AppColors.powderRed,
+            ),
+            spacerVertical(context, 0.01),
+            const TextIconRow(
+              title:
+                  "Elementlerin listendiği sayfaların altında bulunan butona tıklayarak o elementlerin quiz'ini çözebilirsin.",
+              color: AppColors.turquoise,
+            ),
+            // spacerVertical(context, 0.01),
+            // const TextIconRow(
+            //   title:
+            //       "Anasayfada bulunan yıldız butonuna tıklayarak uygulamayı değerlendirebilirsin.",
+            //   color: AppColors.lightGreen,
+            // ),
+          ],
+        ),
+      ),
+    );
+  }
+
   Future<dynamic> reportBottomSheet(BuildContext context) {
     return showModalBottomSheet(
       isScrollControlled: true,
@@ -381,16 +452,16 @@ class _HomeViewState extends State<StatefulWidget> with AdMobMixin {
           padding: MediaQuery.of(context).viewInsets,
           child: Column(
             children: [
-              SizedBox(height: context.dynamicHeight(0.05)),
+              spacerVertical(context, 0.05),
               const FeedbackLongTextField(
                 title: EnAppStrings.feedback,
               ),
-              SizedBox(height: context.dynamicHeight(0.01)),
+              spacerVertical(context, 0.01),
               GradientButton(
                 title: EnAppStrings.sendFeedback,
                 onTap: () => Navigator.pop(context),
               ),
-              SizedBox(height: context.dynamicHeight(0.1)),
+              spacerVertical(context, 0.01),
             ],
           ),
         ),

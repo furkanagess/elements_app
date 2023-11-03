@@ -8,29 +8,46 @@ final class TextIconRow extends StatelessWidget {
     super.key,
     this.title,
     this.color,
-    this.icon,
   });
   final String? title;
   final Color? color;
-  final IconData? icon;
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: [
-        Icon(
-          icon,
-          size: 30,
-          color: color,
+    return Container(
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(10),
+        color: AppColors.darkBlue,
+      ),
+      width: context.width,
+      height: context.dynamicHeight(0.1),
+      child: Padding(
+        padding: context.paddingLow,
+        child: Row(
+          children: [
+            Icon(
+              Icons.science,
+              size: 30,
+              color: color,
+            ),
+            SizedBox(
+              width: context.dynamicWidth(0.02),
+            ),
+            Expanded(
+              child: Text(
+                title!,
+                style: context.textTheme.bodySmall?.copyWith(
+                  color: AppColors.white,
+                  fontWeight: FontWeight.bold,
+                ),
+                maxLines: 4,
+                overflow: TextOverflow.ellipsis,
+                softWrap: true,
+              ),
+            ),
+          ],
         ),
-        Text(
-          title!,
-          style: context.textTheme.bodyLarge?.copyWith(
-            color: AppColors.white,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-      ],
+      ),
     );
   }
 }

@@ -25,7 +25,7 @@ final class AssetConstants {
   String get svgBlock => toSVG("block"); // used
   String get svgTrFlag => toSVG("turkey-flag"); // used
   String get svgUsFlag => toSVG("us-flag"); // used
-
+  String get svgQuestion => toSVG("question-mark"); // used
   // Lottie
   String toLottie(String src) => "assets/lottie/$src.json";
   String get lottieCorrect => toLottie("correct"); // used
@@ -37,4 +37,6 @@ final class AssetConstants {
   String toPNG(String src) => "assets/img/$src.png";
   String get pngHomeImage => toPNG("table-home-icon");
   String get pngAppIcon => toPNG("remove-bg-logo");
+  String get pngStarLogo => toPNG("rate-logo-ic");
+  String get pnginfoLogo => toPNG("info-logo");
 }
