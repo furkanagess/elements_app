@@ -241,7 +241,7 @@ class _HomeViewState extends State<StatefulWidget> with AdMobMixin {
           children: [
             localizationFlags(context, isTr),
             rateButton(context, isTr),
-            helpPopupButton(context),
+            helpPopupButton(context, isTr),
           ],
         ),
       ],
@@ -264,10 +264,10 @@ class _HomeViewState extends State<StatefulWidget> with AdMobMixin {
     );
   }
 
-  IconButton helpPopupButton(BuildContext context) {
+  IconButton helpPopupButton(BuildContext context, bool isTr) {
     return IconButton(
       onPressed: () {
-        helpPopUp(context);
+        helpPopUp(context, isTr);
       },
       icon: SvgPicture.asset(
         AssetConstants.instance.svgQuestion,
@@ -368,7 +368,7 @@ class _HomeViewState extends State<StatefulWidget> with AdMobMixin {
     );
   }
 
-  Future<dynamic> helpPopUp(BuildContext context) {
+  Future<dynamic> helpPopUp(BuildContext context, bool isTr) {
     return showDialog(
       barrierDismissible: false,
       context: context,
@@ -394,41 +394,30 @@ class _HomeViewState extends State<StatefulWidget> with AdMobMixin {
               height: context.dynamicHeight(0.2),
             ),
             spacerVertical(context, 0.01),
-            const TextIconRow(
-              title:
-                  "Elementlerin renkleri, element'in yer aldığı grubu temsil etmektedir. Her bir renk farklı bir grubu temsil eder.",
+            TextIconRow(
+              title: isTr ? TrAppStrings.infoTitle1 : EnAppStrings.infoTitle1,
               color: AppColors.purple,
             ),
             spacerVertical(context, 0.01),
-            const TextIconRow(
-              title:
-                  "Elementler sayfasına giderek tüm elementler'e erişebilirsin",
+            TextIconRow(
+              title: isTr ? TrAppStrings.infoTitle2 : EnAppStrings.infoTitle2,
               color: AppColors.yellow,
             ),
             spacerVertical(context, 0.01),
-            const TextIconRow(
-              title:
-                  "Nedir sayfasına giderek periyodik tablo ve elementler ile ilgili bilgiler edinebilirsin",
+            TextIconRow(
+              title: isTr ? TrAppStrings.infoTitle3 : EnAppStrings.infoTitle3,
               color: AppColors.glowGreen,
             ),
             spacerVertical(context, 0.01),
-            const TextIconRow(
-              title:
-                  "Grup sayfasına giderek gruplarına göre elementlerin listesine erişebilirsin.",
+            TextIconRow(
+              title: isTr ? TrAppStrings.infoTitle4 : EnAppStrings.infoTitle4,
               color: AppColors.powderRed,
             ),
             spacerVertical(context, 0.01),
-            const TextIconRow(
-              title:
-                  "Elementlerin listendiği sayfaların altında bulunan butona tıklayarak o elementlerin quiz'ini çözebilirsin.",
+            TextIconRow(
+              title: isTr ? TrAppStrings.infoTitle5 : EnAppStrings.infoTitle5,
               color: AppColors.turquoise,
             ),
-            // spacerVertical(context, 0.01),
-            // const TextIconRow(
-            //   title:
-            //       "Anasayfada bulunan yıldız butonuna tıklayarak uygulamayı değerlendirebilirsin.",
-            //   color: AppColors.lightGreen,
-            // ),
           ],
         ),
       ),

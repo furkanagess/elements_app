@@ -69,4 +69,16 @@ final class EnAppStrings {
   static const String rateTitle = "Rate This App";
   static const String rateDescription =
       "Take a few seconds to rate our app. Your thoughts mean a lot to us.";
+
+  // Info
+  static const String infoTitle1 =
+      "The colors of the elements represent the group in which the element is located. Each color represents a different group.";
+  static const String infoTitle2 =
+      "You can access all elements by going to the Elements Page";
+  static const String infoTitle3 =
+      "You can get information about the periodic table and elements by going to the What Is Page";
+  static const String infoTitle4 =
+      "You can access the list of elements by group by going to the Group Page.";
+  static const String infoTitle5 =
+      "You can solve the quiz of those elements by clicking the button at the bottom of the pages where the elements are listed.";
 }

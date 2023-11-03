@@ -61,4 +61,16 @@ final class TrAppStrings {
   static const String rateTitle = "Uygulamayı Değerlendirin";
   static const String rateDescription =
       "Uygulamamızı değerlendirmek için birkaç saniyenizi ayırın. Sizin düşünceleriniz bizim için çok değerli";
+
+  // Info
+  static const String infoTitle1 =
+      "Elementlerin renkleri, element'in yer aldığı grubu temsil etmektedir. Her bir renk farklı bir grubu temsil eder.";
+  static const String infoTitle2 =
+      "Elementler sayfasına giderek tüm elementler'e erişebilirsin";
+  static const String infoTitle3 =
+      "Nedir sayfasına giderek periyodik tablo ve elementler ile ilgili bilgiler edinebilirsin";
+  static const String infoTitle4 =
+      "Grup sayfasına giderek gruplarına göre elementlerin listesine erişebilirsin.";
+  static const String infoTitle5 =
+      "Elementlerin listelendiği sayfaların altında bulunan butona tıklayarak o elementlerin quiz'ini çözebilirsin.";
 }
