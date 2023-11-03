@@ -64,14 +64,14 @@
   <tr>
      <td>Loading</td> 
   <td>No Connection</td> 
- <td>Quiz Error</td> 
-    <td>Quiz Correct</td> 
+ <td>Rate</td> 
+    <td>Help</td> 
   </tr>  
   <tr>
            <td><img src="screenshots/loading.jpg"  width=200 height=400></td>
      <td><img src="screenshots/no-connection.jpg" width=200 height=400></td>
-       <td><img src="screenshots/error.jpg" width=200 height=400></td>
-     <td><img src="screenshots/correct.jpg" width=200 height=400></td>
+       <td><img src="screenshots/info.jpg" width=200 height=400></td>
+     <td><img src="screenshots/rate.jpg" width=200 height=400></td>
   </tr>
   </table>
 
