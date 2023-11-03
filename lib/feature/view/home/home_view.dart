@@ -50,14 +50,7 @@ class _HomeViewState extends State<StatefulWidget> with AdMobMixin {
               spacerVertical(context, 0.05),
               Expanded(
                 flex: 7,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    elementGroupRowOne(context, isTr),
-                    spacerVertical(context, 0.03),
-                    elementGroupRowTwo(context, isTr),
-                  ],
-                ),
+                child: elementGroupColumn(context, isTr),
               ),
               Expanded(
                 flex: 2,
@@ -68,6 +61,17 @@ class _HomeViewState extends State<StatefulWidget> with AdMobMixin {
           ),
         ),
       ),
+    );
+  }
+
+  Column elementGroupColumn(BuildContext context, bool isTr) {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      children: [
+        elementGroupRowOne(context, isTr),
+        spacerVertical(context, 0.03),
+        elementGroupRowTwo(context, isTr),
+      ],
     );
   }
 

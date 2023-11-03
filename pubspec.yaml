@@ -64,13 +64,13 @@ flutter_native_splash:
   android: true
   ios: true 
   color: "#212437"
-  image: assets/img/512_icon.png
+  image: assets/img/remove-bg-logo.png
   color_dark: "#212437"
   color_android: "#212437"
   color_dark_android: "#212437"
   android_12:
     color: "#212437"
-    image: assets/img/512_icon.png
+    image: assets/img/remove-bg-logo.png
     color_dark: "#212437"
  
 
