@@ -16,6 +16,7 @@ import 'package:elements_app/product/widget/scaffold/app_scaffold.dart';
 import 'package:elements_app/product/widget/textField/long_feedback_textfield.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:launch_review/launch_review.dart';
 import 'package:neon_widgets/neon_widgets.dart';
 import 'package:provider/provider.dart';
 
@@ -131,6 +132,7 @@ class _HomeViewState extends State<StatefulWidget> with AdMobMixin {
   ) {
     return HomeContainer(
       onTap: () {
+        showInterstitialAd();
         Navigator.push(
           context,
           MaterialPageRoute(
@@ -233,11 +235,27 @@ class _HomeViewState extends State<StatefulWidget> with AdMobMixin {
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             localizationFlags(context, isTr),
-            rateButton(context),
+            rateButton(context, isTr),
             reportButton(context),
           ],
         ),
       ],
+    );
+  }
+
+  IconButton rateButton(BuildContext context, bool isTr) {
+    return IconButton(
+      onPressed: () {
+        rateBottomSheet(context, isTr);
+      },
+      icon: SvgPicture.asset(
+        AssetConstants.instance.svgStarTwo,
+        colorFilter: const ColorFilter.mode(
+          AppColors.turquoise,
+          BlendMode.srcIn,
+        ),
+        height: context.dynamicHeight(0.04),
+      ),
     );
   }
 
@@ -248,20 +266,79 @@ class _HomeViewState extends State<StatefulWidget> with AdMobMixin {
       },
       icon: SvgPicture.asset(
         AssetConstants.instance.svgWarning,
-        colorFilter: const ColorFilter.mode(AppColors.pink, BlendMode.srcIn),
+        colorFilter: const ColorFilter.mode(
+          AppColors.pink,
+          BlendMode.srcIn,
+        ),
         height: context.dynamicHeight(0.04),
       ),
     );
   }
 
-  IconButton rateButton(BuildContext context) {
-    return IconButton(
-      onPressed: () {},
-      icon: SvgPicture.asset(
-        AssetConstants.instance.svgStarTwo,
-        colorFilter:
-            const ColorFilter.mode(AppColors.turquoise, BlendMode.srcIn),
-        height: context.dynamicHeight(0.04),
+  Future<dynamic> rateBottomSheet(BuildContext context, bool isTr) {
+    return showModalBottomSheet<void>(
+      context: context,
+      enableDrag: false,
+      isScrollControlled: true,
+      backgroundColor: AppColors.transparent,
+      isDismissible: false,
+      builder: (context) => Padding(
+        padding: context.paddingLowVertical,
+        child: Container(
+          width: context.width,
+          height: context.dynamicHeight(0.4),
+          decoration: const BoxDecoration(
+            color: AppColors.background,
+            borderRadius: BorderRadius.only(
+              topRight: Radius.circular(20),
+              topLeft: Radius.circular(20),
+            ),
+          ),
+          child: Column(
+            children: [
+              Align(
+                alignment: Alignment.topRight,
+                child: IconButton(
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                  icon: const Icon(
+                    Icons.close,
+                    color: AppColors.white,
+                  ),
+                ),
+              ),
+              Image.asset(
+                AssetConstants.instance.pngAppIcon,
+                width: context.width,
+                height: context.dynamicHeight(0.15),
+              ),
+              Padding(
+                padding: context.paddingNormal,
+                child: Text(
+                  isTr
+                      ? TrAppStrings.rateDescription
+                      : EnAppStrings.rateDescription,
+                  style: context.textTheme.titleSmall?.copyWith(
+                    color: AppColors.white,
+                  ),
+                  maxLines: 4,
+                  textAlign: TextAlign.center,
+                ),
+              ),
+              GradientButton(
+                onTap: () {
+                  Navigator.pop(context);
+                  LaunchReview.launch(
+                    // FIX ME
+                    androidAppId: "com.rockstargames.gtasa",
+                  );
+                },
+                title: isTr ? TrAppStrings.rateTitle : EnAppStrings.rateTitle,
+              ),
+            ],
+          ),
+        ),
       ),
     );
   }
