@@ -55,4 +55,9 @@ final class TrAppStrings {
   // Bağlantı
   static const String connectionError =
       'Lütfen internet bağlantınızı kontrol ediniz.';
+
+  // Rate
+  static const String rateTitle = "Uygulamayı Değerlendirin";
+  static const String rateDescription =
+      "Uygulamamızı değerlendirmek için birkaç saniyenizi ayırın. Sizin düşünceleriniz bizim için çok değerli";
 }
