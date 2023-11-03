@@ -6,7 +6,7 @@ class LoadingProvider with ChangeNotifier {
   bool get isLoading => _isLoading;
 
   Future<void> startLoading(BuildContext context) async {
-    await Future.delayed(Duration(seconds: 2)); // 2 saniye bekleme süresi
+    await Future.delayed(const Duration(seconds: 2)); // 2 saniye bekleme süresi
     _isLoading = false;
     notifyListeners();
 
