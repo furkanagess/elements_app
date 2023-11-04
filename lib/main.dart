@@ -1,19 +1,13 @@
+import 'package:elements_app/feature/initialize/app_initializer.dart';
 import 'package:elements_app/feature/provider/application_provider.dart';
-import 'package:elements_app/feature/service/notifications_service.dart';
 import 'package:elements_app/feature/view/home/home_view.dart';
 import 'package:elements_app/product/constants/stringConstants/en_app_strings.dart';
 import 'package:elements_app/product/theme/app_theme.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:provider/provider.dart';
 
 Future<void> main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  MobileAds.instance.initialize();
-  await Firebase.initializeApp();
-  await NotificationService().initNotifications();
-
+  await AppInitializer().initialize();
   runApp(
     MultiProvider(
       providers: [
