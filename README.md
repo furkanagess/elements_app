@@ -4,6 +4,7 @@
 
 ## Features
 - Language Support (TR-EN)
+- Provider State Management
 - Internet Connectivity Check
 - Version Control
 - CI / CD Entegration
