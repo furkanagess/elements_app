@@ -15,7 +15,7 @@ class AppTheme {
   FloatingActionButtonThemeData floatingActionButtonTheme() {
     return const FloatingActionButtonThemeData(
       backgroundColor: AppColors.purple,
-      elevation: 3,
+      elevation: 5,
     );
   }
 

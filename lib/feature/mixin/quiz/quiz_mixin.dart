@@ -125,14 +125,7 @@ mixin QuizMixin on State<QuizView> {
                           width: context.dynamicWidth(0.7),
                           height: context.dynamicHeight(0.075),
                           decoration: BoxDecoration(
-                            boxShadow: const [
-                              BoxShadow(
-                                color: AppColors.shPurple,
-                                offset: Offset(4, 4),
-                                spreadRadius: 1,
-                              ),
-                            ],
-                            color: AppColors.purple,
+                            color: AppColors.skinColor,
                             borderRadius: BorderRadius.circular(10),
                           ),
                           child: Center(
@@ -165,23 +158,33 @@ mixin QuizMixin on State<QuizView> {
                         },
                       );
                     },
-                    child: Container(
-                      width: context.dynamicWidth(0.4),
-                      height: context.dynamicHeight(0.05),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
-                        color: AppColors.darkBlue,
-                      ),
-                      child: Center(
-                        child: Text(
-                          selectedOption == correctAnswer
-                              ? "Next Question"
-                              : "Back to Question",
-                          style: context.textTheme.bodyLarge?.copyWith(
-                            color: selectedOption == correctAnswer
-                                ? AppColors.white
-                                : AppColors.white,
-                            fontWeight: FontWeight.bold,
+                    child: Padding(
+                      padding: context.paddingLow,
+                      child: Container(
+                        width: context.dynamicWidth(0.4),
+                        height: context.dynamicHeight(0.05),
+                        decoration: BoxDecoration(
+                          boxShadow: const [
+                            BoxShadow(
+                              color: AppColors.background,
+                              offset: Offset(2, 2),
+                              spreadRadius: 1,
+                            )
+                          ],
+                          borderRadius: BorderRadius.circular(10),
+                          color: AppColors.background,
+                        ),
+                        child: Center(
+                          child: Text(
+                            selectedOption == correctAnswer
+                                ? "Next Question"
+                                : "Back to Question",
+                            style: context.textTheme.bodyLarge?.copyWith(
+                              color: selectedOption == correctAnswer
+                                  ? AppColors.white
+                                  : AppColors.white,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
                         ),
                       ),

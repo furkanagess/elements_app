@@ -81,7 +81,10 @@ class _QuizViewState extends State<QuizView> with QuizMixin {
 
   GridView optionAnswerGrid(BuildContext context) {
     return GridView.count(
+      mainAxisSpacing: context.dynamicHeight(0.01),
+      crossAxisSpacing: context.dynamicHeight(0.01),
       crossAxisCount: 2,
+      padding: context.paddingLow,
       children: options.map((option) {
         return Padding(
           padding: context.paddingLow,
