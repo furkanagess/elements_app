@@ -1,5 +1,4 @@
-import 'package:elements_app/feature/provider/localization_provider.dart';
-import 'package:elements_app/feature/service/network_service.dart';
+import 'package:elements_app/feature/provider/application_provider.dart';
 import 'package:elements_app/feature/service/notifications_service.dart';
 import 'package:elements_app/feature/view/home/home_view.dart';
 import 'package:elements_app/product/constants/stringConstants/en_app_strings.dart';
@@ -18,13 +17,7 @@ Future<void> main() async {
   runApp(
     MultiProvider(
       providers: [
-        StreamProvider(
-          create: (context) => NetworkService().controller.stream,
-          initialData: NetworkStatus.online,
-        ),
-        ChangeNotifierProvider<LocalizationProvider>(
-          create: (context) => LocalizationProvider(),
-        ),
+        ...ApplicationProvider.instance.appProviders,
       ],
       child: const MyApp(),
     ),

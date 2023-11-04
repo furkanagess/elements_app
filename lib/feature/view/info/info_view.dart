@@ -1,4 +1,5 @@
 import 'package:elements_app/feature/model/info.dart';
+import 'package:elements_app/feature/provider/admob_provider.dart';
 import 'package:elements_app/feature/provider/localization_provider.dart';
 import 'package:elements_app/feature/view/info/subInfo/elementType/element_type_view.dart';
 import 'package:elements_app/feature/mixin/info/info_mixin.dart';
@@ -31,6 +32,8 @@ class InfoView extends StatefulWidget {
 class _InfoViewState extends State<InfoView> with InfoViewMixin {
   @override
   Widget build(BuildContext context) {
+    final admobProvider = Provider.of<AdmobProvider>(context);
+
     bool isTr = Provider.of<LocalizationProvider>(context).isTr;
     return AppScaffold(
       child: Scaffold(
@@ -39,7 +42,7 @@ class _InfoViewState extends State<InfoView> with InfoViewMixin {
             ? const LoadingBar()
             : Column(
                 children: [
-                  elementTypesContainer(context, isTr),
+                  elementTypesContainer(context, isTr, admobProvider),
                   infoListBuilder(),
                 ],
               ),
@@ -74,9 +77,11 @@ class _InfoViewState extends State<InfoView> with InfoViewMixin {
     );
   }
 
-  InkWell elementTypesContainer(BuildContext context, bool isTr) {
+  InkWell elementTypesContainer(
+      BuildContext context, bool isTr, AdmobProvider admobProvider) {
     return InkWell(
       onTap: () {
+        admobProvider.createAndShowInterstitialAd();
         Navigator.push(
           context,
           MaterialPageRoute(
