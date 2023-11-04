@@ -1,3 +1,4 @@
+import 'package:elements_app/feature/provider/admob_provider.dart';
 import 'package:elements_app/feature/provider/localization_provider.dart';
 import 'package:elements_app/feature/view/elementsList/elements_list_view.dart';
 import 'package:elements_app/product/constants/api_types.dart';
@@ -15,6 +16,8 @@ class MetalGroupView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final admobProvider = Provider.of<AdmobProvider>(context);
+
     bool isTr = Provider.of<LocalizationProvider>(context).isTr;
     return AppScaffold(
       child: Scaffold(
@@ -26,8 +29,8 @@ class MetalGroupView extends StatelessWidget {
             children: [
               spacer(context, 0.02),
               transitionsMetalsRow(context, isTr),
-              alkalineMetalsRow(context, isTr),
-              otherMetalsRow(context, isTr),
+              alkalineMetalsRow(context, isTr, admobProvider),
+              otherMetalsRow(context, isTr, admobProvider),
               spacer(context, 0.04),
             ],
           ),
@@ -36,21 +39,23 @@ class MetalGroupView extends StatelessWidget {
     );
   }
 
-  Row otherMetalsRow(BuildContext context, bool isTr) {
+  Row otherMetalsRow(
+      BuildContext context, bool isTr, AdmobProvider admobProvider) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
         lanthanidesContainer(context, isTr),
-        actinidesContainer(context, isTr),
+        actinidesContainer(context, isTr, admobProvider),
       ],
     );
   }
 
-  Row alkalineMetalsRow(BuildContext context, bool isTr) {
+  Row alkalineMetalsRow(
+      BuildContext context, bool isTr, AdmobProvider admobProvider) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
-        alkalineEarthMetalContainer(context, isTr),
+        alkalineEarthMetalContainer(context, isTr, admobProvider),
         alkalineMetalContainer(context, isTr),
       ],
     );
@@ -66,11 +71,13 @@ class MetalGroupView extends StatelessWidget {
     );
   }
 
-  ElementGroupContainer actinidesContainer(BuildContext context, bool isTr) {
+  ElementGroupContainer actinidesContainer(
+      BuildContext context, bool isTr, AdmobProvider admobProvider) {
     return ElementGroupContainer(
       color: AppColors.pink,
       shadowColor: AppColors.shPink,
       onTap: () {
+        admobProvider.createAndShowInterstitialAd();
         Navigator.push(
           context,
           MaterialPageRoute(
@@ -125,11 +132,12 @@ class MetalGroupView extends StatelessWidget {
   }
 
   ElementGroupContainer alkalineEarthMetalContainer(
-      BuildContext context, bool isTr) {
+      BuildContext context, bool isTr, AdmobProvider admobProvider) {
     return ElementGroupContainer(
       color: AppColors.yellow,
       shadowColor: AppColors.shYellow,
       onTap: () {
+        admobProvider.createAndShowInterstitialAd();
         Navigator.push(
           context,
           MaterialPageRoute(

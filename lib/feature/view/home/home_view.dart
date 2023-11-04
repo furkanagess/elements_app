@@ -1,4 +1,4 @@
-import 'package:elements_app/feature/mixin/admob/ad_mob_mixin.dart';
+import 'package:elements_app/feature/provider/admob_provider.dart';
 import 'package:elements_app/feature/provider/localization_provider.dart';
 import 'package:elements_app/feature/view/elementsList/elements_list_view.dart';
 import 'package:elements_app/feature/view/groups/element_group_view.dart';
@@ -21,17 +21,18 @@ import 'package:launch_review/launch_review.dart';
 import 'package:neon_widgets/neon_widgets.dart';
 import 'package:provider/provider.dart';
 
-class HomeView extends StatefulWidget {
+final class HomeView extends StatefulWidget {
   const HomeView({super.key});
 
   @override
   State<StatefulWidget> createState() => _HomeViewState();
 }
 
-class _HomeViewState extends State<StatefulWidget> with AdMobMixin {
+class _HomeViewState extends State<StatefulWidget> {
   @override
   Widget build(BuildContext context) {
-    bool isTr = Provider.of<LocalizationProvider>(context).isTr;
+    final bool isTr = Provider.of<LocalizationProvider>(context).isTr;
+    final admobProvider = Provider.of<AdmobProvider>(context);
     return AppScaffold(
       child: Scaffold(
         resizeToAvoidBottomInset: false,
@@ -51,7 +52,7 @@ class _HomeViewState extends State<StatefulWidget> with AdMobMixin {
               spacerVertical(context, 0.05),
               Expanded(
                 flex: 7,
-                child: elementGroupColumn(context, isTr),
+                child: elementGroupColumn(context, isTr, admobProvider),
               ),
               Expanded(
                 flex: 2,
@@ -65,13 +66,14 @@ class _HomeViewState extends State<StatefulWidget> with AdMobMixin {
     );
   }
 
-  Column elementGroupColumn(BuildContext context, bool isTr) {
+  Column elementGroupColumn(
+      BuildContext context, bool isTr, AdmobProvider admobProvider) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
         elementGroupRowOne(context, isTr),
         spacerVertical(context, 0.03),
-        elementGroupRowTwo(context, isTr),
+        elementGroupRowTwo(context, isTr, admobProvider),
       ],
     );
   }
@@ -121,12 +123,13 @@ class _HomeViewState extends State<StatefulWidget> with AdMobMixin {
   SizedBox spacerHorizontal(BuildContext context, double value) =>
       SizedBox(height: context.dynamicWidth(value));
 
-  Row elementGroupRowTwo(BuildContext context, bool isTr) {
+  Row elementGroupRowTwo(
+      BuildContext context, bool isTr, AdmobProvider admobProvider) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
-        whatIsContainer(context, isTr),
-        quizContainer(context, isTr),
+        whatIsContainer(context, isTr, admobProvider),
+        quizContainer(context, isTr, admobProvider),
       ],
     );
   }
@@ -134,10 +137,11 @@ class _HomeViewState extends State<StatefulWidget> with AdMobMixin {
   HomeContainer quizContainer(
     BuildContext context,
     bool isTr,
+    AdmobProvider admobProvider,
   ) {
     return HomeContainer(
       onTap: () {
-        showInterstitialAd();
+        admobProvider.createAndShowInterstitialAd();
         Navigator.push(
           context,
           MaterialPageRoute(
@@ -155,7 +159,8 @@ class _HomeViewState extends State<StatefulWidget> with AdMobMixin {
     );
   }
 
-  HomeContainer whatIsContainer(BuildContext context, bool isTr) {
+  HomeContainer whatIsContainer(
+      BuildContext context, bool isTr, AdmobProvider admobProvider) {
     return HomeContainer(
       onTap: () {
         Navigator.push(

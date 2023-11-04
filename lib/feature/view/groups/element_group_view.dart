@@ -1,3 +1,4 @@
+import 'package:elements_app/feature/provider/admob_provider.dart';
 import 'package:elements_app/feature/provider/localization_provider.dart';
 import 'package:elements_app/feature/view/elementsList/elements_list_view.dart';
 import 'package:elements_app/feature/view/groups/metalGroup/metal_group_view.dart';
@@ -18,6 +19,8 @@ class ElementGroupView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     bool isTr = Provider.of<LocalizationProvider>(context).isTr;
+    final admobProvider = Provider.of<AdmobProvider>(context);
+
     return AppScaffold(
       child: Scaffold(
         appBar: appBar(),
@@ -29,7 +32,7 @@ class ElementGroupView extends StatelessWidget {
                 spacer(context, 0.05),
                 metalAndNonmetalRow(context, isTr),
                 spacer(context, 0.05),
-                metalloidAndUnknownRow(context, isTr),
+                metalloidAndUnknownRow(context, isTr, admobProvider),
                 spacer(context, 0.05),
                 unknownGroupContainer(context, isTr),
               ],
@@ -40,11 +43,13 @@ class ElementGroupView extends StatelessWidget {
     );
   }
 
-  ElementGroupContainer halogenContainer(BuildContext context, bool isTr) {
+  ElementGroupContainer halogenContainer(
+      BuildContext context, bool isTr, AdmobProvider admobProvider) {
     return ElementGroupContainer(
       color: AppColors.lightGreen,
       shadowColor: AppColors.shLightGreen,
       onTap: () {
+        admobProvider.createAndShowInterstitialAd();
         Navigator.push(
           context,
           MaterialPageRoute(
@@ -59,12 +64,13 @@ class ElementGroupView extends StatelessWidget {
     );
   }
 
-  Row metalloidAndUnknownRow(BuildContext context, bool isTr) {
+  Row metalloidAndUnknownRow(
+      BuildContext context, bool isTr, AdmobProvider admobProvider) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
-        metalloidGroupContainer(context, isTr),
-        halogenContainer(context, isTr),
+        metalloidGroupContainer(context, isTr, admobProvider),
+        halogenContainer(context, isTr, admobProvider),
       ],
     );
   }
@@ -113,11 +119,12 @@ class ElementGroupView extends StatelessWidget {
   }
 
   ElementGroupContainer metalloidGroupContainer(
-      BuildContext context, bool isTr) {
+      BuildContext context, bool isTr, AdmobProvider admobProvider) {
     return ElementGroupContainer(
       color: AppColors.skinColor,
       shadowColor: AppColors.shSkinColor,
       onTap: () {
+        admobProvider.createAndShowInterstitialAd();
         Navigator.push(
           context,
           MaterialPageRoute(
