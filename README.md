@@ -76,5 +76,15 @@
   </tr>
   </table>
 
+## Coding Features
+### App Initializer
+![appInitializer](https://github.com/furkanagess/elements_app/assets/92018394/2ae4ecdb-ca96-40b0-ad31-97136d944d9b)
+### Color Extension
+![colorExtension](https://github.com/furkanagess/elements_app/assets/92018394/10b0a09a-dc86-4bcf-8686-1673589cb583)
+### App Provider
+![appProvider](https://github.com/furkanagess/elements_app/assets/92018394/8b25e137-62ad-4501-94bc-5b6666e50229)
+
+
+
   
 
