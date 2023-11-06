@@ -1,40 +1,52 @@
-import 'package:flutter/widgets.dart';
+import 'package:flutter/material.dart';
 
+/// The `AssetConstants` class provides a centralized location for defining asset paths in your Flutter application.
+///
+/// It includes methods for constructing asset paths for SVG, Lottie animations, and PNG images, making it easier
+/// to manage and access assets used in your app.
 @immutable
 final class AssetConstants {
-  const AssetConstants._init();
+  const AssetConstants._init(); // Private constructor to prevent instantiation.
   static AssetConstants? _instace;
 
+  /// Singleton instance getter for accessing the `AssetConstants`.
   static AssetConstants get instance =>
       _instace ??= const AssetConstants._init();
 
   // SVG
   String toSVG(String src) => "assets/svg/$src.svg";
-  String get svgElementGroup => toSVG("element_group"); // used
-  String get svgGameThree => toSVG("game-3"); // used
-  String get svgQuestionTwo => toSVG("question-2"); // used
-  String get svgRefresh => toSVG("refresh"); // used
-  String get svgStarTwo => toSVG("star-2"); // used
-  String get svgWarning => toSVG("warning"); // used
-  String get svgTube => toSVG("tube"); // used
-  String get svgScienceTwo => toSVG("science_two"); // used
-  String get svgTestTube => toSVG("test_tube"); // used
-  String get svgGroup => toSVG("group"); // used
-  String get svgPeriod => toSVG("period"); // used
-  String get svgInfoTable => toSVG("info-table"); // used
-  String get svgBlock => toSVG("block"); // used
-  String get svgTrFlag => toSVG("turkey-flag"); // used
-  String get svgUsFlag => toSVG("us-flag"); // used
-  String get svgQuestion => toSVG("question-mark"); // used
+
+  // SVG Asset Paths
+  String get svgElementGroup => toSVG("element_group");
+  String get svgGameThree => toSVG("game-3");
+  String get svgQuestionTwo => toSVG("question-2");
+  String get svgRefresh => toSVG("refresh");
+  String get svgStarTwo => toSVG("star-2");
+  String get svgWarning => toSVG("warning");
+  String get svgTube => toSVG("tube");
+  String get svgScienceTwo => toSVG("science_two");
+  String get svgTestTube => toSVG("test_tube");
+  String get svgGroup => toSVG("group");
+  String get svgPeriod => toSVG("period");
+  String get svgInfoTable => toSVG("info-table");
+  String get svgBlock => toSVG("block");
+  String get svgTrFlag => toSVG("turkey-flag");
+  String get svgUsFlag => toSVG("us-flag");
+  String get svgQuestion => toSVG("question-mark");
+
   // Lottie
   String toLottie(String src) => "assets/lottie/$src.json";
-  String get lottieCorrect => toLottie("correct"); // used
-  String get lottieLoadingChemistry => toLottie("loading_chemistry"); // used
-  String get lottieWrong => toLottie("wrong"); // used
-  String get lottieConnection => toLottie("no-connection"); // used
+
+  // Lottie Animation Asset Paths
+  String get lottieCorrect => toLottie("correct");
+  String get lottieLoadingChemistry => toLottie("loading_chemistry");
+  String get lottieWrong => toLottie("wrong");
+  String get lottieConnection => toLottie("no-connection");
 
   // PNG
   String toPNG(String src) => "assets/img/$src.png";
+
+  // PNG Image Asset Paths
   String get pngHomeImage => toPNG("table-home-icon");
   String get pngAppIcon => toPNG("remove-bg-logo");
   String get pngStarLogo => toPNG("rate-logo-ic");

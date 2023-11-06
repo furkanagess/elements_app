@@ -2,12 +2,15 @@ import 'package:elements_app/feature/service/google_ads_service.dart';
 import 'package:flutter/material.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 
-// Admob kütüphanesi kullanılarak oluşturulan reklam komponentlerinin uygulamanın her yerinden çağırılmasına yarar.
-final class AdmobProvider with ChangeNotifier {
+/// The `AdmobProvider` class is responsible for managing interstitial ads using the
+/// AdMob service. It provides methods for creating and displaying interstitial ads
+/// in your Flutter application.
+class AdmobProvider with ChangeNotifier {
   final int maxFailedAttempt = 9999999;
   int intersititialLoadAttempts = 0;
   InterstitialAd? interstitialAd;
 
+  /// Creates and loads an interstitial ad.
   void createInterstitialAd() {
     InterstitialAd.load(
       adUnitId: GoogleAdsService.interstitialAdUnitId,
@@ -16,7 +19,7 @@ final class AdmobProvider with ChangeNotifier {
         onAdLoaded: (InterstitialAd ad) {
           interstitialAd = ad;
           intersititialLoadAttempts = 0;
-          notifyListeners(); // Veri değişikliklerini dinleyenlere bildir
+          notifyListeners(); // Notify listeners of data changes
         },
         onAdFailedToLoad: (LoadAdError error) {
           intersititialLoadAttempts += 1;
@@ -24,30 +27,32 @@ final class AdmobProvider with ChangeNotifier {
           if (intersititialLoadAttempts >= maxFailedAttempt) {
             createInterstitialAd();
           }
-          notifyListeners(); // Veri değişikliklerini dinleyenlere bildir
+          notifyListeners(); // Notify listeners of data changes
         },
       ),
     );
   }
 
+  /// Displays the loaded interstitial ad.
   void showInterstitialAd() {
     if (interstitialAd != null) {
       interstitialAd!.fullScreenContentCallback = FullScreenContentCallback(
         onAdDismissedFullScreenContent: (InterstitialAd ad) {
           ad.dispose();
           createInterstitialAd();
-          notifyListeners(); // Veri değişikliklerini dinleyenlere bildir
+          notifyListeners(); // Notify listeners of data changes
         },
         onAdFailedToShowFullScreenContent: (InterstitialAd ad, AdError error) {
           ad.dispose();
           createInterstitialAd();
-          notifyListeners(); // Veri değişikliklerini dinleyenlere bildir
+          notifyListeners(); // Notify listeners of data changes
         },
       );
       interstitialAd!.show();
     }
   }
 
+  /// Creates and shows an interstitial ad.
   void createAndShowInterstitialAd() {
     createInterstitialAd();
     showInterstitialAd();

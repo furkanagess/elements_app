@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 
+/// The `ApiTypes` class defines a set of constants for various API endpoints used in your Flutter application.
+/// These endpoints represent different types of elements, element information, and base API URLs.
 @immutable
 final class ApiTypes {
-  const ApiTypes._();
+  const ApiTypes._(); // Private constructor to prevent instantiation.
 
   // Base
   static const String baseUrl =

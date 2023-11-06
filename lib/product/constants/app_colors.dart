@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+/// The `AppColors` class defines a set of color constants for your Flutter application,
+/// providing a consistent color palette to maintain a cohesive visual style throughout the app.
 @immutable
 final class AppColors {
   const AppColors._();

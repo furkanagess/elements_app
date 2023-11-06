@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 final class TrAppStrings {
   const TrAppStrings._();
   //  Genel
-  static const String appName = 'Elements ~ Öğren & Çöz';
+  static const String appName = 'Elementler ~ Öğren & Çöz';
   static const String errorMsg = 'Bir hata meydana geldi';
   static const String space = '';
   // Tüm Elementler
