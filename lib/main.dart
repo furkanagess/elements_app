@@ -1,5 +1,5 @@
 import 'package:elements_app/feature/initialize/app_initializer.dart';
-import 'package:elements_app/feature/provider/application_provider.dart';
+import 'package:elements_app/feature/initialize/application_provider.dart';
 import 'package:elements_app/feature/view/home/home_view.dart';
 import 'package:elements_app/product/constants/stringConstants/en_app_strings.dart';
 import 'package:elements_app/product/theme/app_theme.dart';
