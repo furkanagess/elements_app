@@ -30,7 +30,7 @@ class ElementGroupView extends StatelessWidget {
             child: Column(
               children: [
                 spacer(context, 0.05),
-                metalAndNonmetalRow(context, isTr),
+                metalAndNonmetalRow(context, isTr, admobProvider),
                 spacer(context, 0.05),
                 metalloidAndUnknownRow(context, isTr, admobProvider),
                 spacer(context, 0.05),
@@ -75,21 +75,24 @@ class ElementGroupView extends StatelessWidget {
     );
   }
 
-  Row metalAndNonmetalRow(BuildContext context, bool isTr) {
+  Row metalAndNonmetalRow(
+      BuildContext context, bool isTr, AdmobProvider admobProvider) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
-        metalGroupContainer(context, isTr),
+        metalGroupContainer(context, isTr, admobProvider),
         nonmetalGroupContainer(context, isTr),
       ],
     );
   }
 
-  ElementGroupContainer metalGroupContainer(BuildContext context, bool isTr) {
+  ElementGroupContainer metalGroupContainer(
+      BuildContext context, bool isTr, AdmobProvider admobProvider) {
     return ElementGroupContainer(
       color: AppColors.purple,
       shadowColor: AppColors.shPurple,
       onTap: () {
+        admobProvider.createAndShowInterstitialAd();
         Navigator.push(
           context,
           MaterialPageRoute(
