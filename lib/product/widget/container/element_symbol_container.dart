@@ -20,13 +20,6 @@ class ElementSymbolContainer extends StatelessWidget {
       height: context.dynamicHeight(0.15),
       width: context.dynamicWidth(0.30),
       decoration: BoxDecoration(
-        // boxShadow: [
-        //   BoxShadow(
-        //     color: shadowColor!,
-        //     offset: const Offset(4, 4),
-        //     spreadRadius: 1,
-        //   ),
-        // ],
         borderRadius: BorderRadius.circular(10),
         color: color,
       ),

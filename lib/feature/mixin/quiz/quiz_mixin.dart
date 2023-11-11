@@ -107,6 +107,7 @@ mixin QuizMixin on State<QuizView> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
+          actionsPadding: EdgeInsets.zero,
           backgroundColor: selectedOption == correctAnswer
               ? AppColors.glowGreen
               : AppColors.powderRed,
@@ -122,11 +123,10 @@ mixin QuizMixin on State<QuizView> {
                 children: [
                   selectedOption == correctAnswer
                       ? Container(
-                          width: context.dynamicWidth(0.7),
-                          height: context.dynamicHeight(0.075),
+                          width: context.width,
+                          height: context.dynamicHeight(0.06),
                           decoration: BoxDecoration(
-                            color: AppColors.skinColor,
-                            borderRadius: BorderRadius.circular(10),
+                            color: Color.fromARGB(149, 255, 255, 255),
                           ),
                           child: Center(
                             child: Text(
@@ -190,6 +190,9 @@ mixin QuizMixin on State<QuizView> {
                       ),
                     ),
                   ),
+                  SizedBox(
+                    height: context.dynamicHeight(0.04),
+                  )
                 ],
               ),
             )
