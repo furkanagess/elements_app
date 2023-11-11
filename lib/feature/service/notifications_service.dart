@@ -9,6 +9,7 @@ class NotificationService {
   /// Initializes notifications and requests permission from the user.
   Future<void> initNotifications() async {
     await _firebaseMessaging.requestPermission();
+
     FirebaseMessaging.onBackgroundMessage(handleBackgroundMessage);
   }
 }

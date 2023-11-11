@@ -1,3 +1,4 @@
+import 'package:elements_app/feature/service/notifications_service.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
@@ -32,7 +33,7 @@ class AppInitializer {
 
       // Start Firebase.
       await Firebase.initializeApp();
-
+      await NotificationService().initNotifications();
       // Initialize Google Mobile Ads.
       MobileAds.instance.initialize();
 
