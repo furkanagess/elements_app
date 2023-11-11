@@ -1,4 +1,4 @@
-package com.example.elements_app
+package com.furkanages.elements
 
 import io.flutter.embedding.android.FlutterActivity
 

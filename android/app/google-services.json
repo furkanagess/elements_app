@@ -1,21 +1,21 @@
 {
   "project_info": {
-    "project_number": "252143383816",
-    "project_id": "elements-app-459aa",
-    "storage_bucket": "elements-app-459aa.appspot.com"
+    "project_number": "825025547715",
+    "project_id": "elements-bbe3f",
+    "storage_bucket": "elements-bbe3f.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:252143383816:android:48f3a090a29e3598dca8bd",
+        "mobilesdk_app_id": "1:825025547715:android:3d25fd0293c57b3a854176",
         "android_client_info": {
-          "package_name": "com.example.elements_app"
+          "package_name": "com.furkanages.elements"
         }
       },
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyCwmCDtTz5Z9Q200i3mcU-HvOobu7SpNuU"
+          "current_key": "AIzaSyDFD5e5Bhwzuz92M0yT1lvhMIaKfyiqDko"
         }
       ],
       "services": {
