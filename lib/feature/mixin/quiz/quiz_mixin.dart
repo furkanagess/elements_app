@@ -125,7 +125,7 @@ mixin QuizMixin on State<QuizView> {
                       ? Container(
                           width: context.width,
                           height: context.dynamicHeight(0.06),
-                          decoration: BoxDecoration(
+                          decoration: const BoxDecoration(
                             color: Color.fromARGB(149, 255, 255, 255),
                           ),
                           child: Center(
