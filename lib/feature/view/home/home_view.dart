@@ -344,7 +344,7 @@ class _HomeViewState extends State<StatefulWidget> {
                   Navigator.pop(context);
                   LaunchReview.launch(
                     // FIX ME
-                    androidAppId: "com.rockstargames.gtasa",
+                    androidAppId: "com.furkanages.elements",
                   );
                 },
                 title: isTr ? TrAppStrings.rateTitle : EnAppStrings.rateTitle,
