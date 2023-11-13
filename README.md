@@ -86,7 +86,7 @@
 
 ---
 
-Privacy Policy
+# Privacy Policy
 
 https://github.com/furkanagess/privacy-policy/blob/main/elements-app-privacy-policy.md
   
