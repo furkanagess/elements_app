@@ -84,7 +84,10 @@
 ### App Provider
 ![appProvider](https://github.com/furkanagess/elements_app/assets/92018394/8b25e137-62ad-4501-94bc-5b6666e50229)
 
+---
 
+Privacy Policy
 
+https://github.com/furkanagess/privacy-policy/blob/main/elements-app-privacy-policy.md
   
 
