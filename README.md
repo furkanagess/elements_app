@@ -28,6 +28,13 @@
 - flutter_native_splash => https://pub.dev/packages/flutter_native_splash
 - firebase_core => https://pub.dev/packages/firebase_core
 
+----
+
+<a href="https://play.google.com/store/apps/details?id=com.furkanages.elements">
+<img src="screenshots/play-store-logo.png"  width=500 height=200>
+</a>
+
+----
   
 ## Application Screenshots
 
