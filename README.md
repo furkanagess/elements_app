@@ -9,7 +9,39 @@
 </a>
 
 ----
-  
+
+  ## Application Screenshots
+
+<table>
+  <tr>
+    <td>Home Page</td>
+        <td>All Elements Page</td>
+     <td>Element Detail Page</td> 
+          <td>Element Group Page</td> 
+
+  </tr>  
+  <tr>
+    <td><img src="screenshots/Home.png"  width=220 height=400></td>
+         <td><img src="screenshots/all-elements.png"  width=220 height=400></td>
+         <td><img src="screenshots/element-detail.png" width=220 height=400></td>
+ <td><img src="screenshots/element-group.png" width=220 height=400></td>
+  </tr>
+</table>
+<table>
+  <tr>
+    <td>Element Types Page</td> 
+    <td>Element Group Page</td> 
+      <td>What Is Detail Page</td> 
+      <td>Quiz Page</td>
+  </tr>  
+  <tr>
+   <td><img src="screenshots/element-types.png"  width=220 height=400></td>
+        <td><img src="screenshots/element-group.png"  width=220 height=400></td>
+            <td><img src="screenshots/Description.png" width=220 height=400></td>
+        <td><img src="screenshots/Quiz.png" width=220 height=400></td>
+  </tr> 
+</table>
+
 
 
 ## Features
@@ -39,52 +71,7 @@
 - firebase_core => https://pub.dev/packages/firebase_core
 
 
-## Application Screenshots
 
-<table>
-  <tr>
-    <td>Home Page</td>
-       <td>What Is Page</td>
-    <td>All Elements Page</td>
-     <td>Element Detail Page</td> 
-     
-
-  </tr>  
-  <tr>
-    <td><img src="screenshots/home.jpg"  width=200 height=400></td>
-      <td><img src="screenshots/what-is.jpg"  width=200 height=400></td>
-     <td><img src="screenshots/all-elements.jpg"  width=200 height=400></td>
-         <td><img src="screenshots/element-detail.jpg" width=200 height=400></td>
-
-  </tr>
-</table>
-<table>
-  <tr>
-    <td>Element Types Page</td> 
-       <td>Quiz Page</td>
-    <td>Element Group Page</td> 
-        <td>What Is Detail Page</td> 
-  </tr>  
-  <tr>
-   <td><img src="screenshots/element-types.jpg"  width=200 height=400></td>
-    <td><img src="screenshots/quiz.jpg" width=200 height=400></td>
-        <td><img src="screenshots/element-group.jpg"  width=200 height=400></td>
-            <td><img src="screenshots/what-is-detail.jpg" width=200 height=400></td>
-  </tr> 
-<table>
-  <tr>
-     <td>Loading</td> 
-  <td>No Connection</td> 
- <td>Help</td> 
-    <td>Rate</td> 
-  </tr>  
-  <tr>
-           <td><img src="screenshots/loading.jpg"  width=200 height=400></td>
-     <td><img src="screenshots/no-connection.jpg" width=200 height=400></td>
-       <td><img src="screenshots/info.jpg" width=200 height=400></td>
-     <td><img src="screenshots/rate.jpg" width=200 height=400></td>
-  </tr>
-  </table>
 
 ## Coding Features
 ### App Initializer
