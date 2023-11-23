@@ -21,10 +21,10 @@
 
   </tr>  
   <tr>
-    <td><img src="screenshots/Home.png"  width=220 height=400></td>
-         <td><img src="screenshots/all-elements.png"  width=220 height=400></td>
-         <td><img src="screenshots/element-detail.png" width=220 height=400></td>
- <td><img src="screenshots/element-group.png" width=220 height=400></td>
+    <td><img src="screenshots/Home.png"  width=250 height=400></td>
+         <td><img src="screenshots/all-elements.png"  width=250 height=400></td>
+         <td><img src="screenshots/element-detail.png" width=250 height=400></td>
+ <td><img src="screenshots/element-group.png" width=250 height=400></td>
   </tr>
 </table>
 <table>
@@ -35,10 +35,10 @@
       <td>Quiz Page</td>
   </tr>  
   <tr>
-   <td><img src="screenshots/element-types.png"  width=220 height=400></td>
-        <td><img src="screenshots/element-group.png"  width=220 height=400></td>
-            <td><img src="screenshots/Description.png" width=220 height=400></td>
-        <td><img src="screenshots/Quiz.png" width=220 height=400></td>
+   <td><img src="screenshots/element-types.png"  width=250 height=400></td>
+        <td><img src="screenshots/element-group.png"  width=250 height=400></td>
+            <td><img src="screenshots/Description.png" width=250 height=400></td>
+        <td><img src="screenshots/Quiz.png" width=250 height=400></td>
   </tr> 
 </table>
 
