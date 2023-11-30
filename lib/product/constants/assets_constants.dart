@@ -42,6 +42,7 @@ final class AssetConstants {
   String get lottieLoadingChemistry => toLottie("loading_chemistry");
   String get lottieWrong => toLottie("wrong");
   String get lottieConnection => toLottie("no-connection");
+  String get lottieSearch => toLottie("search");
 
   // PNG
   String toPNG(String src) => "assets/img/$src.png";

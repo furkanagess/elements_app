@@ -1,9 +1,9 @@
 import 'package:elements_app/feature/provider/admob_provider.dart';
 import 'package:elements_app/feature/provider/localization_provider.dart';
-import 'package:elements_app/feature/view/elementsList/elements_list_view.dart';
 import 'package:elements_app/feature/view/groups/element_group_view.dart';
 import 'package:elements_app/feature/view/info/info_view.dart';
 import 'package:elements_app/feature/view/quiz/quiz_view.dart';
+import 'package:elements_app/feature/view/search/search_view.dart';
 import 'package:elements_app/product/constants/api_types.dart';
 import 'package:elements_app/product/constants/app_colors.dart';
 import 'package:elements_app/product/constants/stringConstants/en_app_strings.dart';
@@ -196,10 +196,7 @@ class _HomeViewState extends State<StatefulWidget> {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => ElementsListView(
-              apiType: ApiTypes.allElements,
-              title: isTr ? TrAppStrings.allElements : EnAppStrings.allElements,
-            ),
+            builder: (context) => const SearchView(),
           ),
         );
       },
