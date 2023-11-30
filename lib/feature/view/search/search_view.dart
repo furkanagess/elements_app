@@ -92,7 +92,10 @@ class _SearchViewState extends State<SearchView> {
                     filterElements(value, isTr);
                   },
                   decoration: InputDecoration(
+<<<<<<< HEAD
                     suffixIcon: const Icon(Icons.search),
+=======
+>>>>>>> c7558d7aa1a37bc039723cc50a054f2c868ec473
                     labelText: isTr
                         ? TrAppStrings.searchLabel
                         : EnAppStrings.searchLabel,

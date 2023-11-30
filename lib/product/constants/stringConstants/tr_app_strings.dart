@@ -57,7 +57,11 @@ final class TrAppStrings {
   static const String connectionError =
       'Lütfen internet bağlantınızı kontrol ediniz.';
   // Search
+<<<<<<< HEAD
   static const String searchLabel = 'Element adı veya numarası girin...';
+=======
+  static const String searchLabel = 'Element adı ve numarası girin...';
+>>>>>>> c7558d7aa1a37bc039723cc50a054f2c868ec473
   static const String searchResult = 'Sonuç Bulunamadı...';
 
   // Rate
