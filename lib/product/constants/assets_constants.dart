@@ -45,6 +45,7 @@ final class AssetConstants {
   String get lottieBrokenHeart => toLottie("broken-heart");
   String get lottieBroken => toLottie("broken");
   String get lottieNewHeart => toLottie("new-heart");
+  String get lottieSearch => toLottie("search");
   // PNG
   String toPNG(String src) => "assets/img/$src.png";
 

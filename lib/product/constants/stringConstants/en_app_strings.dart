@@ -65,6 +65,10 @@ final class EnAppStrings {
   static const String connectionError =
       'Please check your internet connection!';
 
+  // Search
+  static const String searchLabel = 'Search by element name or number...';
+  static const String searchResult = 'No Result...';
+
   // Rate
   static const String rateTitle = "Rate This App";
   static const String rateDescription =
