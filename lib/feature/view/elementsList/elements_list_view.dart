@@ -1,6 +1,6 @@
 import 'package:elements_app/feature/model/periodic_element.dart';
 import 'package:elements_app/feature/mixin/elementList/elements_list_view_mixin.dart';
-import 'package:elements_app/feature/view/quiz/quiz_view.dart';
+import 'package:elements_app/feature/view/quiz/symbol/quiz_symbol_view.dart';
 import 'package:elements_app/product/constants/app_colors.dart';
 import 'package:elements_app/product/constants/assets_constants.dart';
 import 'package:elements_app/product/extensions/context_extensions.dart';
@@ -86,7 +86,7 @@ class _ElementsListViewState extends State<ElementsListView>
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => QuizView(
+            builder: (context) => QuizSymbolView(
               apiType: widget.apiType,
               title: widget.title,
             ),

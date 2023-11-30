@@ -27,7 +27,7 @@ dependencies:
   animated_button: ^0.2.0
   like_button: ^2.0.5
   neon_widgets: ^2.0.0
-  
+  percent_indicator: ^4.2.3  
   # Network 
   connectivity_plus: ^5.0.1
 

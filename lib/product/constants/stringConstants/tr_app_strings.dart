@@ -43,7 +43,7 @@ final class TrAppStrings {
 
   // Anasayfa
   static const String what = 'Nedir';
-  static const String quiz = 'Test';
+  static const String quiz = 'Testler';
   static const String groups = 'Gruplar';
 
   // Quiz
@@ -73,4 +73,13 @@ final class TrAppStrings {
       "Grup sayfasına giderek gruplarına göre elementlerin listesine erişebilirsin.";
   static const String help5 =
       "Elementlerin listendiği sayfaların altında bulunan butona tıklayarak o elementlerin quiz'ini çözebilirsin.";
+
+  // Quiz Home
+  static const String quizes = 'Testler';
+  static const String symbolQuiz = 'Sembol Testi';
+  static const String easy = 'Kolay';
+  static const String groupQuiz = 'Grup Testi';
+  static const String medium = 'Orta';
+  static const String numberQuiz = 'Numara Testi';
+  static const String hard = 'Zor';
 }

@@ -1,24 +1,27 @@
 import 'dart:convert';
 import 'dart:math';
-import 'package:elements_app/feature/view/quiz/quiz_view.dart';
+import 'package:elements_app/feature/view/quiz/group/quiz_group_view.dart';
+import 'package:elements_app/feature/view/quiz/quiz_home.dart';
 import 'package:elements_app/product/constants/app_colors.dart';
 import 'package:elements_app/product/constants/assets_constants.dart';
 import 'package:elements_app/product/constants/stringConstants/tr_app_strings.dart';
 import 'package:elements_app/product/extensions/context_extensions.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:http/http.dart' as http;
 import 'package:elements_app/feature/model/periodic_element.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 
-mixin QuizMixin on State<QuizView> {
+mixin QuizGroupMixin on State<QuizGroupView> {
   List<PeriodicElement> elements = []; // Element list
   String correctAnswer = ''; // correct answer
   List<String> options = []; // options
-  String questionSymbol = ''; // question element symbol
+  String questionNumber = ''; // question element symbol
   bool isCorrectAnswerSelected = false; // handle with correct answer
   int correctCount = 0; // correct answer count
-  int wrongCount = 0; // wrong answer count
+  int wrongCount = 3; // wrong answer count
   bool isLoading = true; // check circuless progress bar
+  int retryCount = 3;
   @override
   void initState() {
     isLoading = true;
@@ -32,21 +35,26 @@ mixin QuizMixin on State<QuizView> {
     askQuestion();
   }
 
+  void askAndRetry() {
+    askQuestion();
+    retryCount--;
+  }
+
   Future<void> fetchElements() async {
     final response = await http.get(Uri.parse(widget.apiType));
     if (response.statusCode == 200) {
       List<dynamic> data = jsonDecode(response.body);
       for (var elementData in data) {
         PeriodicElement element = PeriodicElement(
-          symbol: elementData['symbol'],
-          enName: elementData['enName'],
+          trCategory: elementData['trCategory'],
+          trName: elementData['trName'],
         );
         elements.add(element);
       }
       // get random element
       Random random = Random();
       PeriodicElement randomElement = elements[random.nextInt(elements.length)];
-      correctAnswer = randomElement.enName.toString();
+      correctAnswer = randomElement.trName.toString();
 
       // build options
       options = [correctAnswer]; // add correct answer to options
@@ -54,8 +62,8 @@ mixin QuizMixin on State<QuizView> {
       while (options.length < 4) {
         PeriodicElement randomOption =
             elements[random.nextInt(elements.length)];
-        if (!options.contains(randomOption.enName)) {
-          options.add(randomOption.enName.toString());
+        if (!options.contains(randomOption.trName)) {
+          options.add(randomOption.trName.toString());
         }
       }
 
@@ -80,8 +88,8 @@ mixin QuizMixin on State<QuizView> {
     setState(() {
       elements.shuffle();
       PeriodicElement newElement = elements.first;
-      questionSymbol = newElement.symbol.toString();
-      correctAnswer = newElement.enName.toString();
+      questionNumber = newElement.trName.toString();
+      correctAnswer = newElement.trCategory.toString();
 
       options.clear();
       options.add(correctAnswer);
@@ -89,8 +97,8 @@ mixin QuizMixin on State<QuizView> {
       while (options.length < 4) {
         PeriodicElement randomOption =
             elements[Random().nextInt(elements.length)];
-        if (!options.contains(randomOption.enName)) {
-          options.add(randomOption.enName.toString());
+        if (!options.contains(randomOption.trCategory)) {
+          options.add(randomOption.trCategory.toString());
         }
       }
 
@@ -114,7 +122,9 @@ mixin QuizMixin on State<QuizView> {
           title: Lottie.asset(
               selectedOption == correctAnswer
                   ? AssetConstants.instance.lottieCorrect
-                  : AssetConstants.instance.lottieWrong,
+                  : wrongCount == 1
+                      ? AssetConstants.instance.lottieNewHeart
+                      : AssetConstants.instance.lottieWrong,
               repeat: true,
               height: context.dynamicHeight(0.3)),
           actions: <Widget>[
@@ -122,7 +132,57 @@ mixin QuizMixin on State<QuizView> {
               child: Column(
                 children: [
                   selectedOption == correctAnswer
-                      ? Container(
+                      ? Column(
+                          children: [
+                            Container(
+                              width: context.width,
+                              height: context.dynamicHeight(0.06),
+                              decoration: const BoxDecoration(
+                                color: Color.fromARGB(149, 255, 255, 255),
+                              ),
+                              child: Center(
+                                child: Text(
+                                  selectedOption == correctAnswer
+                                      ? questionNumber
+                                      : TrAppStrings.space,
+                                  style:
+                                      context.textTheme.headlineSmall?.copyWith(
+                                    color: AppColors.background,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                              ),
+                            ),
+                            SvgPicture.asset(
+                              AssetConstants.instance.svgEqual,
+                              height: context.dynamicHeight(0.05),
+                              colorFilter: const ColorFilter.mode(
+                                AppColors.background,
+                                BlendMode.srcIn,
+                              ),
+                            ),
+                            Container(
+                              width: context.width,
+                              height: context.dynamicHeight(0.06),
+                              decoration: const BoxDecoration(
+                                color: Color.fromARGB(149, 255, 255, 255),
+                              ),
+                              child: Center(
+                                child: Text(
+                                  selectedOption == correctAnswer
+                                      ? correctAnswer
+                                      : TrAppStrings.space,
+                                  style:
+                                      context.textTheme.headlineSmall?.copyWith(
+                                    color: AppColors.background,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
+                        )
+                      : Container(
                           width: context.width,
                           height: context.dynamicHeight(0.06),
                           decoration: const BoxDecoration(
@@ -130,33 +190,39 @@ mixin QuizMixin on State<QuizView> {
                           ),
                           child: Center(
                             child: Text(
-                              selectedOption == correctAnswer
-                                  ? "$correctAnswer = $questionSymbol"
-                                  : TrAppStrings.space,
+                              wrongCount == 1
+                                  ? "Kaybettin !"
+                                  : "${wrongCount - 1} ❤ Kaldı!",
                               style: context.textTheme.headlineSmall?.copyWith(
                                 color: AppColors.background,
                                 fontWeight: FontWeight.bold,
                               ),
                             ),
                           ),
-                        )
-                      : const SizedBox.shrink(),
+                        ),
                   SizedBox(
                     height: context.dynamicHeight(0.05),
                   ),
                   InkWell(
                     onTap: () {
-                      Navigator.of(context).pop(); // close popup
                       setState(
                         () {
                           if (selectedOption == correctAnswer) {
                             correctCount++;
                             askQuestion(); // ask new question
                           } else {
-                            wrongCount++;
+                            wrongCount--;
                           }
                         },
                       );
+                      if (wrongCount <= 0) {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const QuizHomeView()));
+                      } else {
+                        Navigator.of(context).pop(); // close popup
+                      }
                     },
                     child: Padding(
                       padding: context.paddingLow,
@@ -177,8 +243,10 @@ mixin QuizMixin on State<QuizView> {
                         child: Center(
                           child: Text(
                             selectedOption == correctAnswer
-                                ? "Next Question"
-                                : "Back to Question",
+                                ? "Sıradaki Soru"
+                                : wrongCount == 1
+                                    ? "Tekrar Dene"
+                                    : "Soruya Dön",
                             style: context.textTheme.bodyLarge?.copyWith(
                               color: selectedOption == correctAnswer
                                   ? AppColors.white
@@ -207,7 +275,7 @@ mixin QuizMixin on State<QuizView> {
       // Move into new example =>
       elements.shuffle(); // Shuffle elements
       PeriodicElement newElement = elements.first; // pick a new element
-      correctAnswer = newElement.enName.toString();
+      correctAnswer = newElement.trName.toString();
 
       // update şık options
       options.clear();
@@ -216,8 +284,8 @@ mixin QuizMixin on State<QuizView> {
       while (options.length < 4) {
         PeriodicElement randomOption =
             elements[Random().nextInt(elements.length)];
-        if (!options.contains(randomOption.enName)) {
-          options.add(randomOption.enName.toString());
+        if (!options.contains(randomOption.trName)) {
+          options.add(randomOption.trName.toString());
         }
       }
 

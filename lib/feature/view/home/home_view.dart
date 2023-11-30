@@ -3,7 +3,7 @@ import 'package:elements_app/feature/provider/localization_provider.dart';
 import 'package:elements_app/feature/view/elementsList/elements_list_view.dart';
 import 'package:elements_app/feature/view/groups/element_group_view.dart';
 import 'package:elements_app/feature/view/info/info_view.dart';
-import 'package:elements_app/feature/view/quiz/quiz_view.dart';
+import 'package:elements_app/feature/view/quiz/quiz_home.dart';
 import 'package:elements_app/product/constants/api_types.dart';
 import 'package:elements_app/product/constants/app_colors.dart';
 import 'package:elements_app/product/constants/stringConstants/en_app_strings.dart';
@@ -141,14 +141,10 @@ class _HomeViewState extends State<StatefulWidget> {
   ) {
     return HomeContainer(
       onTap: () {
-        admobProvider.createAndShowInterstitialAd();
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => QuizView(
-              apiType: ApiTypes.allElements,
-              title: isTr ? TrAppStrings.allElements : EnAppStrings.allElements,
-            ),
+            builder: (context) => const QuizHomeView(),
           ),
         );
       },

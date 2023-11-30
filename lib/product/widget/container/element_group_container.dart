@@ -41,7 +41,6 @@ class ElementGroupContainer extends StatelessWidget {
               textAlign: TextAlign.center,
               title!,
               style: context.textTheme.headlineSmall?.copyWith(
-                fontWeight: FontWeight.bold,
                 color: AppColors.background,
               ),
             ),
