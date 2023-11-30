@@ -33,7 +33,7 @@ final class AssetConstants {
   String get svgTrFlag => toSVG("turkey-flag");
   String get svgUsFlag => toSVG("us-flag");
   String get svgQuestion => toSVG("question-mark");
-
+  String get svgEqual => toSVG("equal");
   // Lottie
   String toLottie(String src) => "assets/lottie/$src.json";
 
@@ -42,7 +42,9 @@ final class AssetConstants {
   String get lottieLoadingChemistry => toLottie("loading_chemistry");
   String get lottieWrong => toLottie("wrong");
   String get lottieConnection => toLottie("no-connection");
-
+  String get lottieBrokenHeart => toLottie("broken-heart");
+  String get lottieBroken => toLottie("broken");
+  String get lottieNewHeart => toLottie("new-heart");
   // PNG
   String toPNG(String src) => "assets/img/$src.png";
 
