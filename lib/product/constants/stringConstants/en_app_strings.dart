@@ -46,7 +46,7 @@ final class EnAppStrings {
 
   // Home
   static const String what = 'What Is';
-  static const String quiz = 'Quiz';
+  static const String quiz = 'Quizes';
   static const String groups = 'Groups';
 
   // BottomSheet
@@ -81,4 +81,13 @@ final class EnAppStrings {
       "You can access the list of elements by group by going to the group page.";
   static const String help5 =
       "You can solve the quiz of those elements by clicking the button at the bottom of the pages where the elements are listed.";
+
+  // Quiz Home
+  static const String quizes = 'Quizes';
+  static const String symbolQuiz = 'Symbol Quiz';
+  static const String easy = 'Easy';
+  static const String groupQuiz = 'Group Quiz';
+  static const String medium = 'Medium';
+  static const String numberQuiz = 'Number Quiz';
+  static const String hard = 'Hard';
 }
