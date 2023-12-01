@@ -216,10 +216,12 @@ mixin QuizGroupMixin on State<QuizGroupView> {
                         },
                       );
                       if (wrongCount <= 0) {
-                        Navigator.push(
+                        Navigator.pushAndRemoveUntil(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => const QuizHomeView()));
+                              builder: (context) => const QuizHomeView(),
+                            ),
+                            (route) => false);
                       } else {
                         Navigator.of(context).pop(); // close popup
                       }
@@ -230,23 +232,16 @@ mixin QuizGroupMixin on State<QuizGroupView> {
                         width: context.dynamicWidth(0.4),
                         height: context.dynamicHeight(0.05),
                         decoration: BoxDecoration(
-                          boxShadow: const [
-                            BoxShadow(
-                              color: AppColors.background,
-                              offset: Offset(2, 2),
-                              spreadRadius: 1,
-                            )
-                          ],
                           borderRadius: BorderRadius.circular(10),
                           color: AppColors.background,
                         ),
                         child: Center(
                           child: Text(
                             selectedOption == correctAnswer
-                                ? "Sıradaki Soru"
+                                ? "Sıradaki soru"
                                 : wrongCount == 1
-                                    ? "Tekrar Dene"
-                                    : "Soruya Dön",
+                                    ? "Tekrar dene"
+                                    : "Soruya dön",
                             style: context.textTheme.bodyLarge?.copyWith(
                               color: selectedOption == correctAnswer
                                   ? AppColors.white
