@@ -60,7 +60,7 @@ final class TrAppStrings {
 
   static const String searchLabel = 'Element adı veya numarası girin...';
 
-  static const String searchResult = 'Sonuç Bulunamadı...';
+  static const String searchResult = 'Sonuç bulunamadı...';
 
   // Rate
   static const String rateTitle = "Uygulamayı Değerlendirin";
