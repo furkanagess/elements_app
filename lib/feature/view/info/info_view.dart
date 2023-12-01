@@ -82,16 +82,17 @@ class _InfoViewState extends State<InfoView> with InfoViewMixin {
     return InkWell(
       onTap: () {
         admobProvider.createAndShowInterstitialAd();
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) => ElementTypeView(
-              apiType: ApiTypes.elementTypes,
-              title:
-                  isTr ? TrAppStrings.elementTypes : EnAppStrings.elementTypes,
+        Navigator.pushAndRemoveUntil(
+            context,
+            MaterialPageRoute(
+              builder: (context) => ElementTypeView(
+                apiType: ApiTypes.elementTypes,
+                title: isTr
+                    ? TrAppStrings.elementTypes
+                    : EnAppStrings.elementTypes,
+              ),
             ),
-          ),
-        );
+            (route) => false);
       },
       child: Padding(
         padding: context.paddingNormal,

@@ -84,7 +84,7 @@ class _QuizNumberViewState extends State<QuizNumberView> with QuizNumberMixin {
           },
           icon: const Icon(Icons.arrow_back)),
       title: const Text(
-        "Atom Numara Testi",
+        "Element Numara Testi",
       ),
     );
   }

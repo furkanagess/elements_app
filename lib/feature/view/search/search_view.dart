@@ -11,6 +11,7 @@ import 'package:elements_app/product/constants/stringConstants/tr_app_strings.da
 import 'package:elements_app/product/extensions/context_extensions.dart';
 import 'package:elements_app/product/widget/container/element_container.dart';
 import 'package:elements_app/product/widget/loadingBar/loading_bar.dart';
+import 'package:elements_app/product/widget/scaffold/app_scaffold.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:lottie/lottie.dart';
@@ -79,77 +80,79 @@ class _SearchViewState extends State<SearchView> {
   @override
   Widget build(BuildContext context) {
     final bool isTr = Provider.of<LocalizationProvider>(context).isTr;
-    return Scaffold(
-        floatingActionButton: quizFabButton(context),
-        body: NestedScrollView(
-          floatHeaderSlivers: true,
-          headerSliverBuilder: (context, innerBoxIsScrolled) {
-            return [
-              SliverAppBar(
-                title: TextField(
-                  controller: searchController,
-                  onChanged: (value) {
-                    filterElements(value, isTr);
-                  },
-                  decoration: InputDecoration(
-                    suffixIcon: const Icon(Icons.search),
-                    labelText: isTr
-                        ? TrAppStrings.searchLabel
-                        : EnAppStrings.searchLabel,
+    return AppScaffold(
+      child: Scaffold(
+          floatingActionButton: quizFabButton(context),
+          body: NestedScrollView(
+            floatHeaderSlivers: true,
+            headerSliverBuilder: (context, innerBoxIsScrolled) {
+              return [
+                SliverAppBar(
+                  title: TextField(
+                    controller: searchController,
+                    onChanged: (value) {
+                      filterElements(value, isTr);
+                    },
+                    decoration: InputDecoration(
+                      suffixIcon: const Icon(Icons.search),
+                      labelText: isTr
+                          ? TrAppStrings.searchLabel
+                          : EnAppStrings.searchLabel,
+                    ),
                   ),
                 ),
-              ),
-            ];
-          },
-          body: isLoading
-              ? const LoadingBar()
-              : Column(
-                  children: [
-                    Expanded(
-                      child: FutureBuilder(
-                        future: loadElements(),
-                        builder: (context, snapshot) {
-                          if (snapshot.connectionState ==
-                              ConnectionState.waiting) {
-                            return const Center(
-                              child: LoadingBar(),
-                            );
-                          } else if (filteredElements.isEmpty) {
-                            return Center(
-                                child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                LottieBuilder.asset(
-                                  AssetConstants.instance.lottieSearch,
-                                  height: context.dynamicHeight(0.2),
-                                ),
-                                SizedBox(
-                                  height: context.dynamicHeight(0.02),
-                                ),
-                                Text(
-                                  isTr
-                                      ? TrAppStrings.searchResult
-                                      : EnAppStrings.searchResult,
-                                  style: context.textTheme.headlineSmall,
-                                )
-                              ],
-                            ));
-                          } else {
-                            return ListView.builder(
-                              itemCount: filteredElements.length,
-                              itemBuilder: (context, index) {
-                                return ElementContainer(
-                                  element: filteredElements[index],
-                                );
-                              },
-                            );
-                          }
-                        },
+              ];
+            },
+            body: isLoading
+                ? const LoadingBar()
+                : Column(
+                    children: [
+                      Expanded(
+                        child: FutureBuilder(
+                          future: loadElements(),
+                          builder: (context, snapshot) {
+                            if (snapshot.connectionState ==
+                                ConnectionState.waiting) {
+                              return const Center(
+                                child: LoadingBar(),
+                              );
+                            } else if (filteredElements.isEmpty) {
+                              return Center(
+                                  child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  LottieBuilder.asset(
+                                    AssetConstants.instance.lottieSearch,
+                                    height: context.dynamicHeight(0.2),
+                                  ),
+                                  SizedBox(
+                                    height: context.dynamicHeight(0.02),
+                                  ),
+                                  Text(
+                                    isTr
+                                        ? TrAppStrings.searchResult
+                                        : EnAppStrings.searchResult,
+                                    style: context.textTheme.headlineSmall,
+                                  )
+                                ],
+                              ));
+                            } else {
+                              return ListView.builder(
+                                itemCount: filteredElements.length,
+                                itemBuilder: (context, index) {
+                                  return ElementContainer(
+                                    element: filteredElements[index],
+                                  );
+                                },
+                              );
+                            }
+                          },
+                        ),
                       ),
-                    ),
-                  ],
-                ),
-        ));
+                    ],
+                  ),
+          )),
+    );
   }
 
   FloatingActionButton quizFabButton(BuildContext context) {
