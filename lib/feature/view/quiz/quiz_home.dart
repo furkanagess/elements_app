@@ -1,4 +1,3 @@
-import 'package:elements_app/feature/provider/admob_provider.dart';
 import 'package:elements_app/feature/provider/localization_provider.dart';
 import 'package:elements_app/feature/view/home/home_view.dart';
 import 'package:elements_app/feature/view/quiz/group/quiz_group_view.dart';
@@ -22,12 +21,9 @@ class QuizHomeView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final admobProvider = Provider.of<AdmobProvider>(context);
-    final bool isTr = Provider.of<LocalizationProvider>(context).isTr;
-
     return AppScaffold(
       child: Scaffold(
-        appBar: quizHomeAppbar(admobProvider, context, isTr),
+        appBar: quizHomeAppbar(context),
         body: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -94,8 +90,7 @@ class QuizHomeView extends StatelessWidget {
     );
   }
 
-  AppBar quizHomeAppbar(
-      AdmobProvider admobProvider, BuildContext context, bool isTr) {
+  AppBar quizHomeAppbar(BuildContext context) {
     return AppBar(
       leading: IconButton(
         onPressed: () async {
@@ -109,7 +104,9 @@ class QuizHomeView extends StatelessWidget {
           Icons.arrow_back,
         ),
       ),
-      title: Text(isTr ? TrAppStrings.quizes : EnAppStrings.quizes),
+      title: Text(context.read<LocalizationProvider>().isTr
+          ? TrAppStrings.quizes
+          : EnAppStrings.quizes),
     );
   }
 }
@@ -123,15 +120,15 @@ class HardLevelRow extends StatelessWidget {
   Widget build(
     BuildContext context,
   ) {
-    final bool isTr = Provider.of<LocalizationProvider>(context).isTr;
-
     return Row(
       crossAxisAlignment: CrossAxisAlignment.center,
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         const QuizLevelIndicator(color: AppColors.powderRed, percent: 0.85),
         Text(
-          isTr ? TrAppStrings.hard : EnAppStrings.hard,
+          context.read<LocalizationProvider>().isTr
+              ? TrAppStrings.hard
+              : EnAppStrings.hard,
           style: context.textTheme.titleMedium
               ?.copyWith(fontWeight: FontWeight.bold),
         ),
@@ -147,8 +144,6 @@ class MediumLevelRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final bool isTr = Provider.of<LocalizationProvider>(context).isTr;
-
     return Row(
       crossAxisAlignment: CrossAxisAlignment.center,
       mainAxisAlignment: MainAxisAlignment.center,
@@ -158,7 +153,9 @@ class MediumLevelRow extends StatelessWidget {
           percent: 0.6,
         ),
         Text(
-          isTr ? TrAppStrings.medium : EnAppStrings.medium,
+          context.read<LocalizationProvider>().isTr
+              ? TrAppStrings.medium
+              : EnAppStrings.medium,
           style: context.textTheme.titleMedium
               ?.copyWith(fontWeight: FontWeight.bold),
         ),
@@ -174,15 +171,15 @@ class EasyLevelRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final bool isTr = Provider.of<LocalizationProvider>(context).isTr;
-
     return Row(
       crossAxisAlignment: CrossAxisAlignment.center,
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         const QuizLevelIndicator(color: AppColors.glowGreen, percent: 0.3),
         Text(
-          isTr ? TrAppStrings.easy : EnAppStrings.easy,
+          context.read<LocalizationProvider>().isTr
+              ? TrAppStrings.easy
+              : EnAppStrings.easy,
           style: context.textTheme.titleMedium
               ?.copyWith(fontWeight: FontWeight.bold),
         ),
@@ -220,8 +217,6 @@ class GroupQuiz extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final bool isTr = Provider.of<LocalizationProvider>(context).isTr;
-
     return HomeContainer(
       color: AppColors.pink,
       shadowColor: AppColors.shPink,
@@ -235,7 +230,9 @@ class GroupQuiz extends StatelessWidget {
         );
       },
       svg: AssetConstants.instance.svgGameThree,
-      title: isTr ? TrAppStrings.groupQuiz : EnAppStrings.groupQuiz,
+      title: context.read<LocalizationProvider>().isTr
+          ? TrAppStrings.groupQuiz
+          : EnAppStrings.groupQuiz,
     );
   }
 }
@@ -247,8 +244,6 @@ class NumberQuiz extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final bool isTr = Provider.of<LocalizationProvider>(context).isTr;
-
     return HomeContainer(
       color: AppColors.purple,
       shadowColor: AppColors.shPurple,
@@ -262,7 +257,9 @@ class NumberQuiz extends StatelessWidget {
         );
       },
       svg: AssetConstants.instance.svgGameThree,
-      title: isTr ? TrAppStrings.numberQuiz : EnAppStrings.numberQuiz,
+      title: context.read<LocalizationProvider>().isTr
+          ? TrAppStrings.numberQuiz
+          : EnAppStrings.numberQuiz,
     );
   }
 }
@@ -274,8 +271,6 @@ class SymbolQuiz extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final bool isTr = Provider.of<LocalizationProvider>(context).isTr;
-
     return HomeContainer(
       color: AppColors.turquoise,
       shadowColor: AppColors.shTurquoise,
@@ -289,7 +284,9 @@ class SymbolQuiz extends StatelessWidget {
         );
       },
       svg: AssetConstants.instance.svgGameThree,
-      title: isTr ? TrAppStrings.symbolQuiz : EnAppStrings.symbolQuiz,
+      title: context.read<LocalizationProvider>().isTr
+          ? TrAppStrings.symbolQuiz
+          : EnAppStrings.symbolQuiz,
     );
   }
 }

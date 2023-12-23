@@ -29,12 +29,10 @@ class QuizNumberView extends StatefulWidget {
 class _QuizNumberViewState extends State<QuizNumberView> with QuizNumberMixin {
   @override
   Widget build(BuildContext context) {
-    final admobProvider = Provider.of<AdmobProvider>(context);
-
     return AppScaffold(
       child: Scaffold(
         floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-        appBar: appBar(admobProvider),
+        appBar: appBar(),
         body: isLoading
             ? const LoadingBar()
             : Padding(
@@ -74,11 +72,11 @@ class _QuizNumberViewState extends State<QuizNumberView> with QuizNumberMixin {
           );
   }
 
-  AppBar appBar(AdmobProvider admobProvider) {
+  AppBar appBar() {
     return AppBar(
       leading: IconButton(
           onPressed: () async {
-            admobProvider.createAndShowInterstitialAd();
+            context.read<AdmobProvider>().createAndShowInterstitialAd();
             Navigator.pop(context);
             await Future.delayed(const Duration(milliseconds: 700));
           },

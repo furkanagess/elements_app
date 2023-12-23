@@ -18,9 +18,6 @@ class ElementGroupView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    bool isTr = Provider.of<LocalizationProvider>(context).isTr;
-    final admobProvider = Provider.of<AdmobProvider>(context);
-
     return AppScaffold(
       child: Scaffold(
         appBar: appBar(),
@@ -30,11 +27,11 @@ class ElementGroupView extends StatelessWidget {
             child: Column(
               children: [
                 spacer(context, 0.05),
-                metalAndNonmetalRow(context, isTr, admobProvider),
+                metalAndNonmetalRow(context),
                 spacer(context, 0.05),
-                metalloidAndUnknownRow(context, isTr, admobProvider),
+                metalloidAndUnknownRow(context),
                 spacer(context, 0.05),
-                unknownGroupContainer(context, isTr),
+                unknownGroupContainer(context),
               ],
             ),
           ),
@@ -43,56 +40,62 @@ class ElementGroupView extends StatelessWidget {
     );
   }
 
-  ElementGroupContainer halogenContainer(
-      BuildContext context, bool isTr, AdmobProvider admobProvider) {
+  ElementGroupContainer halogenContainer(BuildContext context) {
     return ElementGroupContainer(
       color: AppColors.lightGreen,
       shadowColor: AppColors.shLightGreen,
       onTap: () {
-        admobProvider.createAndShowInterstitialAd();
+        context.read<AdmobProvider>().createAndShowInterstitialAd();
         Navigator.push(
           context,
           MaterialPageRoute(
             builder: (context) => ElementsListView(
               apiType: ApiTypes.halogen,
-              title: isTr ? TrAppStrings.halogenGroups : EnAppStrings.halogens,
+              title: context.read<LocalizationProvider>().isTr
+                  ? TrAppStrings.halogenGroups
+                  : EnAppStrings.halogens,
             ),
           ),
         );
       },
-      title: isTr ? TrAppStrings.halogenGroups : EnAppStrings.halogenGroup,
+      title: context.read<LocalizationProvider>().isTr
+          ? TrAppStrings.halogenGroups
+          : EnAppStrings.halogenGroup,
     );
   }
 
-  Row metalloidAndUnknownRow(
-      BuildContext context, bool isTr, AdmobProvider admobProvider) {
+  Row metalloidAndUnknownRow(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
-        metalloidGroupContainer(context, isTr, admobProvider),
-        halogenContainer(context, isTr, admobProvider),
+        metalloidGroupContainer(context),
+        halogenContainer(
+          context,
+        ),
       ],
     );
   }
 
-  Row metalAndNonmetalRow(
-      BuildContext context, bool isTr, AdmobProvider admobProvider) {
+  Row metalAndNonmetalRow(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
-        metalGroupContainer(context, isTr, admobProvider),
-        nonmetalGroupContainer(context, isTr),
+        metalGroupContainer(
+          context,
+        ),
+        nonmetalGroupContainer(
+          context,
+        ),
       ],
     );
   }
 
-  ElementGroupContainer metalGroupContainer(
-      BuildContext context, bool isTr, AdmobProvider admobProvider) {
+  ElementGroupContainer metalGroupContainer(BuildContext context) {
     return ElementGroupContainer(
       color: AppColors.purple,
       shadowColor: AppColors.shPurple,
       onTap: () {
-        admobProvider.createAndShowInterstitialAd();
+        context.read<AdmobProvider>().createAndShowInterstitialAd();
         Navigator.push(
           context,
           MaterialPageRoute(
@@ -100,12 +103,13 @@ class ElementGroupView extends StatelessWidget {
           ),
         );
       },
-      title: isTr ? TrAppStrings.metalGroups : EnAppStrings.metalGroups,
+      title: context.read<LocalizationProvider>().isTr
+          ? TrAppStrings.metalGroups
+          : EnAppStrings.metalGroups,
     );
   }
 
-  ElementGroupContainer nonmetalGroupContainer(
-      BuildContext context, bool isTr) {
+  ElementGroupContainer nonmetalGroupContainer(BuildContext context) {
     return ElementGroupContainer(
       color: AppColors.powderRed,
       shadowColor: AppColors.shPowderRed,
@@ -117,32 +121,37 @@ class ElementGroupView extends StatelessWidget {
           ),
         );
       },
-      title: isTr ? TrAppStrings.nonMetalGroups : EnAppStrings.nonMetalGroup,
+      title: context.read<LocalizationProvider>().isTr
+          ? TrAppStrings.nonMetalGroups
+          : EnAppStrings.nonMetalGroup,
     );
   }
 
-  ElementGroupContainer metalloidGroupContainer(
-      BuildContext context, bool isTr, AdmobProvider admobProvider) {
+  ElementGroupContainer metalloidGroupContainer(BuildContext context) {
     return ElementGroupContainer(
       color: AppColors.skinColor,
       shadowColor: AppColors.shSkinColor,
       onTap: () {
-        admobProvider.createAndShowInterstitialAd();
+        context.read<AdmobProvider>().createAndShowInterstitialAd();
         Navigator.push(
           context,
           MaterialPageRoute(
             builder: (context) => ElementsListView(
               apiType: ApiTypes.metalloid,
-              title: isTr ? TrAppStrings.metalloids : EnAppStrings.metalloids,
+              title: context.read<LocalizationProvider>().isTr
+                  ? TrAppStrings.metalloids
+                  : EnAppStrings.metalloids,
             ),
           ),
         );
       },
-      title: isTr ? TrAppStrings.metalloidGroups : EnAppStrings.metalloidGroup,
+      title: context.read<LocalizationProvider>().isTr
+          ? TrAppStrings.metalloidGroups
+          : EnAppStrings.metalloidGroup,
     );
   }
 
-  ElementGroupContainer unknownGroupContainer(BuildContext context, bool isTr) {
+  ElementGroupContainer unknownGroupContainer(BuildContext context) {
     return ElementGroupContainer(
       color: AppColors.darkWhite,
       shadowColor: AppColors.shDarkWhite,
@@ -152,12 +161,16 @@ class ElementGroupView extends StatelessWidget {
           MaterialPageRoute(
             builder: (context) => ElementsListView(
               apiType: ApiTypes.unknown,
-              title: isTr ? TrAppStrings.unknown : EnAppStrings.unknown,
+              title: context.read<LocalizationProvider>().isTr
+                  ? TrAppStrings.unknown
+                  : EnAppStrings.unknown,
             ),
           ),
         );
       },
-      title: isTr ? TrAppStrings.unknown : EnAppStrings.unknown,
+      title: context.read<LocalizationProvider>().isTr
+          ? TrAppStrings.unknown
+          : EnAppStrings.unknown,
     );
   }
 

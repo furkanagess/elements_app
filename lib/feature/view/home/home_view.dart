@@ -1,4 +1,3 @@
-import 'package:elements_app/feature/provider/admob_provider.dart';
 import 'package:elements_app/feature/provider/localization_provider.dart';
 import 'package:elements_app/feature/view/groups/element_group_view.dart';
 import 'package:elements_app/feature/view/info/info_view.dart';
@@ -31,8 +30,6 @@ final class HomeView extends StatefulWidget {
 class _HomeViewState extends State<StatefulWidget> {
   @override
   Widget build(BuildContext context) {
-    final bool isTr = Provider.of<LocalizationProvider>(context).isTr;
-    final admobProvider = Provider.of<AdmobProvider>(context);
     return AppScaffold(
       child: Scaffold(
         resizeToAvoidBottomInset: false,
@@ -42,7 +39,7 @@ class _HomeViewState extends State<StatefulWidget> {
             children: [
               spacerVertical(context, 0.05),
               Expanded(
-                child: appWelcome(context, isTr),
+                child: appWelcome(context),
               ),
               spacerVertical(context, 0.03),
               Expanded(
@@ -52,11 +49,11 @@ class _HomeViewState extends State<StatefulWidget> {
               spacerVertical(context, 0.05),
               Expanded(
                 flex: 7,
-                child: elementGroupColumn(context, isTr, admobProvider),
+                child: elementGroupColumn(context),
               ),
               Expanded(
                 flex: 2,
-                child: settingsRow(context, isTr),
+                child: settingsRow(context),
               ),
               spacerVertical(context, 0.02),
             ],
@@ -66,14 +63,13 @@ class _HomeViewState extends State<StatefulWidget> {
     );
   }
 
-  Column elementGroupColumn(
-      BuildContext context, bool isTr, AdmobProvider admobProvider) {
+  Column elementGroupColumn(BuildContext context) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
-        elementGroupRowOne(context, isTr),
+        elementGroupRowOne(context),
         spacerVertical(context, 0.03),
-        elementGroupRowTwo(context, isTr, admobProvider),
+        elementGroupRowTwo(context),
       ],
     );
   }
@@ -85,7 +81,7 @@ class _HomeViewState extends State<StatefulWidget> {
     );
   }
 
-  Padding appWelcome(BuildContext context, bool isTr) {
+  Padding appWelcome(BuildContext context) {
     return Padding(
       padding: context.paddingLowHorizontal,
       child: Container(
@@ -106,7 +102,9 @@ class _HomeViewState extends State<StatefulWidget> {
         ),
         child: Center(
           child: NeonText(
-            text: isTr ? TrAppStrings.appName : EnAppStrings.appName,
+            text: context.read<LocalizationProvider>().isTr
+                ? TrAppStrings.appName
+                : EnAppStrings.appName,
             fontWeight: FontWeight.bold,
             isSoftWrap: true,
             spreadColor: Colors.purple,
@@ -124,20 +122,19 @@ class _HomeViewState extends State<StatefulWidget> {
       SizedBox(height: context.dynamicWidth(value));
 
   Row elementGroupRowTwo(
-      BuildContext context, bool isTr, AdmobProvider admobProvider) {
+    BuildContext context,
+  ) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
-        whatIsContainer(context, isTr, admobProvider),
-        quizContainer(context, isTr, admobProvider),
+        whatIsContainer(context),
+        quizContainer(context),
       ],
     );
   }
 
   HomeContainer quizContainer(
     BuildContext context,
-    bool isTr,
-    AdmobProvider admobProvider,
   ) {
     return HomeContainer(
       onTap: () {
@@ -150,13 +147,14 @@ class _HomeViewState extends State<StatefulWidget> {
       },
       shadowColor: AppColors.shPink,
       color: AppColors.pink,
-      title: isTr ? TrAppStrings.quiz : EnAppStrings.quiz,
+      title: context.read<LocalizationProvider>().isTr
+          ? TrAppStrings.quiz
+          : EnAppStrings.quiz,
       svg: AssetConstants.instance.svgGameThree,
     );
   }
 
-  HomeContainer whatIsContainer(
-      BuildContext context, bool isTr, AdmobProvider admobProvider) {
+  HomeContainer whatIsContainer(BuildContext context) {
     return HomeContainer(
       onTap: () {
         Navigator.push(
@@ -164,29 +162,33 @@ class _HomeViewState extends State<StatefulWidget> {
           MaterialPageRoute(
             builder: (context) => InfoView(
               apiType: ApiTypes.whatIs,
-              title: isTr ? TrAppStrings.what : EnAppStrings.what,
+              title: context.read<LocalizationProvider>().isTr
+                  ? TrAppStrings.what
+                  : EnAppStrings.what,
             ),
           ),
         );
       },
       shadowColor: AppColors.shYellow,
       color: AppColors.yellow,
-      title: isTr ? TrAppStrings.what : EnAppStrings.what,
+      title: context.read<LocalizationProvider>().isTr
+          ? TrAppStrings.what
+          : EnAppStrings.what,
       svg: AssetConstants.instance.svgQuestionTwo,
     );
   }
 
-  Row elementGroupRowOne(BuildContext context, bool isTr) {
+  Row elementGroupRowOne(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
-        elementsContainer(context, isTr),
-        elementGroupsContainer(context, isTr),
+        elementsContainer(context),
+        elementGroupsContainer(context),
       ],
     );
   }
 
-  HomeContainer elementsContainer(BuildContext context, bool isTr) {
+  HomeContainer elementsContainer(BuildContext context) {
     return HomeContainer(
       onTap: () {
         Navigator.push(
@@ -198,12 +200,14 @@ class _HomeViewState extends State<StatefulWidget> {
       },
       shadowColor: AppColors.shTurquoise,
       color: AppColors.turquoise,
-      title: isTr ? TrAppStrings.allElements : EnAppStrings.elements,
+      title: context.read<LocalizationProvider>().isTr
+          ? TrAppStrings.allElements
+          : EnAppStrings.elements,
       svg: AssetConstants.instance.svgScienceTwo,
     );
   }
 
-  HomeContainer elementGroupsContainer(BuildContext context, bool isTr) {
+  HomeContainer elementGroupsContainer(BuildContext context) {
     return HomeContainer(
       onTap: () {
         Navigator.push(
@@ -215,7 +219,9 @@ class _HomeViewState extends State<StatefulWidget> {
       },
       shadowColor: AppColors.shGlowGreen,
       color: AppColors.glowGreen,
-      title: isTr ? TrAppStrings.groups : EnAppStrings.groups,
+      title: context.read<LocalizationProvider>().isTr
+          ? TrAppStrings.groups
+          : EnAppStrings.groups,
       svg: AssetConstants.instance.svgElementGroup,
     );
   }
@@ -230,26 +236,26 @@ class _HomeViewState extends State<StatefulWidget> {
     );
   }
 
-  Widget settingsRow(BuildContext context, bool isTr) {
+  Widget settingsRow(BuildContext context) {
     return Column(
       children: [
         divider(context),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            localizationFlags(context, isTr),
-            rateButton(context, isTr),
-            helpPopupButton(context, isTr),
+            localizationFlags(context),
+            rateButton(context),
+            helpPopupButton(context),
           ],
         ),
       ],
     );
   }
 
-  IconButton rateButton(BuildContext context, bool isTr) {
+  IconButton rateButton(BuildContext context) {
     return IconButton(
       onPressed: () {
-        rateBottomSheet(context, isTr);
+        rateBottomSheet(context);
       },
       icon: SvgPicture.asset(
         AssetConstants.instance.svgStarTwo,
@@ -262,10 +268,10 @@ class _HomeViewState extends State<StatefulWidget> {
     );
   }
 
-  IconButton helpPopupButton(BuildContext context, bool isTr) {
+  IconButton helpPopupButton(BuildContext context) {
     return IconButton(
       onPressed: () {
-        helpPopUp(context, isTr);
+        helpPopUp(context);
       },
       icon: SvgPicture.asset(
         AssetConstants.instance.svgQuestion,
@@ -278,7 +284,7 @@ class _HomeViewState extends State<StatefulWidget> {
     );
   }
 
-  Future<dynamic> rateBottomSheet(BuildContext context, bool isTr) {
+  Future<dynamic> rateBottomSheet(BuildContext context) {
     return showModalBottomSheet<void>(
       context: context,
       enableDrag: false,
@@ -319,7 +325,7 @@ class _HomeViewState extends State<StatefulWidget> {
               Padding(
                 padding: context.paddingNormal,
                 child: Text(
-                  isTr
+                  context.read<LocalizationProvider>().isTr
                       ? TrAppStrings.rateDescription
                       : EnAppStrings.rateDescription,
                   style: context.textTheme.titleSmall?.copyWith(
@@ -340,7 +346,9 @@ class _HomeViewState extends State<StatefulWidget> {
                     androidAppId: "com.furkanages.elements",
                   );
                 },
-                title: isTr ? TrAppStrings.rateTitle : EnAppStrings.rateTitle,
+                title: context.read<LocalizationProvider>().isTr
+                    ? TrAppStrings.rateTitle
+                    : EnAppStrings.rateTitle,
               ),
             ],
           ),
@@ -349,12 +357,12 @@ class _HomeViewState extends State<StatefulWidget> {
     );
   }
 
-  Widget localizationFlags(BuildContext context, bool isTr) {
+  Widget localizationFlags(BuildContext context) {
     return GestureDetector(
       onTap: () {
         Provider.of<LocalizationProvider>(context, listen: false).toggleBool();
       },
-      child: isTr
+      child: context.watch<LocalizationProvider>().isTr
           ? SvgPicture.asset(
               AssetConstants.instance.svgUsFlag,
               height: context.dynamicHeight(0.05),
@@ -366,7 +374,7 @@ class _HomeViewState extends State<StatefulWidget> {
     );
   }
 
-  Future<dynamic> helpPopUp(BuildContext context, bool isTr) {
+  Future<dynamic> helpPopUp(BuildContext context) {
     return showDialog(
       barrierDismissible: false,
       context: context,
@@ -393,27 +401,37 @@ class _HomeViewState extends State<StatefulWidget> {
             ),
             spacerVertical(context, 0.01),
             TextIconRow(
-              title: isTr ? TrAppStrings.help1 : EnAppStrings.help1,
+              title: context.read<LocalizationProvider>().isTr
+                  ? TrAppStrings.help1
+                  : EnAppStrings.help1,
               color: AppColors.purple,
             ),
             spacerVertical(context, 0.01),
             TextIconRow(
-              title: isTr ? TrAppStrings.help2 : EnAppStrings.help2,
+              title: context.read<LocalizationProvider>().isTr
+                  ? TrAppStrings.help2
+                  : EnAppStrings.help2,
               color: AppColors.yellow,
             ),
             spacerVertical(context, 0.01),
             TextIconRow(
-              title: isTr ? TrAppStrings.help3 : EnAppStrings.help3,
+              title: context.read<LocalizationProvider>().isTr
+                  ? TrAppStrings.help3
+                  : EnAppStrings.help3,
               color: AppColors.glowGreen,
             ),
             spacerVertical(context, 0.01),
             TextIconRow(
-              title: isTr ? TrAppStrings.help4 : EnAppStrings.help4,
+              title: context.read<LocalizationProvider>().isTr
+                  ? TrAppStrings.help4
+                  : EnAppStrings.help4,
               color: AppColors.powderRed,
             ),
             spacerVertical(context, 0.01),
             TextIconRow(
-              title: isTr ? TrAppStrings.help5 : EnAppStrings.help5,
+              title: context.read<LocalizationProvider>().isTr
+                  ? TrAppStrings.help5
+                  : EnAppStrings.help5,
               color: AppColors.turquoise,
             ),
           ],
@@ -465,9 +483,11 @@ class _HomeViewState extends State<StatefulWidget> {
     );
   }
 
-  Text headerElementText(BuildContext context, bool isTr) {
+  Text headerElementText(BuildContext context) {
     return Text(
-      isTr ? TrAppStrings.allElements : EnAppStrings.allElements,
+      context.read<LocalizationProvider>().isTr
+          ? TrAppStrings.allElements
+          : EnAppStrings.allElements,
       style: context.textTheme.labelLarge?.copyWith(
         color: AppColors.white,
       ),

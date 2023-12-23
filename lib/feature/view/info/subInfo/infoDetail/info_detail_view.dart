@@ -22,14 +22,14 @@ class InfoDetailView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    bool isTr = Provider.of<LocalizationProvider>(context).isTr;
     return AppScaffold(
       child: Scaffold(
         body: NestedScrollView(
           headerSliverBuilder: (context, innerBoxIsScrolled) => [
             SliverAppBar(
-              title: Text(
-                  isTr ? TrAppStrings.description : EnAppStrings.description),
+              title: Text(context.read<LocalizationProvider>().isTr
+                  ? TrAppStrings.description
+                  : EnAppStrings.description),
             ),
           ],
           body: Padding(
@@ -60,24 +60,36 @@ class InfoDetailView extends StatelessWidget {
                           Column(
                             children: [
                               Text(
-                                isTr ? info.trTitle! : info.enTitle!,
+                                context.read<LocalizationProvider>().isTr
+                                    ? info.trTitle!
+                                    : info.enTitle!,
                                 style: context.textTheme.headlineMedium
                                     ?.copyWith(color: AppColors.white),
                               ),
                               usageParagraph(
-                                  isTr ? info.trDesc1! : info.enDesc1!),
+                                  context.read<LocalizationProvider>().isTr
+                                      ? info.trDesc1!
+                                      : info.enDesc1!),
                               dividerSVG(context),
                               usageParagraph(
-                                  isTr ? info.trDesc2! : info.enDesc2!),
+                                  context.read<LocalizationProvider>().isTr
+                                      ? info.trDesc2!
+                                      : info.enDesc2!),
                               dividerSVG(context),
                               usageParagraph(
-                                  isTr ? info.trDesc3! : info.enDesc3!),
+                                  context.read<LocalizationProvider>().isTr
+                                      ? info.trDesc3!
+                                      : info.enDesc3!),
                               dividerSVG(context),
                               usageParagraph(
-                                  isTr ? info.trDesc4! : info.enDesc4!),
+                                  context.read<LocalizationProvider>().isTr
+                                      ? info.trDesc4!
+                                      : info.enDesc4!),
                               dividerSVG(context),
                               usageParagraph(
-                                  isTr ? info.trDesc5! : info.enDesc5!),
+                                  context.read<LocalizationProvider>().isTr
+                                      ? info.trDesc5!
+                                      : info.enDesc5!),
                             ],
                           ),
                         ],

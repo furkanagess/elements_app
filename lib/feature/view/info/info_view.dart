@@ -32,9 +32,6 @@ class InfoView extends StatefulWidget {
 class _InfoViewState extends State<InfoView> with InfoViewMixin {
   @override
   Widget build(BuildContext context) {
-    final admobProvider = Provider.of<AdmobProvider>(context);
-
-    bool isTr = Provider.of<LocalizationProvider>(context).isTr;
     return AppScaffold(
       child: Scaffold(
         appBar: buildAppbar(),
@@ -42,7 +39,7 @@ class _InfoViewState extends State<InfoView> with InfoViewMixin {
             ? const LoadingBar()
             : Column(
                 children: [
-                  elementTypesContainer(context, isTr, admobProvider),
+                  elementTypesContainer(context),
                   infoListBuilder(),
                 ],
               ),
@@ -78,16 +75,17 @@ class _InfoViewState extends State<InfoView> with InfoViewMixin {
   }
 
   InkWell elementTypesContainer(
-      BuildContext context, bool isTr, AdmobProvider admobProvider) {
+    BuildContext context,
+  ) {
     return InkWell(
       onTap: () {
-        admobProvider.createAndShowInterstitialAd();
+        context.read<AdmobProvider>().createAndShowInterstitialAd();
         Navigator.pushAndRemoveUntil(
             context,
             MaterialPageRoute(
               builder: (context) => ElementTypeView(
                 apiType: ApiTypes.elementTypes,
-                title: isTr
+                title: context.read<LocalizationProvider>().isTr
                     ? TrAppStrings.elementTypes
                     : EnAppStrings.elementTypes,
               ),
@@ -121,7 +119,9 @@ class _InfoViewState extends State<InfoView> with InfoViewMixin {
                   width: context.dynamicWidth(0.03),
                 ),
                 Text(
-                  isTr ? TrAppStrings.elementTypes : EnAppStrings.elementTypes,
+                  context.read<LocalizationProvider>().isTr
+                      ? TrAppStrings.elementTypes
+                      : EnAppStrings.elementTypes,
                   style: context.textTheme.headlineSmall?.copyWith(
                     color: AppColors.background,
                     fontWeight: FontWeight.bold,

@@ -15,10 +15,9 @@ class NonMetalGroupView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    bool isTr = Provider.of<LocalizationProvider>(context).isTr;
     return AppScaffold(
       child: Scaffold(
-        appBar: appBar(isTr),
+        appBar: appBar(context),
         body: Padding(
           padding: context.paddingLowHorizontal,
           child: Column(
@@ -27,8 +26,8 @@ class NonMetalGroupView extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  reactiveNonmetalContainer(context, isTr),
-                  nobleGasesContainer(context, isTr),
+                  reactiveNonmetalContainer(context),
+                  nobleGasesContainer(context),
                 ],
               ),
               spacer(context, 0.05),
@@ -39,7 +38,7 @@ class NonMetalGroupView extends StatelessWidget {
     );
   }
 
-  ElementGroupContainer nobleGasesContainer(BuildContext context, bool isTr) {
+  ElementGroupContainer nobleGasesContainer(BuildContext context) {
     return ElementGroupContainer(
       color: AppColors.glowGreen,
       shadowColor: AppColors.shGlowGreen,
@@ -49,17 +48,20 @@ class NonMetalGroupView extends StatelessWidget {
           MaterialPageRoute(
             builder: (context) => ElementsListView(
               apiType: ApiTypes.nobleGases,
-              title: isTr ? TrAppStrings.nobleGases : EnAppStrings.nobleGases,
+              title: context.read<LocalizationProvider>().isTr
+                  ? TrAppStrings.nobleGases
+                  : EnAppStrings.nobleGases,
             ),
           ),
         );
       },
-      title: isTr ? TrAppStrings.nobleGases : EnAppStrings.nobleGases,
+      title: context.read<LocalizationProvider>().isTr
+          ? TrAppStrings.nobleGases
+          : EnAppStrings.nobleGases,
     );
   }
 
-  ElementGroupContainer reactiveNonmetalContainer(
-      BuildContext context, bool isTr) {
+  ElementGroupContainer reactiveNonmetalContainer(BuildContext context) {
     return ElementGroupContainer(
       color: AppColors.powderRed,
       shadowColor: AppColors.shPowderRed,
@@ -69,15 +71,16 @@ class NonMetalGroupView extends StatelessWidget {
           MaterialPageRoute(
             builder: (context) => ElementsListView(
               apiType: ApiTypes.reactiveNonmetal,
-              title: isTr
+              title: context.read<LocalizationProvider>().isTr
                   ? TrAppStrings.reactiveNonmetal
                   : EnAppStrings.reactiveNonmetal,
             ),
           ),
         );
       },
-      title:
-          isTr ? TrAppStrings.reactiveNonmetal : EnAppStrings.reactiveNonmetal,
+      title: context.read<LocalizationProvider>().isTr
+          ? TrAppStrings.reactiveNonmetal
+          : EnAppStrings.reactiveNonmetal,
     );
   }
 
