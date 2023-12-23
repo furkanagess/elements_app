@@ -16,21 +16,18 @@ class MetalGroupView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final admobProvider = Provider.of<AdmobProvider>(context);
-
-    bool isTr = Provider.of<LocalizationProvider>(context).isTr;
     return AppScaffold(
       child: Scaffold(
-        appBar: appBar(isTr),
+        appBar: appBar(context),
         body: Padding(
           padding: context.paddingLowHorizontal,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               spacer(context, 0.02),
-              transitionsMetalsRow(context, isTr),
-              alkalineMetalsRow(context, isTr, admobProvider),
-              otherMetalsRow(context, isTr, admobProvider),
+              transitionsMetalsRow(context),
+              alkalineMetalsRow(context),
+              otherMetalsRow(context),
               spacer(context, 0.04),
             ],
           ),
@@ -39,60 +36,61 @@ class MetalGroupView extends StatelessWidget {
     );
   }
 
-  Row otherMetalsRow(
-      BuildContext context, bool isTr, AdmobProvider admobProvider) {
+  Row otherMetalsRow(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
-        lanthanidesContainer(context, isTr),
-        actinidesContainer(context, isTr, admobProvider),
+        lanthanidesContainer(context),
+        actinidesContainer(context),
       ],
     );
   }
 
-  Row alkalineMetalsRow(
-      BuildContext context, bool isTr, AdmobProvider admobProvider) {
+  Row alkalineMetalsRow(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
-        alkalineEarthMetalContainer(context, isTr, admobProvider),
-        alkalineMetalContainer(context, isTr),
+        alkalineEarthMetalContainer(context),
+        alkalineMetalContainer(context),
       ],
     );
   }
 
-  Row transitionsMetalsRow(BuildContext context, bool isTr) {
+  Row transitionsMetalsRow(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
-        postTransitionContainer(context, isTr),
-        transitionMetalContainer(context, isTr),
+        postTransitionContainer(context),
+        transitionMetalContainer(context),
       ],
     );
   }
 
-  ElementGroupContainer actinidesContainer(
-      BuildContext context, bool isTr, AdmobProvider admobProvider) {
+  ElementGroupContainer actinidesContainer(BuildContext context) {
     return ElementGroupContainer(
       color: AppColors.pink,
       shadowColor: AppColors.shPink,
       onTap: () {
-        admobProvider.createAndShowInterstitialAd();
+        context.read<AdmobProvider>().createAndShowInterstitialAd();
         Navigator.push(
           context,
           MaterialPageRoute(
             builder: (context) => ElementsListView(
               apiType: ApiTypes.actinides,
-              title: isTr ? TrAppStrings.actinides : EnAppStrings.actinides,
+              title: context.read<LocalizationProvider>().isTr
+                  ? TrAppStrings.actinides
+                  : EnAppStrings.actinides,
             ),
           ),
         );
       },
-      title: isTr ? TrAppStrings.actinides : EnAppStrings.actinides,
+      title: context.read<LocalizationProvider>().isTr
+          ? TrAppStrings.actinides
+          : EnAppStrings.actinides,
     );
   }
 
-  ElementGroupContainer lanthanidesContainer(BuildContext context, bool isTr) {
+  ElementGroupContainer lanthanidesContainer(BuildContext context) {
     return ElementGroupContainer(
       color: AppColors.darkTurquoise,
       shadowColor: AppColors.shDarkTurquoise,
@@ -102,17 +100,20 @@ class MetalGroupView extends StatelessWidget {
           MaterialPageRoute(
             builder: (context) => ElementsListView(
               apiType: ApiTypes.lanthanides,
-              title: isTr ? TrAppStrings.lanthanides : EnAppStrings.lanthanides,
+              title: context.read<LocalizationProvider>().isTr
+                  ? TrAppStrings.lanthanides
+                  : EnAppStrings.lanthanides,
             ),
           ),
         );
       },
-      title: isTr ? TrAppStrings.lanthanides : EnAppStrings.lanthanides,
+      title: context.read<LocalizationProvider>().isTr
+          ? TrAppStrings.lanthanides
+          : EnAppStrings.lanthanides,
     );
   }
 
-  ElementGroupContainer alkalineMetalContainer(
-      BuildContext context, bool isTr) {
+  ElementGroupContainer alkalineMetalContainer(BuildContext context) {
     return ElementGroupContainer(
       color: AppColors.turquoise,
       shadowColor: AppColors.shTurquoise,
@@ -122,40 +123,44 @@ class MetalGroupView extends StatelessWidget {
           MaterialPageRoute(
             builder: (context) => ElementsListView(
               apiType: ApiTypes.alkaliMetal,
-              title: isTr ? TrAppStrings.alkaline : EnAppStrings.alkaline,
+              title: context.read<LocalizationProvider>().isTr
+                  ? TrAppStrings.alkaline
+                  : EnAppStrings.alkaline,
             ),
           ),
         );
       },
-      title: isTr ? TrAppStrings.alkaline : EnAppStrings.alkaline,
+      title: context.read<LocalizationProvider>().isTr
+          ? TrAppStrings.alkaline
+          : EnAppStrings.alkaline,
     );
   }
 
-  ElementGroupContainer alkalineEarthMetalContainer(
-      BuildContext context, bool isTr, AdmobProvider admobProvider) {
+  ElementGroupContainer alkalineEarthMetalContainer(BuildContext context) {
     return ElementGroupContainer(
       color: AppColors.yellow,
       shadowColor: AppColors.shYellow,
       onTap: () {
-        admobProvider.createAndShowInterstitialAd();
+        context.read<AdmobProvider>().createAndShowInterstitialAd();
         Navigator.push(
           context,
           MaterialPageRoute(
             builder: (context) => ElementsListView(
               apiType: ApiTypes.alkalineEarthMetal,
-              title: isTr
+              title: context.read<LocalizationProvider>().isTr
                   ? TrAppStrings.earthAlkaline
                   : EnAppStrings.earthAlkaline,
             ),
           ),
         );
       },
-      title: isTr ? TrAppStrings.earthAlkaline : EnAppStrings.earthAlkaline,
+      title: context.read<LocalizationProvider>().isTr
+          ? TrAppStrings.earthAlkaline
+          : EnAppStrings.earthAlkaline,
     );
   }
 
-  ElementGroupContainer transitionMetalContainer(
-      BuildContext context, bool isTr) {
+  ElementGroupContainer transitionMetalContainer(BuildContext context) {
     return ElementGroupContainer(
       color: AppColors.purple,
       shadowColor: AppColors.shPurple,
@@ -165,19 +170,20 @@ class MetalGroupView extends StatelessWidget {
           MaterialPageRoute(
             builder: (context) => ElementsListView(
               apiType: ApiTypes.transitionMetal,
-              title: isTr
+              title: context.read<LocalizationProvider>().isTr
                   ? TrAppStrings.transitionMetal
                   : EnAppStrings.transitionMetal,
             ),
           ),
         );
       },
-      title: isTr ? TrAppStrings.transitionMetal : EnAppStrings.transitionMetal,
+      title: context.read<LocalizationProvider>().isTr
+          ? TrAppStrings.transitionMetal
+          : EnAppStrings.transitionMetal,
     );
   }
 
-  ElementGroupContainer postTransitionContainer(
-      BuildContext context, bool isTr) {
+  ElementGroupContainer postTransitionContainer(BuildContext context) {
     return ElementGroupContainer(
       color: AppColors.steelBlue,
       shadowColor: AppColors.shSteelBlue,
@@ -187,20 +193,24 @@ class MetalGroupView extends StatelessWidget {
           MaterialPageRoute(
             builder: (context) => ElementsListView(
               apiType: ApiTypes.postTransition,
-              title: isTr
+              title: context.read<LocalizationProvider>().isTr
                   ? TrAppStrings.postTransition
                   : EnAppStrings.postTransition,
             ),
           ),
         );
       },
-      title: isTr ? TrAppStrings.postTransition : EnAppStrings.postTransition,
+      title: context.read<LocalizationProvider>().isTr
+          ? TrAppStrings.postTransition
+          : EnAppStrings.postTransition,
     );
   }
 
-  AppBar appBar(bool isTr) {
+  AppBar appBar(BuildContext context) {
     return AppBar(
-      title: Text(isTr ? TrAppStrings.metalGroups : EnAppStrings.metalGroups),
+      title: Text(context.read<LocalizationProvider>().isTr
+          ? TrAppStrings.metalGroups
+          : EnAppStrings.metalGroups),
     );
   }
 

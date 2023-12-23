@@ -62,16 +62,18 @@ class _SearchViewState extends State<SearchView> {
     }
   }
 
-  void filterElements(String query, bool isTr) {
+  void filterElements(String query) {
     query = query.toLowerCase();
     setState(() {
       filteredElements = elements
           .where(
             (element) =>
-                (isTr ? element.trName! : element.enName!)
+                (context.read<LocalizationProvider>().isTr
+                        ? element.trName!
+                        : element.enName!)
                     .toLowerCase()
-                    .contains(query) ||
-                element.number.toString().contains(query),
+                    .startsWith(query) ||
+                element.number.toString().startsWith(query),
           )
           .toList();
     });
@@ -79,7 +81,6 @@ class _SearchViewState extends State<SearchView> {
 
   @override
   Widget build(BuildContext context) {
-    final bool isTr = Provider.of<LocalizationProvider>(context).isTr;
     return AppScaffold(
       child: Scaffold(
           floatingActionButton: quizFabButton(context),
@@ -91,11 +92,11 @@ class _SearchViewState extends State<SearchView> {
                   title: TextField(
                     controller: searchController,
                     onChanged: (value) {
-                      filterElements(value, isTr);
+                      filterElements(value);
                     },
                     decoration: InputDecoration(
                       suffixIcon: const Icon(Icons.search),
-                      labelText: isTr
+                      labelText: context.read<LocalizationProvider>().isTr
                           ? TrAppStrings.searchLabel
                           : EnAppStrings.searchLabel,
                     ),
@@ -129,7 +130,7 @@ class _SearchViewState extends State<SearchView> {
                                     height: context.dynamicHeight(0.02),
                                   ),
                                   Text(
-                                    isTr
+                                    context.read<LocalizationProvider>().isTr
                                         ? TrAppStrings.searchResult
                                         : EnAppStrings.searchResult,
                                     style: context.textTheme.headlineSmall,

@@ -29,12 +29,10 @@ class QuizSymbolView extends StatefulWidget {
 class _QuizSymbolViewState extends State<QuizSymbolView> with QuizSymbolMixin {
   @override
   Widget build(BuildContext context) {
-    final admobProvider = Provider.of<AdmobProvider>(context);
-
     return AppScaffold(
       child: Scaffold(
         floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-        appBar: appBar(admobProvider),
+        appBar: appBar(),
         body: isLoading
             ? const LoadingBar()
             : Padding(
@@ -77,11 +75,11 @@ class _QuizSymbolViewState extends State<QuizSymbolView> with QuizSymbolMixin {
   SizedBox spacer(BuildContext context, double value) =>
       SizedBox(height: context.dynamicHeight(value));
 
-  AppBar appBar(AdmobProvider admobProvider) {
+  AppBar appBar() {
     return AppBar(
       leading: IconButton(
           onPressed: () async {
-            admobProvider.createAndShowInterstitialAd();
+            context.read<AdmobProvider>().createAndShowInterstitialAd();
             Navigator.pop(context);
             await Future.delayed(const Duration(milliseconds: 700));
           },

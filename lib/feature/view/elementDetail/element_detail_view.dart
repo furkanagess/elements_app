@@ -24,7 +24,6 @@ class ElementDetailView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    bool isTr = Provider.of<LocalizationProvider>(context).isTr;
     return AppScaffold(
       child: Scaffold(
         body: NestedScrollView(
@@ -36,13 +35,13 @@ class ElementDetailView extends StatelessWidget {
                 padding: context.paddingNormal,
                 child: Column(
                   children: [
-                    symbolAndInfoRow(context, isTr),
+                    symbolAndInfoRow(context),
                     spacer(context, 0.05),
-                    categoryContainer(context, isTr),
+                    categoryContainer(context),
                     spacer(context, 0.03),
-                    blockPeriodGroupContainer(context, isTr),
+                    blockPeriodGroupContainer(context),
                     spacer(context, 0.03),
-                    elementInfoContainer(context, isTr),
+                    elementInfoContainer(context),
                   ],
                 ),
               ),
@@ -54,7 +53,7 @@ class ElementDetailView extends StatelessWidget {
   SizedBox spacer(BuildContext context, double value) =>
       SizedBox(height: context.dynamicHeight(value));
 
-  Container blockPeriodGroupContainer(BuildContext context, bool isTr) {
+  Container blockPeriodGroupContainer(BuildContext context) {
     return Container(
       height: context.dynamicHeight(0.1),
       decoration: BoxDecoration(
@@ -67,15 +66,15 @@ class ElementDetailView extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Expanded(
-              child: blockPart(isTr),
+              child: blockPart(context),
             ),
             verticalWhiteDivider(),
             Expanded(
-              child: periodPart(isTr),
+              child: periodPart(context),
             ),
             verticalWhiteDivider(),
             Expanded(
-              child: groupPart(isTr),
+              child: groupPart(context),
             ),
           ],
         ),
@@ -90,21 +89,27 @@ class ElementDetailView extends StatelessWidget {
     );
   }
 
-  ElementDetailRowText groupPart(bool isTr) {
+  ElementDetailRowText groupPart(BuildContext context) {
     return ElementDetailRowText(
-        title: isTr ? TrAppStrings.group : EnAppStrings.group,
+        title: context.read<LocalizationProvider>().isTr
+            ? TrAppStrings.group
+            : EnAppStrings.group,
         value: element.group);
   }
 
-  ElementDetailRowText periodPart(bool isTr) {
+  ElementDetailRowText periodPart(BuildContext context) {
     return ElementDetailRowText(
-        title: isTr ? TrAppStrings.period : EnAppStrings.period,
+        title: context.read<LocalizationProvider>().isTr
+            ? TrAppStrings.period
+            : EnAppStrings.period,
         value: element.period);
   }
 
-  ElementDetailRowText blockPart(bool isTr) {
+  ElementDetailRowText blockPart(BuildContext context) {
     return ElementDetailRowText(
-        title: isTr ? TrAppStrings.block : EnAppStrings.block,
+        title: context.read<LocalizationProvider>().isTr
+            ? TrAppStrings.block
+            : EnAppStrings.block,
         value: element.block);
   }
 
@@ -115,7 +120,7 @@ class ElementDetailView extends StatelessWidget {
     );
   }
 
-  Container categoryContainer(BuildContext context, bool isTr) {
+  Container categoryContainer(BuildContext context) {
     return Container(
       height: context.dynamicHeight(0.08),
       decoration: BoxDecoration(
@@ -127,7 +132,7 @@ class ElementDetailView extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Text(
-            isTr
+            context.read<LocalizationProvider>().isTr
                 ? element.trCategory.toString().toUpperCase()
                 : element.enCategory.toString().toUpperCase(),
             style: context.textTheme.titleLarge?.copyWith(
@@ -139,7 +144,7 @@ class ElementDetailView extends StatelessWidget {
     );
   }
 
-  Container elementInfoContainer(BuildContext context, bool isTr) {
+  Container elementInfoContainer(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10),
@@ -153,11 +158,11 @@ class ElementDetailView extends StatelessWidget {
           children: [
             Column(
               children: [
-                descriptionParagraph(isTr),
+                descriptionParagraph(context),
                 dividerSVG(context),
-                usageParagraph(isTr),
+                usageParagraph(context),
                 dividerSVG(context),
-                sourceParagraph(isTr),
+                sourceParagraph(context),
               ],
             ),
           ],
@@ -177,28 +182,40 @@ class ElementDetailView extends StatelessWidget {
     );
   }
 
-  ElementInfoParagraph sourceParagraph(bool isTr) {
+  ElementInfoParagraph sourceParagraph(BuildContext context) {
     return ElementInfoParagraph(
-      title: isTr ? TrAppStrings.source : EnAppStrings.source,
-      paragraph: isTr ? element.trSource : element.enSource,
+      title: context.read<LocalizationProvider>().isTr
+          ? TrAppStrings.source
+          : EnAppStrings.source,
+      paragraph: context.read<LocalizationProvider>().isTr
+          ? element.trSource
+          : element.enSource,
     );
   }
 
-  ElementInfoParagraph usageParagraph(bool isTr) {
+  ElementInfoParagraph usageParagraph(BuildContext context) {
     return ElementInfoParagraph(
-      title: isTr ? TrAppStrings.usage : EnAppStrings.usage,
-      paragraph: isTr ? element.trUsage : element.enUsage,
+      title: context.read<LocalizationProvider>().isTr
+          ? TrAppStrings.usage
+          : EnAppStrings.usage,
+      paragraph: context.read<LocalizationProvider>().isTr
+          ? element.trUsage
+          : element.enUsage,
     );
   }
 
-  ElementInfoParagraph descriptionParagraph(bool isTr) {
+  ElementInfoParagraph descriptionParagraph(BuildContext context) {
     return ElementInfoParagraph(
-      title: isTr ? TrAppStrings.description : EnAppStrings.description,
-      paragraph: isTr ? element.trDescription : element.enDescription,
+      title: context.read<LocalizationProvider>().isTr
+          ? TrAppStrings.description
+          : EnAppStrings.description,
+      paragraph: context.read<LocalizationProvider>().isTr
+          ? element.trDescription
+          : element.enDescription,
     );
   }
 
-  Row symbolAndInfoRow(BuildContext context, bool isTr) {
+  Row symbolAndInfoRow(BuildContext context) {
     return Row(
       children: [
         ElementSymbolContainer(
@@ -211,15 +228,23 @@ class ElementDetailView extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             ElementInfoRow(
-              title: isTr ? TrAppStrings.name : EnAppStrings.name,
-              value: isTr ? element.trName : element.enName,
+              title: context.read<LocalizationProvider>().isTr
+                  ? TrAppStrings.name
+                  : EnAppStrings.name,
+              value: context.read<LocalizationProvider>().isTr
+                  ? element.trName
+                  : element.enName,
             ),
             ElementInfoRow(
-              title: isTr ? TrAppStrings.number : EnAppStrings.number,
+              title: context.read<LocalizationProvider>().isTr
+                  ? TrAppStrings.number
+                  : EnAppStrings.number,
               value: element.number.toString(),
             ),
             ElementInfoRow(
-              title: isTr ? TrAppStrings.weight : EnAppStrings.weight,
+              title: context.read<LocalizationProvider>().isTr
+                  ? TrAppStrings.weight
+                  : EnAppStrings.weight,
               value: element.weight,
             ),
           ],
